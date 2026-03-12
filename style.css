@@ -19,3 +19,17 @@ pre code {
   text-align: justify !important;
   hyphens: auto;
 }
+
+.book .book-summary img {
+  display: block;
+  margin: 20px auto;
+}
+
+/* ---------- Minimal GitBook toolbar ---------- */
+
+
+/* remove edit button */
+.book-header .btn[aria-label="Edit"] {
+  display: none !important;
+}
+

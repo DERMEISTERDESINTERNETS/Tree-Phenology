@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>28 Chapter 30 - The PhenoFlex model | Tree Phenology Wi/Se 2025/26</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="28 Chapter 30 - The PhenoFlex model | Tree Phenology Wi/Se 2025/26" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="28 Chapter 30 - The PhenoFlex model | Tree Phenology Wi/Se 2025/26" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Karl Kleiß" />
+
+
+<meta name="date" content="2026-03-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="chapter-29---making-valid-tree-phenology-models.html"/>
+<link rel="next" href="chapter-31---the-phenoflex-model---a-second-look.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Tree Phenology Wi/Se 25/26</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> The start of the module</a></li>
+<li class="chapter" data-level="2" data-path="chapter-3---tree-dormancy.html"><a href="chapter-3---tree-dormancy.html"><i class="fa fa-check"></i><b>2</b> Chapter 3 - Tree Dormancy</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="chapter-3---tree-dormancy.html"><a href="chapter-3---tree-dormancy.html#questions"><i class="fa fa-check"></i><b>2.1</b> Questions</a></li>
+<li class="chapter" data-level="2.2" data-path="chapter-3---tree-dormancy.html"><a href="chapter-3---tree-dormancy.html#answers"><i class="fa fa-check"></i><b>2.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-3---tree-dormancy.html"><a href="chapter-3---tree-dormancy.html#calculating-chilling-and-forcing"><i class="fa fa-check"></i>1. Calculating chilling and forcing</a></li>
+<li class="chapter" data-level="" data-path="chapter-3---tree-dormancy.html"><a href="chapter-3---tree-dormancy.html#advantages-of-the-bbch"><i class="fa fa-check"></i>2. Advantages of the BBCH</a></li>
+<li class="chapter" data-level="" data-path="chapter-3---tree-dormancy.html"><a href="chapter-3---tree-dormancy.html#example-pictures-in-the-module"><i class="fa fa-check"></i>3. Example pictures in the module:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="chapter-4---climate-change.html"><a href="chapter-4---climate-change.html"><i class="fa fa-check"></i><b>3</b> Chapter 4 - Climate Change</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="chapter-4---climate-change.html"><a href="chapter-4---climate-change.html#questions-1"><i class="fa fa-check"></i><b>3.1</b> Questions</a></li>
+<li class="chapter" data-level="3.2" data-path="chapter-4---climate-change.html"><a href="chapter-4---climate-change.html#answers-1"><i class="fa fa-check"></i><b>3.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-4---climate-change.html"><a href="chapter-4---climate-change.html#main-drivers-of-climate-change-and-key-mechanism"><i class="fa fa-check"></i>1. Main drivers of climate change and key mechanism</a></li>
+<li class="chapter" data-level="" data-path="chapter-4---climate-change.html"><a href="chapter-4---climate-change.html#temperature-dynamics-of-recent-decades"><i class="fa fa-check"></i>2. Temperature dynamics of recent decades</a></li>
+<li class="chapter" data-level="" data-path="chapter-4---climate-change.html"><a href="chapter-4---climate-change.html#meaning-and-role-of-rcps"><i class="fa fa-check"></i>3. Meaning and role of RCPs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="chapter-5---winter-chill-projections.html"><a href="chapter-5---winter-chill-projections.html"><i class="fa fa-check"></i><b>4</b> Chapter 5 - Winter chill projections</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="chapter-5---winter-chill-projections.html"><a href="chapter-5---winter-chill-projections.html#questions-2"><i class="fa fa-check"></i><b>4.1</b> Questions:</a></li>
+<li class="chapter" data-level="4.2" data-path="chapter-5---winter-chill-projections.html"><a href="chapter-5---winter-chill-projections.html#answers-2"><i class="fa fa-check"></i><b>4.2</b> Answers:</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="chapter-6---manual-chill-analysis.html"><a href="chapter-6---manual-chill-analysis.html"><i class="fa fa-check"></i><b>5</b> Chapter 6 - Manual chill analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="chapter-6---manual-chill-analysis.html"><a href="chapter-6---manual-chill-analysis.html#visualization"><i class="fa fa-check"></i><b>5.1</b> Visualization</a></li>
+<li class="chapter" data-level="5.2" data-path="chapter-6---manual-chill-analysis.html"><a href="chapter-6---manual-chill-analysis.html#function"><i class="fa fa-check"></i><b>5.2</b> Function</a></li>
+<li class="chapter" data-level="5.3" data-path="chapter-6---manual-chill-analysis.html"><a href="chapter-6---manual-chill-analysis.html#code-for-the-plot"><i class="fa fa-check"></i><b>5.3</b> Code for the plot</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="chapter-7---chill-models.html"><a href="chapter-7---chill-models.html"><i class="fa fa-check"></i><b>6</b> Chapter 7 - Chill Models</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="chapter-7---chill-models.html"><a href="chapter-7---chill-models.html#questions-3"><i class="fa fa-check"></i><b>6.1</b> Questions</a></li>
+<li class="chapter" data-level="6.2" data-path="chapter-7---chill-models.html"><a href="chapter-7---chill-models.html#answers-3"><i class="fa fa-check"></i><b>6.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-7---chill-models.html"><a href="chapter-7---chill-models.html#running-the-chilling-function."><i class="fa fa-check"></i>1. Running the <code>chilling()</code> function.</a></li>
+<li class="chapter" data-level="" data-path="chapter-7---chill-models.html"><a href="chapter-7---chill-models.html#little-changes-but-its-mine"><i class="fa fa-check"></i>2. Little changes, but its mine!</a></li>
+<li class="chapter" data-level="" data-path="chapter-7---chill-models.html"><a href="chapter-7---chill-models.html#applying-the-tempresponse-function-to-the-data-set."><i class="fa fa-check"></i>3. Applying the <code>tempResponse()</code> function to the data set.</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="chapter-7---chill-models.html"><a href="chapter-7---chill-models.html#plot"><i class="fa fa-check"></i><b>6.3</b> Plot</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-7---chill-models.html"><a href="chapter-7---chill-models.html#code-for-the-plot-1"><i class="fa fa-check"></i>Code for the plot:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="klagenfurt-austria.html"><a href="klagenfurt-austria.html"><i class="fa fa-check"></i><b>7</b> Klagenfurt, Austria</a></li>
+<li class="chapter" data-level="8" data-path="chapter-8---making-hourly-temperatures.html"><a href="chapter-8---making-hourly-temperatures.html"><i class="fa fa-check"></i><b>8</b> Chapter 8 - Making hourly temperatures</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="chapter-8---making-hourly-temperatures.html"><a href="chapter-8---making-hourly-temperatures.html#questions-4"><i class="fa fa-check"></i><b>8.1</b> Questions</a></li>
+<li class="chapter" data-level="8.2" data-path="chapter-8---making-hourly-temperatures.html"><a href="chapter-8---making-hourly-temperatures.html#answers-4"><i class="fa fa-check"></i><b>8.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-8---making-hourly-temperatures.html"><a href="chapter-8---making-hourly-temperatures.html#daylenght"><i class="fa fa-check"></i>1. Daylenght</a></li>
+<li class="chapter" data-level="" data-path="chapter-8---making-hourly-temperatures.html"><a href="chapter-8---making-hourly-temperatures.html#producing-an-hourly-dataset"><i class="fa fa-check"></i>2. Producing an hourly dataset</a></li>
+<li class="chapter" data-level="" data-path="chapter-8---making-hourly-temperatures.html"><a href="chapter-8---making-hourly-temperatures.html#creating-empirical-temperature-curve-parameters"><i class="fa fa-check"></i>3. Creating empirical temperature curve parameters</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="chapter-8---making-hourly-temperatures.html"><a href="chapter-8---making-hourly-temperatures.html#plot-1"><i class="fa fa-check"></i><b>8.3</b> Plot</a></li>
+<li class="chapter" data-level="8.4" data-path="chapter-8---making-hourly-temperatures.html"><a href="chapter-8---making-hourly-temperatures.html#code"><i class="fa fa-check"></i><b>8.4</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html"><i class="fa fa-check"></i><b>9</b> Chapter 9 - Some useful tools in R</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#answers-5"><i class="fa fa-check"></i>Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#tidyverse-pipes"><i class="fa fa-check"></i><strong>1</strong> - <code>tidyverse</code> &amp; Pipes</a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#a-convert-the-dataset-to-a-tibble"><i class="fa fa-check"></i>1a Convert the dataset to a <code>tibble</code></a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#b---select-only-the-first-10-rows"><i class="fa fa-check"></i>1b - Select only the first 10 <code>rows</code></a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#c---convert-to-long-format-temp-temp_gaps"><i class="fa fa-check"></i>1c - Convert to long format (<code>Temp</code> &amp; <code>Temp_gaps</code>)</a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#d---ggplot2-faceted-plot"><i class="fa fa-check"></i>1d - <code>ggplot2</code>: Faceted plot</a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#e---convert-back-to-wide-format"><i class="fa fa-check"></i>1e - Convert back to <code>wide</code> format</a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#f---select-columns-year-month-day-temp"><i class="fa fa-check"></i>1f - Select columns (<code>Year</code>, <code>Month</code>, <code>Day</code>, <code>Temp</code>)</a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#g---sort-by-temp-descending"><i class="fa fa-check"></i>1g - Sort by <code>Temp</code> (descending)</a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#for-loop-convert-temp-to-fahrenheit"><i class="fa fa-check"></i><strong>2</strong> - for loop (convert <code>Temp</code> to <code>Fahrenheit</code>)</a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#apply-family"><i class="fa fa-check"></i><strong>3</strong> - apply <code>family</code></a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#tidyverse-mutate"><i class="fa fa-check"></i><strong>4</strong> - <code>tidyverse</code> + <code>mutate</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="chapter-10---getting-temperature-data.html"><a href="chapter-10---getting-temperature-data.html"><i class="fa fa-check"></i><b>10</b> Chapter 10 - Getting Temperature Data</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="chapter-10---getting-temperature-data.html"><a href="chapter-10---getting-temperature-data.html#questions-5"><i class="fa fa-check"></i><b>10.1</b> Questions</a></li>
+<li class="chapter" data-level="10.2" data-path="chapter-10---getting-temperature-data.html"><a href="chapter-10---getting-temperature-data.html#answers-6"><i class="fa fa-check"></i><b>10.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-10---getting-temperature-data.html"><a href="chapter-10---getting-temperature-data.html#nearest-weather-stations"><i class="fa fa-check"></i>1. Nearest weather stations</a></li>
+<li class="chapter" data-level="" data-path="chapter-10---getting-temperature-data.html"><a href="chapter-10---getting-temperature-data.html#the-code"><i class="fa fa-check"></i>The Code</a></li>
+<li class="chapter" data-level="" data-path="chapter-10---getting-temperature-data.html"><a href="chapter-10---getting-temperature-data.html#table-with-data-in-chillr-format"><i class="fa fa-check"></i>3. Table with Data in <code>chillR</code>-format</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="chapter-10---getting-temperature-data.html"><a href="chapter-10---getting-temperature-data.html#odd-findings"><i class="fa fa-check"></i><b>10.3</b> Odd findings</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="chapter-11---filling-gaps-in-temperature-records.html"><a href="chapter-11---filling-gaps-in-temperature-records.html"><i class="fa fa-check"></i><b>11</b> Chapter 11 - Filling gaps in temperature records</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="chapter-11---filling-gaps-in-temperature-records.html"><a href="chapter-11---filling-gaps-in-temperature-records.html#questions-6"><i class="fa fa-check"></i><b>11.1</b> Questions</a></li>
+<li class="chapter" data-level="11.2" data-path="chapter-11---filling-gaps-in-temperature-records.html"><a href="chapter-11---filling-gaps-in-temperature-records.html#answers-7"><i class="fa fa-check"></i><b>11.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-11---filling-gaps-in-temperature-records.html"><a href="chapter-11---filling-gaps-in-temperature-records.html#finding-the-gaps"><i class="fa fa-check"></i>1. Finding the gaps</a></li>
+<li class="chapter" data-level="" data-path="chapter-11---filling-gaps-in-temperature-records.html"><a href="chapter-11---filling-gaps-in-temperature-records.html#these-lead-to-following-distances-to-my-weather-station-in-klagenfurt-austria"><i class="fa fa-check"></i>2. These lead to following distances to my weather station in Klagenfurt, Austria:</a></li>
+<li class="chapter" data-level="" data-path="chapter-11---filling-gaps-in-temperature-records.html"><a href="chapter-11---filling-gaps-in-temperature-records.html#identifying-nearest-weather-stations"><i class="fa fa-check"></i>3. Identifying nearest weather stations</a></li>
+<li class="chapter" data-level="" data-path="chapter-11---filling-gaps-in-temperature-records.html"><a href="chapter-11---filling-gaps-in-temperature-records.html#the-gaps-in-the-data-were-analysed-again.-we-now-have-the-following-amount-of-data-per-year"><i class="fa fa-check"></i>4. The gaps in the data were analysed again. We now have the following amount of data per year:</a></li>
+<li class="chapter" data-level="" data-path="chapter-11---filling-gaps-in-temperature-records.html"><a href="chapter-11---filling-gaps-in-temperature-records.html#patching-with-the-patch_daily_temperatures-function."><i class="fa fa-check"></i>5. Patching with the <code>patch_daily_temperatures</code> function.</a></li>
+<li class="chapter" data-level="" data-path="chapter-11---filling-gaps-in-temperature-records.html"><a href="chapter-11---filling-gaps-in-temperature-records.html#looking-for-the-gaps"><i class="fa fa-check"></i>6. Looking for the gaps!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html"><i class="fa fa-check"></i><b>12</b> Chapter 12 - Generating temperature scenarios</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#questions-7"><i class="fa fa-check"></i><b>12.1</b> Questions</a></li>
+<li class="chapter" data-level="12.2" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#answers-8"><i class="fa fa-check"></i><b>12.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#chilling"><i class="fa fa-check"></i><b>12.2.1</b> Chilling</a></li>
+<li class="chapter" data-level="" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#chill"><i class="fa fa-check"></i>2. Chill</a></li>
+<li class="chapter" data-level="" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#freezing"><i class="fa fa-check"></i>3. Freezing</a></li>
+<li class="chapter" data-level="12.2.2" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#freezing-hours-visualized"><i class="fa fa-check"></i><b>12.2.2</b> Freezing hours visualized</a></li>
+<li class="chapter" data-level="" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#freezing-hours-from-1973-2100"><i class="fa fa-check"></i>Freezing Hours from 1973-2100</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#codes"><i class="fa fa-check"></i><b>12.3</b> Codes</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="chapter-14---historic-temperature-scenarios.html"><a href="chapter-14---historic-temperature-scenarios.html"><i class="fa fa-check"></i><b>13</b> Chapter 14 - Historic temperature scenarios</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="chapter-14---historic-temperature-scenarios.html"><a href="chapter-14---historic-temperature-scenarios.html#questions-8"><i class="fa fa-check"></i><b>13.1</b> Questions</a></li>
+<li class="chapter" data-level="13.2" data-path="chapter-14---historic-temperature-scenarios.html"><a href="chapter-14---historic-temperature-scenarios.html#answers-9"><i class="fa fa-check"></i><b>13.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-14---historic-temperature-scenarios.html"><a href="chapter-14---historic-temperature-scenarios.html#finding-the-location-for-extracting-then-computing-and-summarizing-the-data"><i class="fa fa-check"></i>1. Finding the location for extracting then computing and summarizing the data:</a></li>
+<li class="chapter" data-level="" data-path="chapter-14---historic-temperature-scenarios.html"><a href="chapter-14---historic-temperature-scenarios.html#plotting-the-processed-data"><i class="fa fa-check"></i>2. Plotting the processed data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="chapter-15---future-temperature-scenarios.html"><a href="chapter-15---future-temperature-scenarios.html"><i class="fa fa-check"></i><b>14</b> Chapter 15 - Future temperature scenarios</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="chapter-15---future-temperature-scenarios.html"><a href="chapter-15---future-temperature-scenarios.html#questions-9"><i class="fa fa-check"></i><b>14.1</b> Questions</a></li>
+<li class="chapter" data-level="14.2" data-path="chapter-15---future-temperature-scenarios.html"><a href="chapter-15---future-temperature-scenarios.html#answer"><i class="fa fa-check"></i><b>14.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="chapter-16.html"><a href="chapter-16.html"><i class="fa fa-check"></i><b>15</b> Chapter 16</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="chapter-16.html"><a href="chapter-16.html#code-for-downloading-and-extracting"><i class="fa fa-check"></i><b>15.1</b> Code for downloading and extracting</a></li>
+<li class="chapter" data-level="15.2" data-path="chapter-16.html"><a href="chapter-16.html#plots"><i class="fa fa-check"></i><b>15.2</b> Plots</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="chapter-16.html"><a href="chapter-16.html#frost"><i class="fa fa-check"></i><b>15.2.1</b> Frost</a></li>
+<li class="chapter" data-level="15.2.2" data-path="chapter-16.html"><a href="chapter-16.html#heat"><i class="fa fa-check"></i><b>15.2.2</b> Heat</a></li>
+<li class="chapter" data-level="15.2.3" data-path="chapter-16.html"><a href="chapter-16.html#code-for-plotting"><i class="fa fa-check"></i><b>15.2.3</b> Code for plotting</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><i class="fa fa-check"></i><b>16</b> Chapter 17 - Making CMIP5 scenarios with the ClimateWizard</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#question"><i class="fa fa-check"></i><b>16.1</b> Question</a></li>
+<li class="chapter" data-level="16.2" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#plots-1"><i class="fa fa-check"></i><b>16.2</b> Plots</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#chill-1"><i class="fa fa-check"></i><b>16.2.1</b> Chill</a></li>
+<li class="chapter" data-level="16.2.2" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#frost-1"><i class="fa fa-check"></i><b>16.2.2</b> Frost</a></li>
+<li class="chapter" data-level="16.2.3" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#heat-1"><i class="fa fa-check"></i><b>16.2.3</b> Heat</a></li>
+<li class="chapter" data-level="16.2.4" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#code-1"><i class="fa fa-check"></i><b>16.2.4</b> Code</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="chapter-18---plotting-future-scenarios.html"><a href="chapter-18---plotting-future-scenarios.html"><i class="fa fa-check"></i><b>17</b> Chapter 18 - Plotting future scenarios</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="chapter-18---plotting-future-scenarios.html"><a href="chapter-18---plotting-future-scenarios.html#questions-10"><i class="fa fa-check"></i><b>17.1</b> Questions</a></li>
+<li class="chapter" data-level="17.2" data-path="chapter-18---plotting-future-scenarios.html"><a href="chapter-18---plotting-future-scenarios.html#plots-2"><i class="fa fa-check"></i><b>17.2</b> Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-18---plotting-future-scenarios.html"><a href="chapter-18---plotting-future-scenarios.html#chill-2"><i class="fa fa-check"></i>Chill</a></li>
+<li class="chapter" data-level="" data-path="chapter-18---plotting-future-scenarios.html"><a href="chapter-18---plotting-future-scenarios.html#frost-2"><i class="fa fa-check"></i>Frost</a></li>
+<li class="chapter" data-level="" data-path="chapter-18---plotting-future-scenarios.html"><a href="chapter-18---plotting-future-scenarios.html#heat-2"><i class="fa fa-check"></i>Heat</a></li>
+<li class="chapter" data-level="17.2.1" data-path="chapter-18---plotting-future-scenarios.html"><a href="chapter-18---plotting-future-scenarios.html#code-for-the-plots"><i class="fa fa-check"></i><b>17.2.1</b> Code for the plots:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="chapter-19---chill-model-comparison.html"><a href="chapter-19---chill-model-comparison.html"><i class="fa fa-check"></i><b>18</b> Chapter 19 - Chill model comparison</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="chapter-19---chill-model-comparison.html"><a href="chapter-19---chill-model-comparison.html#questions-11"><i class="fa fa-check"></i><b>18.1</b> Questions</a></li>
+<li class="chapter" data-level="18.2" data-path="chapter-19---chill-model-comparison.html"><a href="chapter-19---chill-model-comparison.html#answers-10"><i class="fa fa-check"></i><b>18.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-19---chill-model-comparison.html"><a href="chapter-19---chill-model-comparison.html#plot-2"><i class="fa fa-check"></i>Plot</a></li>
+<li class="chapter" data-level="" data-path="chapter-19---chill-model-comparison.html"><a href="chapter-19---chill-model-comparison.html#animated-plot"><i class="fa fa-check"></i>Animated plot</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="chapter-19---chill-model-comparison.html"><a href="chapter-19---chill-model-comparison.html#code-2"><i class="fa fa-check"></i><b>18.3</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="chapter-20---simple-phenology-analysis.html"><a href="chapter-20---simple-phenology-analysis.html"><i class="fa fa-check"></i><b>19</b> Chapter 20 - Simple phenology analysis</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="chapter-20---simple-phenology-analysis.html"><a href="chapter-20---simple-phenology-analysis.html#questions-12"><i class="fa fa-check"></i><b>19.1</b> Questions</a></li>
+<li class="chapter" data-level="19.2" data-path="chapter-20---simple-phenology-analysis.html"><a href="chapter-20---simple-phenology-analysis.html#answers-11"><i class="fa fa-check"></i><b>19.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-20---simple-phenology-analysis.html"><a href="chapter-20---simple-phenology-analysis.html#what-is-p-hacking-and-why-is-it-problematic"><i class="fa fa-check"></i>1. What is p-hacking and why is it problematic?</a></li>
+<li class="chapter" data-level="" data-path="chapter-20---simple-phenology-analysis.html"><a href="chapter-20---simple-phenology-analysis.html#causal-understanding-of-the-relationship-between-temperature-and-bloom-dates"><i class="fa fa-check"></i>2. Causal understanding of the relationship between temperature and bloom dates</a></li>
+<li class="chapter" data-level="" data-path="chapter-20---simple-phenology-analysis.html"><a href="chapter-20---simple-phenology-analysis.html#what-is-required-to-build-a-process-based-model"><i class="fa fa-check"></i>3. What is required to build a process-based model?</a></li>
+<li class="chapter" data-level="" data-path="chapter-20---simple-phenology-analysis.html"><a href="chapter-20---simple-phenology-analysis.html#bloom-and-temperatures"><i class="fa fa-check"></i>Bloom and Temperatures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="chapter-21---pls-regression-plots.html"><a href="chapter-21---pls-regression-plots.html"><i class="fa fa-check"></i><b>20</b> Chapter 21 - PLS Regression Plots</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="chapter-21---pls-regression-plots.html"><a href="chapter-21---pls-regression-plots.html#questions-13"><i class="fa fa-check"></i><b>20.1</b> Questions</a></li>
+<li class="chapter" data-level="20.2" data-path="chapter-21---pls-regression-plots.html"><a href="chapter-21---pls-regression-plots.html#answers-12"><i class="fa fa-check"></i><b>20.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-21---pls-regression-plots.html"><a href="chapter-21---pls-regression-plots.html#pls-regression"><i class="fa fa-check"></i>1. PLS Regression</a></li>
+<li class="chapter" data-level="" data-path="chapter-21---pls-regression-plots.html"><a href="chapter-21---pls-regression-plots.html#pls-analysis-visualized"><i class="fa fa-check"></i>2. PLS Analysis visualized</a></li>
+<li class="chapter" data-level="" data-path="chapter-21---pls-regression-plots.html"><a href="chapter-21---pls-regression-plots.html#why-do-the-results-differ-from-expectation"><i class="fa fa-check"></i>3. Why do the results differ from expectation?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="chapter-22---successes-and-limitations-of-pls-regression-analysis.html"><a href="chapter-22---successes-and-limitations-of-pls-regression-analysis.html"><i class="fa fa-check"></i><b>21</b> Chapter 22 - Successes and limitations of PLS regression analysis</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="chapter-22---successes-and-limitations-of-pls-regression-analysis.html"><a href="chapter-22---successes-and-limitations-of-pls-regression-analysis.html#questions-14"><i class="fa fa-check"></i><b>21.1</b> Questions</a></li>
+<li class="chapter" data-level="21.2" data-path="chapter-22---successes-and-limitations-of-pls-regression-analysis.html"><a href="chapter-22---successes-and-limitations-of-pls-regression-analysis.html#answers-13"><i class="fa fa-check"></i><b>21.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-22---successes-and-limitations-of-pls-regression-analysis.html"><a href="chapter-22---successes-and-limitations-of-pls-regression-analysis.html#problems-with-pls"><i class="fa fa-check"></i>1. Problems with PLS</a></li>
+<li class="chapter" data-level="" data-path="chapter-22---successes-and-limitations-of-pls-regression-analysis.html"><a href="chapter-22---successes-and-limitations-of-pls-regression-analysis.html#solutions-for-the-problem"><i class="fa fa-check"></i>2. Solutions for the problem</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="chapter-23---pls-regression-with-agroclimatic-metrics.html"><a href="chapter-23---pls-regression-with-agroclimatic-metrics.html"><i class="fa fa-check"></i><b>22</b> Chapter 23 - PLS regression with agroclimatic metrics</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="chapter-23---pls-regression-with-agroclimatic-metrics.html"><a href="chapter-23---pls-regression-with-agroclimatic-metrics.html#questions-15"><i class="fa fa-check"></i><b>22.1</b> Questions:</a></li>
+<li class="chapter" data-level="22.2" data-path="chapter-23---pls-regression-with-agroclimatic-metrics.html"><a href="chapter-23---pls-regression-with-agroclimatic-metrics.html#answers-14"><i class="fa fa-check"></i><b>22.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-23---pls-regression-with-agroclimatic-metrics.html"><a href="chapter-23---pls-regression-with-agroclimatic-metrics.html#chilling-hours"><i class="fa fa-check"></i>Chilling Hours</a></li>
+<li class="chapter" data-level="" data-path="chapter-23---pls-regression-with-agroclimatic-metrics.html"><a href="chapter-23---pls-regression-with-agroclimatic-metrics.html#utah-model"><i class="fa fa-check"></i>Utah Model</a></li>
+<li class="chapter" data-level="" data-path="chapter-23---pls-regression-with-agroclimatic-metrics.html"><a href="chapter-23---pls-regression-with-agroclimatic-metrics.html#dynamic-model"><i class="fa fa-check"></i>Dynamic Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html"><a href="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html"><i class="fa fa-check"></i><b>23</b> Chapter 24 - Examples of PLS regression with agroclimatic metrics</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html"><a href="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html#questions-16"><i class="fa fa-check"></i><b>23.1</b> Questions</a></li>
+<li class="chapter" data-level="23.2" data-path="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html"><a href="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html#answers-15"><i class="fa fa-check"></i><b>23.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html"><a href="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html#when-are-chilling-and-forcing-phases-clear"><i class="fa fa-check"></i>When are chilling and forcing phases clear?</a></li>
+<li class="chapter" data-level="" data-path="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html"><a href="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html#why-does-pls-sometimes-work-well-and-sometimes-not"><i class="fa fa-check"></i>Why does PLS sometimes work well and sometimes not?</a></li>
+<li class="chapter" data-level="" data-path="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html"><a href="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html#klagenfurt-and-the-boskoop"><i class="fa fa-check"></i>Klagenfurt and the Boskoop</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="chapter-25---why-pls-doesnt-always-work.html"><a href="chapter-25---why-pls-doesnt-always-work.html"><i class="fa fa-check"></i><b>24</b> Chapter 25 - Why PLS doesn’t always work</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="chapter-25---why-pls-doesnt-always-work.html"><a href="chapter-25---why-pls-doesnt-always-work.html#questions-17"><i class="fa fa-check"></i><b>24.1</b> Questions</a></li>
+<li class="chapter" data-level="24.2" data-path="chapter-25---why-pls-doesnt-always-work.html"><a href="chapter-25---why-pls-doesnt-always-work.html#answers-16"><i class="fa fa-check"></i><b>24.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-25---why-pls-doesnt-always-work.html"><a href="chapter-25---why-pls-doesnt-always-work.html#chill-model-sensitivity-plots"><i class="fa fa-check"></i>Chill model sensitivity plots</a></li>
+<li class="chapter" data-level="" data-path="chapter-25---why-pls-doesnt-always-work.html"><a href="chapter-25---why-pls-doesnt-always-work.html#heat-model-sensitivity-plots"><i class="fa fa-check"></i>Heat model sensitivity plots</a></li>
+</ul></li>
+<li class="chapter" data-level="24.3" data-path="chapter-25---why-pls-doesnt-always-work.html"><a href="chapter-25---why-pls-doesnt-always-work.html#code-3"><i class="fa fa-check"></i><b>24.3</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="chapter-26---evaluating-pls-outputs.html"><a href="chapter-26---evaluating-pls-outputs.html"><i class="fa fa-check"></i><b>25</b> Chapter 26 - Evaluating PLS outputs</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="chapter-26---evaluating-pls-outputs.html"><a href="chapter-26---evaluating-pls-outputs.html#questions-18"><i class="fa fa-check"></i><b>25.1</b> Questions</a></li>
+<li class="chapter" data-level="25.2" data-path="chapter-26---evaluating-pls-outputs.html"><a href="chapter-26---evaluating-pls-outputs.html#answers-17"><i class="fa fa-check"></i><b>25.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-26---evaluating-pls-outputs.html"><a href="chapter-26---evaluating-pls-outputs.html#klein-altendorf-germany"><i class="fa fa-check"></i>Klein Altendorf, Germany</a></li>
+<li class="chapter" data-level="" data-path="chapter-26---evaluating-pls-outputs.html"><a href="chapter-26---evaluating-pls-outputs.html#beijing-china"><i class="fa fa-check"></i>Beijing, China</a></li>
+<li class="chapter" data-level="" data-path="chapter-26---evaluating-pls-outputs.html"><a href="chapter-26---evaluating-pls-outputs.html#sfax-tunisia"><i class="fa fa-check"></i>Sfax, Tunisia</a></li>
+</ul></li>
+<li class="chapter" data-level="25.3" data-path="chapter-26---evaluating-pls-outputs.html"><a href="chapter-26---evaluating-pls-outputs.html#code-4"><i class="fa fa-check"></i><b>25.3</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="chapter-27---the-relative-importance-of-chill-and-heat.html"><a href="chapter-27---the-relative-importance-of-chill-and-heat.html"><i class="fa fa-check"></i><b>26</b> Chapter 27 - The relative importance of chill and heat</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="chapter-27---the-relative-importance-of-chill-and-heat.html"><a href="chapter-27---the-relative-importance-of-chill-and-heat.html#question-1"><i class="fa fa-check"></i><b>26.1</b> Question</a></li>
+<li class="chapter" data-level="26.2" data-path="chapter-27---the-relative-importance-of-chill-and-heat.html"><a href="chapter-27---the-relative-importance-of-chill-and-heat.html#answer-1"><i class="fa fa-check"></i><b>26.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="chapter-29---making-valid-tree-phenology-models.html"><a href="chapter-29---making-valid-tree-phenology-models.html"><i class="fa fa-check"></i><b>27</b> Chapter 29 - Making valid tree phenology models</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="chapter-29---making-valid-tree-phenology-models.html"><a href="chapter-29---making-valid-tree-phenology-models.html#questions-19"><i class="fa fa-check"></i><b>27.1</b> Questions</a></li>
+<li class="chapter" data-level="27.2" data-path="chapter-29---making-valid-tree-phenology-models.html"><a href="chapter-29---making-valid-tree-phenology-models.html#answers-18"><i class="fa fa-check"></i><b>27.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-29---making-valid-tree-phenology-models.html"><a href="chapter-29---making-valid-tree-phenology-models.html#difference-between-output-validation-and-process-validation"><i class="fa fa-check"></i>1. Difference between output validation and process validation</a></li>
+<li class="chapter" data-level="" data-path="chapter-29---making-valid-tree-phenology-models.html"><a href="chapter-29---making-valid-tree-phenology-models.html#what-is-a-validity-domain-and-why-is-it-important"><i class="fa fa-check"></i>2. What is a validity domain and why is it important?</a></li>
+<li class="chapter" data-level="" data-path="chapter-29---making-valid-tree-phenology-models.html"><a href="chapter-29---making-valid-tree-phenology-models.html#what-is-validation-for-purpose"><i class="fa fa-check"></i>3. What is validation for purpose?</a></li>
+<li class="chapter" data-level="" data-path="chapter-29---making-valid-tree-phenology-models.html"><a href="chapter-29---making-valid-tree-phenology-models.html#how-can-we-ensure-the-model-is-suitable-for-the-predictions-we-want-to-make"><i class="fa fa-check"></i>4. How can we ensure the model is suitable for the predictions we want to make?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="chapter-30---the-phenoflex-model.html"><a href="chapter-30---the-phenoflex-model.html"><i class="fa fa-check"></i><b>28</b> Chapter 30 - The PhenoFlex model</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="chapter-30---the-phenoflex-model.html"><a href="chapter-30---the-phenoflex-model.html#questions-20"><i class="fa fa-check"></i><b>28.1</b> Questions</a></li>
+<li class="chapter" data-level="28.2" data-path="chapter-30---the-phenoflex-model.html"><a href="chapter-30---the-phenoflex-model.html#answers-19"><i class="fa fa-check"></i><b>28.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-30---the-phenoflex-model.html"><a href="chapter-30---the-phenoflex-model.html#parameters-for-roter-boskoop-dataset"><i class="fa fa-check"></i>Parameters for “Roter Boskoop” dataset</a></li>
+<li class="chapter" data-level="" data-path="chapter-30---the-phenoflex-model.html"><a href="chapter-30---the-phenoflex-model.html#plots-3"><i class="fa fa-check"></i>Plots</a></li>
+<li class="chapter" data-level="" data-path="chapter-30---the-phenoflex-model.html"><a href="chapter-30---the-phenoflex-model.html#statistical-errors"><i class="fa fa-check"></i>Statistical Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="28.3" data-path="chapter-30---the-phenoflex-model.html"><a href="chapter-30---the-phenoflex-model.html#code-5"><i class="fa fa-check"></i><b>28.3</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="chapter-31---the-phenoflex-model---a-second-look.html"><a href="chapter-31---the-phenoflex-model---a-second-look.html"><i class="fa fa-check"></i><b>29</b> Chapter 31 - The <code>PhenoFlex</code> model - a second look</a>
+<ul>
+<li class="chapter" data-level="29.1" data-path="chapter-31---the-phenoflex-model---a-second-look.html"><a href="chapter-31---the-phenoflex-model---a-second-look.html#question-2"><i class="fa fa-check"></i><b>29.1</b> Question</a></li>
+<li class="chapter" data-level="29.2" data-path="chapter-31---the-phenoflex-model---a-second-look.html"><a href="chapter-31---the-phenoflex-model---a-second-look.html#answers-20"><i class="fa fa-check"></i><b>29.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-31---the-phenoflex-model---a-second-look.html"><a href="chapter-31---the-phenoflex-model---a-second-look.html#chill-3"><i class="fa fa-check"></i>Chill</a></li>
+<li class="chapter" data-level="" data-path="chapter-31---the-phenoflex-model---a-second-look.html"><a href="chapter-31---the-phenoflex-model---a-second-look.html#heat-3"><i class="fa fa-check"></i>Heat</a></li>
+</ul></li>
+<li class="chapter" data-level="29.3" data-path="chapter-31---the-phenoflex-model---a-second-look.html"><a href="chapter-31---the-phenoflex-model---a-second-look.html#code-6"><i class="fa fa-check"></i><b>29.3</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="chapter-32---can-we-improve-the-performance-of-phenoflex.html"><a href="chapter-32---can-we-improve-the-performance-of-phenoflex.html"><i class="fa fa-check"></i><b>30</b> Chapter 32 - Can we improve the performance of <code>PhenoFlex</code>?</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="chapter-32---can-we-improve-the-performance-of-phenoflex.html"><a href="chapter-32---can-we-improve-the-performance-of-phenoflex.html#questions-21"><i class="fa fa-check"></i><b>30.1</b> Questions</a></li>
+<li class="chapter" data-level="30.2" data-path="chapter-32---can-we-improve-the-performance-of-phenoflex.html"><a href="chapter-32---can-we-improve-the-performance-of-phenoflex.html#answers-21"><i class="fa fa-check"></i><b>30.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-32---can-we-improve-the-performance-of-phenoflex.html"><a href="chapter-32---can-we-improve-the-performance-of-phenoflex.html#what-was-the-objective-of-this-work"><i class="fa fa-check"></i>1. What was the objective of this work?</a></li>
+<li class="chapter" data-level="" data-path="chapter-32---can-we-improve-the-performance-of-phenoflex.html"><a href="chapter-32---can-we-improve-the-performance-of-phenoflex.html#what-was-the-main-conclusion"><i class="fa fa-check"></i>2. What was the main conclusion?</a></li>
+<li class="chapter" data-level="" data-path="chapter-32---can-we-improve-the-performance-of-phenoflex.html"><a href="chapter-32---can-we-improve-the-performance-of-phenoflex.html#what-experiments-could-be-conducted-to-test-the-emerging-hypothesis"><i class="fa fa-check"></i>3. What experiments could be conducted to test the emerging hypothesis?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="chapter-33---frost-risk-analysis.html"><a href="chapter-33---frost-risk-analysis.html"><i class="fa fa-check"></i><b>31</b> Chapter 33 - Frost risk analysis</a>
+<ul>
+<li class="chapter" data-level="31.1" data-path="chapter-33---frost-risk-analysis.html"><a href="chapter-33---frost-risk-analysis.html#questions-22"><i class="fa fa-check"></i><b>31.1</b> Questions</a></li>
+<li class="chapter" data-level="31.2" data-path="chapter-33---frost-risk-analysis.html"><a href="chapter-33---frost-risk-analysis.html#answers-22"><i class="fa fa-check"></i><b>31.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-33---frost-risk-analysis.html"><a href="chapter-33---frost-risk-analysis.html#development-of-bloom-over-the-duration-of-the-weather-record"><i class="fa fa-check"></i>Development of bloom over the duration of the weather record</a></li>
+<li class="chapter" data-level="" data-path="chapter-33---frost-risk-analysis.html"><a href="chapter-33---frost-risk-analysis.html#frost-hours-per-year-since-1958-at-klein-altendorf"><i class="fa fa-check"></i>Frost Hours per year since 1958 at Klein-Altendorf</a></li>
+<li class="chapter" data-level="" data-path="chapter-33---frost-risk-analysis.html"><a href="chapter-33---frost-risk-analysis.html#relationship-between-frost-hours-and-bloomperiod"><i class="fa fa-check"></i>Relationship between Frost hours and bloomperiod</a></li>
+</ul></li>
+<li class="chapter" data-level="31.3" data-path="chapter-33---frost-risk-analysis.html"><a href="chapter-33---frost-risk-analysis.html#code-7"><i class="fa fa-check"></i><b>31.3</b> Code</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tree Phenology Wi/Se 2025/26</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="chapter-30---the-phenoflex-model" class="section level1 hasAnchor" number="28">
+<h1><span class="header-section-number">28</span> Chapter 30 - The PhenoFlex model<a href="chapter-30---the-phenoflex-model.html#chapter-30---the-phenoflex-model" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter I worked with the PhenoFlex phenology model, which combines chilling accumulation and heat accumulation to predict bloom dates of temperate fruit trees. The goal was to parameterize the model for the cultivar Roter Boskoop, generate predictions of bloom dates, and evaluate model performance using different error metrics. The chapter helped me understand how phenology models can integrate biological processes such as dormancy release and heat accumulation.</p>
+<p>One of the main challenges for me was understanding the large number of parameters in the model and how they influence the predictions. Parameterization required fitting the model to observed bloom data and interpreting the solver results. Another challenge was interpreting the model evaluation metrics (RMSEP, mean error and mean absolute error) and assessing how well the model reproduces observed bloom dates. Overall, the chapter helped me understand how phenology models can be calibrated and evaluated using real temperature and phenology data.</p>
+<hr />
+<div id="questions-20" class="section level2 hasAnchor" number="28.1">
+<h2><span class="header-section-number">28.1</span> Questions<a href="chapter-30---the-phenoflex-model.html#questions-20" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Parameterize the PhenoFlex model for `Roter Boskoop’ apples.</p></li>
+<li><p>Produce plots of predicted vs. observed bloom dates and distribution of prediction errors.</p></li>
+<li><p>Compute the model performance metrics RMSEP, mean error and mean absolute error.</p></li>
+</ol>
+<hr />
+</div>
+<div id="answers-19" class="section level2 hasAnchor" number="28.2">
+<h2><span class="header-section-number">28.2</span> Answers<a href="chapter-30---the-phenoflex-model.html#answers-19" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="parameters-for-roter-boskoop-dataset" class="section level3 unnumbered hasAnchor">
+<h3>Parameters for “Roter Boskoop” dataset<a href="chapter-30---the-phenoflex-model.html#parameters-for-roter-boskoop-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="chapter-30---the-phenoflex-model.html#cb43-1" tabindex="-1"></a>Phenoflparam <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/PhenoFlex_parameters_Roter_Boskoop.csv&quot;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">X</th>
+<th align="right">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">3.945790e+01</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">1.955518e+02</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">3.217589e-01</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">2.500000e+01</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">3.372800e+03</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">9.900300e+03</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">6.187399e+03</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">5.939931e+13</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="right">4.978583e+00</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="right">3.006917e+01</td>
+</tr>
+<tr class="odd">
+<td align="right">11</td>
+<td align="right">4.000000e+00</td>
+</tr>
+<tr class="even">
+<td align="right">12</td>
+<td align="right">2.494781e+00</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="plots-3" class="section level3 unnumbered hasAnchor">
+<h3>Plots<a href="chapter-30---the-phenoflex-model.html#plots-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure"><span style="display:block;" id="fig:Dist30"></span>
+<img src="plots/Chapter30Distribution.svg" alt="The histogram shows the distribution of differences between predicted and observed bloom dates. Most prediction errors are centered around zero, indicating that the model reproduces observed bloom dates with relatively small deviations." width="800px" />
+<p class="caption">
+Figure 28.1: The histogram shows the distribution of differences between predicted and observed bloom dates. Most prediction errors are centered around zero, indicating that the model reproduces observed bloom dates with relatively small deviations.
+</p>
+</div>
+<div class="figure"><span style="display:block;" id="fig:Predt30"></span>
+<img src="plots/Chapter30pred.svg" alt="Each point represents one season. The diagonal line indicates perfect agreement between predicted and observed bloom dates. The close clustering of points around the line suggests that the PhenoFlex model predicts bloom timing with good accuracy." width="800px" />
+<p class="caption">
+Figure 28.2: Each point represents one season. The diagonal line indicates perfect agreement between predicted and observed bloom dates. The close clustering of points around the line suggests that the PhenoFlex model predicts bloom timing with good accuracy.
+</p>
+</div>
+<hr />
+</div>
+<div id="statistical-errors" class="section level3 unnumbered hasAnchor">
+<h3>Statistical Errors<a href="chapter-30---the-phenoflex-model.html#statistical-errors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>RMSEP:</strong></p>
+<p>The RMSEP (Root Mean Square Error of Prediction) describes the overall prediction accuracy of the model. In this analysis the RMSEP was 4.69, which is lower than the value reported in the chapter example (about 6.1). This indicates that the PhenoFlex model reproduces the observed bloom dates of Roter Boskoop apples with a high level of accuracy.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="chapter-30---the-phenoflex-model.html#cb44-1" tabindex="-1"></a><span class="do">## [1] 4.690369</span></span></code></pre></div>
+<p><strong>Mean Error:</strong></p>
+<p>The mean error describes the average bias of the model predictions. In this case the mean error was −1.92, meaning that the model predicts bloom dates on average about two days earlier than the observed dates. This bias is relatively small and indicates that the model predictions are generally well balanced.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="chapter-30---the-phenoflex-model.html#cb45-1" tabindex="-1"></a><span class="do">## [1] -1.915972</span></span></code></pre></div>
+<p><strong>Mean Absolute Error:</strong></p>
+<p>The mean absolute error represents the average absolute deviation between predicted and observed bloom dates. In this analysis the value was 3.34 days, which is lower than the value reported in the chapter example (4.62 days). This suggests that the model predictions are typically only a few days away from the observed bloom dates, indicating good model performance.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="chapter-30---the-phenoflex-model.html#cb46-1" tabindex="-1"></a><span class="do">## [1] 3.340972</span></span></code></pre></div>
+<hr />
+</div>
+</div>
+<div id="code-5" class="section level2 hasAnchor" number="28.3">
+<h2><span class="header-section-number">28.3</span> Code<a href="chapter-30---the-phenoflex-model.html#code-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="chapter-30---the-phenoflex-model.html#cb47-1" tabindex="-1"></a><span class="fu">library</span>(chillR)</span>
+<span id="cb47-2"><a href="chapter-30---the-phenoflex-model.html#cb47-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb47-3"><a href="chapter-30---the-phenoflex-model.html#cb47-3" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="chapter-30---the-phenoflex-model.html#cb47-4" tabindex="-1"></a>CKA_weather <span class="ot">&lt;-</span> <span class="fu">read_tab</span>(<span class="st">&quot;data/TMaxTMin1958-2019_patched.csv&quot;</span>)</span>
+<span id="cb47-5"><a href="chapter-30---the-phenoflex-model.html#cb47-5" tabindex="-1"></a>hourtemps <span class="ot">&lt;-</span> <span class="fu">stack_hourly_temps</span>(CKA_weather, </span>
+<span id="cb47-6"><a href="chapter-30---the-phenoflex-model.html#cb47-6" tabindex="-1"></a>                                <span class="at">latitude =</span> <span class="fl">50.6</span>)</span>
+<span id="cb47-7"><a href="chapter-30---the-phenoflex-model.html#cb47-7" tabindex="-1"></a></span>
+<span id="cb47-8"><a href="chapter-30---the-phenoflex-model.html#cb47-8" tabindex="-1"></a>yc <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb47-9"><a href="chapter-30---the-phenoflex-model.html#cb47-9" tabindex="-1"></a>zc <span class="ot">&lt;-</span> <span class="dv">190</span></span>
+<span id="cb47-10"><a href="chapter-30---the-phenoflex-model.html#cb47-10" tabindex="-1"></a>iSeason <span class="ot">&lt;-</span> <span class="fu">genSeason</span>(hourtemps,</span>
+<span id="cb47-11"><a href="chapter-30---the-phenoflex-model.html#cb47-11" tabindex="-1"></a>                     <span class="at">mrange =</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">6</span>),</span>
+<span id="cb47-12"><a href="chapter-30---the-phenoflex-model.html#cb47-12" tabindex="-1"></a>                     <span class="at">years =</span> <span class="fu">c</span>(<span class="dv">2009</span>))</span>
+<span id="cb47-13"><a href="chapter-30---the-phenoflex-model.html#cb47-13" tabindex="-1"></a></span>
+<span id="cb47-14"><a href="chapter-30---the-phenoflex-model.html#cb47-14" tabindex="-1"></a>season_data <span class="ot">&lt;-</span> hourtemps<span class="sc">$</span>hourtemps[iSeason[[<span class="dv">1</span>]],]</span>
+<span id="cb47-15"><a href="chapter-30---the-phenoflex-model.html#cb47-15" tabindex="-1"></a></span>
+<span id="cb47-16"><a href="chapter-30---the-phenoflex-model.html#cb47-16" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">PhenoFlex</span>(<span class="at">temp =</span> season_data<span class="sc">$</span>Temp,</span>
+<span id="cb47-17"><a href="chapter-30---the-phenoflex-model.html#cb47-17" tabindex="-1"></a>                 <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span> <span class="fu">length</span>(season_data<span class="sc">$</span>Temp)),</span>
+<span id="cb47-18"><a href="chapter-30---the-phenoflex-model.html#cb47-18" tabindex="-1"></a>                 <span class="at">zc =</span> zc,</span>
+<span id="cb47-19"><a href="chapter-30---the-phenoflex-model.html#cb47-19" tabindex="-1"></a>                 <span class="at">stopatzc =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb47-20"><a href="chapter-30---the-phenoflex-model.html#cb47-20" tabindex="-1"></a>                 <span class="at">yc =</span> yc,</span>
+<span id="cb47-21"><a href="chapter-30---the-phenoflex-model.html#cb47-21" tabindex="-1"></a>                 <span class="at">basic_output =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb47-22"><a href="chapter-30---the-phenoflex-model.html#cb47-22" tabindex="-1"></a></span>
+<span id="cb47-23"><a href="chapter-30---the-phenoflex-model.html#cb47-23" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb47-24"><a href="chapter-30---the-phenoflex-model.html#cb47-24" tabindex="-1"></a></span>
+<span id="cb47-25"><a href="chapter-30---the-phenoflex-model.html#cb47-25" tabindex="-1"></a>DBreakDay <span class="ot">&lt;-</span> res<span class="sc">$</span>bloomindex</span>
+<span id="cb47-26"><a href="chapter-30---the-phenoflex-model.html#cb47-26" tabindex="-1"></a>seasontemps <span class="ot">&lt;-</span> hourtemps<span class="sc">$</span>hourtemps[iSeason[[<span class="dv">1</span>]],]</span>
+<span id="cb47-27"><a href="chapter-30---the-phenoflex-model.html#cb47-27" tabindex="-1"></a>seasontemps[,<span class="st">&quot;x&quot;</span>] <span class="ot">&lt;-</span> res<span class="sc">$</span>x</span>
+<span id="cb47-28"><a href="chapter-30---the-phenoflex-model.html#cb47-28" tabindex="-1"></a>seasontemps[,<span class="st">&quot;y&quot;</span>] <span class="ot">&lt;-</span> res<span class="sc">$</span>y</span>
+<span id="cb47-29"><a href="chapter-30---the-phenoflex-model.html#cb47-29" tabindex="-1"></a>seasontemps[,<span class="st">&quot;z&quot;</span>] <span class="ot">&lt;-</span> res<span class="sc">$</span>z</span>
+<span id="cb47-30"><a href="chapter-30---the-phenoflex-model.html#cb47-30" tabindex="-1"></a>seasontemps <span class="ot">&lt;-</span> <span class="fu">add_date</span>(seasontemps)</span>
+<span id="cb47-31"><a href="chapter-30---the-phenoflex-model.html#cb47-31" tabindex="-1"></a></span>
+<span id="cb47-32"><a href="chapter-30---the-phenoflex-model.html#cb47-32" tabindex="-1"></a>CR_full <span class="ot">&lt;-</span> seasontemps<span class="sc">$</span>Date[<span class="fu">which</span>(seasontemps<span class="sc">$</span>y <span class="sc">&gt;=</span> yc)[<span class="dv">1</span>]]</span>
+<span id="cb47-33"><a href="chapter-30---the-phenoflex-model.html#cb47-33" tabindex="-1"></a>Bloom <span class="ot">&lt;-</span> seasontemps<span class="sc">$</span>Date[<span class="fu">which</span>(seasontemps<span class="sc">$</span>z <span class="sc">&gt;=</span> zc)[<span class="dv">1</span>]]</span>
+<span id="cb47-34"><a href="chapter-30---the-phenoflex-model.html#cb47-34" tabindex="-1"></a></span>
+<span id="cb47-35"><a href="chapter-30---the-phenoflex-model.html#cb47-35" tabindex="-1"></a>chillplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> seasontemps[<span class="dv">1</span><span class="sc">:</span>DBreakDay,],</span>
+<span id="cb47-36"><a href="chapter-30---the-phenoflex-model.html#cb47-36" tabindex="-1"></a>                    <span class="fu">aes</span>(<span class="at">x =</span> Date,</span>
+<span id="cb47-37"><a href="chapter-30---the-phenoflex-model.html#cb47-37" tabindex="-1"></a>                        <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb47-38"><a href="chapter-30---the-phenoflex-model.html#cb47-38" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb47-39"><a href="chapter-30---the-phenoflex-model.html#cb47-39" tabindex="-1"></a>            <span class="at">lwd =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb47-40"><a href="chapter-30---the-phenoflex-model.html#cb47-40" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb47-41"><a href="chapter-30---the-phenoflex-model.html#cb47-41" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> yc,</span>
+<span id="cb47-42"><a href="chapter-30---the-phenoflex-model.html#cb47-42" tabindex="-1"></a>             <span class="at">lty =</span> <span class="dv">2</span>,</span>
+<span id="cb47-43"><a href="chapter-30---the-phenoflex-model.html#cb47-43" tabindex="-1"></a>             <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb47-44"><a href="chapter-30---the-phenoflex-model.html#cb47-44" tabindex="-1"></a>             <span class="at">lwd =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb47-45"><a href="chapter-30---the-phenoflex-model.html#cb47-45" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> CR_full,</span>
+<span id="cb47-46"><a href="chapter-30---the-phenoflex-model.html#cb47-46" tabindex="-1"></a>             <span class="at">lty =</span> <span class="dv">3</span>,</span>
+<span id="cb47-47"><a href="chapter-30---the-phenoflex-model.html#cb47-47" tabindex="-1"></a>             <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb47-48"><a href="chapter-30---the-phenoflex-model.html#cb47-48" tabindex="-1"></a>             <span class="at">lwd =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb47-49"><a href="chapter-30---the-phenoflex-model.html#cb47-49" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Chill accumulation (y)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-50"><a href="chapter-30---the-phenoflex-model.html#cb47-50" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Chilling&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-51"><a href="chapter-30---the-phenoflex-model.html#cb47-51" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>,</span>
+<span id="cb47-52"><a href="chapter-30---the-phenoflex-model.html#cb47-52" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">&quot;Chill req. (yc)&quot;</span>, </span>
+<span id="cb47-53"><a href="chapter-30---the-phenoflex-model.html#cb47-53" tabindex="-1"></a>           <span class="at">x =</span> <span class="fu">ISOdate</span>(<span class="dv">2008</span>,<span class="dv">10</span>,<span class="dv">01</span>),</span>
+<span id="cb47-54"><a href="chapter-30---the-phenoflex-model.html#cb47-54" tabindex="-1"></a>           <span class="at">y =</span> yc<span class="sc">*</span><span class="fl">1.1</span>,</span>
+<span id="cb47-55"><a href="chapter-30---the-phenoflex-model.html#cb47-55" tabindex="-1"></a>           <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb47-56"><a href="chapter-30---the-phenoflex-model.html#cb47-56" tabindex="-1"></a>           <span class="at">size =</span> <span class="dv">5</span>)</span>
+<span id="cb47-57"><a href="chapter-30---the-phenoflex-model.html#cb47-57" tabindex="-1"></a></span>
+<span id="cb47-58"><a href="chapter-30---the-phenoflex-model.html#cb47-58" tabindex="-1"></a>heatplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> seasontemps[<span class="dv">1</span><span class="sc">:</span>DBreakDay,],</span>
+<span id="cb47-59"><a href="chapter-30---the-phenoflex-model.html#cb47-59" tabindex="-1"></a>                   <span class="fu">aes</span>(<span class="at">x =</span> Date,</span>
+<span id="cb47-60"><a href="chapter-30---the-phenoflex-model.html#cb47-60" tabindex="-1"></a>                       <span class="at">y =</span> z)) <span class="sc">+</span></span>
+<span id="cb47-61"><a href="chapter-30---the-phenoflex-model.html#cb47-61" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb47-62"><a href="chapter-30---the-phenoflex-model.html#cb47-62" tabindex="-1"></a>            <span class="at">lwd =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb47-63"><a href="chapter-30---the-phenoflex-model.html#cb47-63" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb47-64"><a href="chapter-30---the-phenoflex-model.html#cb47-64" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">position =</span> <span class="st">&quot;right&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-65"><a href="chapter-30---the-phenoflex-model.html#cb47-65" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> zc,</span>
+<span id="cb47-66"><a href="chapter-30---the-phenoflex-model.html#cb47-66" tabindex="-1"></a>             <span class="at">lty =</span> <span class="dv">2</span>,</span>
+<span id="cb47-67"><a href="chapter-30---the-phenoflex-model.html#cb47-67" tabindex="-1"></a>             <span class="at">col =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb47-68"><a href="chapter-30---the-phenoflex-model.html#cb47-68" tabindex="-1"></a>             <span class="at">lwd =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb47-69"><a href="chapter-30---the-phenoflex-model.html#cb47-69" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> CR_full,</span>
+<span id="cb47-70"><a href="chapter-30---the-phenoflex-model.html#cb47-70" tabindex="-1"></a>             <span class="at">lty =</span> <span class="dv">3</span>,</span>
+<span id="cb47-71"><a href="chapter-30---the-phenoflex-model.html#cb47-71" tabindex="-1"></a>             <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb47-72"><a href="chapter-30---the-phenoflex-model.html#cb47-72" tabindex="-1"></a>             <span class="at">lwd =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb47-73"><a href="chapter-30---the-phenoflex-model.html#cb47-73" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> Bloom,</span>
+<span id="cb47-74"><a href="chapter-30---the-phenoflex-model.html#cb47-74" tabindex="-1"></a>             <span class="at">lty =</span> <span class="dv">3</span>,</span>
+<span id="cb47-75"><a href="chapter-30---the-phenoflex-model.html#cb47-75" tabindex="-1"></a>             <span class="at">col =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb47-76"><a href="chapter-30---the-phenoflex-model.html#cb47-76" tabindex="-1"></a>             <span class="at">lwd =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb47-77"><a href="chapter-30---the-phenoflex-model.html#cb47-77" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Heat accumulation (z)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-78"><a href="chapter-30---the-phenoflex-model.html#cb47-78" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Forcing&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-79"><a href="chapter-30---the-phenoflex-model.html#cb47-79" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>,</span>
+<span id="cb47-80"><a href="chapter-30---the-phenoflex-model.html#cb47-80" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">&quot;Heat req. (zc)&quot;</span>, </span>
+<span id="cb47-81"><a href="chapter-30---the-phenoflex-model.html#cb47-81" tabindex="-1"></a>           <span class="at">x =</span> <span class="fu">ISOdate</span>(<span class="dv">2008</span>,<span class="dv">10</span>,<span class="dv">01</span>),</span>
+<span id="cb47-82"><a href="chapter-30---the-phenoflex-model.html#cb47-82" tabindex="-1"></a>           <span class="at">y =</span> zc<span class="sc">*</span><span class="fl">0.95</span>,</span>
+<span id="cb47-83"><a href="chapter-30---the-phenoflex-model.html#cb47-83" tabindex="-1"></a>           <span class="at">col =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb47-84"><a href="chapter-30---the-phenoflex-model.html#cb47-84" tabindex="-1"></a>           <span class="at">size =</span> <span class="dv">5</span>)</span>
+<span id="cb47-85"><a href="chapter-30---the-phenoflex-model.html#cb47-85" tabindex="-1"></a></span>
+<span id="cb47-86"><a href="chapter-30---the-phenoflex-model.html#cb47-86" tabindex="-1"></a></span>
+<span id="cb47-87"><a href="chapter-30---the-phenoflex-model.html#cb47-87" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb47-88"><a href="chapter-30---the-phenoflex-model.html#cb47-88" tabindex="-1"></a>chillplot <span class="sc">+</span> heatplot</span>
+<span id="cb47-89"><a href="chapter-30---the-phenoflex-model.html#cb47-89" tabindex="-1"></a></span>
+<span id="cb47-90"><a href="chapter-30---the-phenoflex-model.html#cb47-90" tabindex="-1"></a><span class="co"># Lineplot</span></span>
+<span id="cb47-91"><a href="chapter-30---the-phenoflex-model.html#cb47-91" tabindex="-1"></a></span>
+<span id="cb47-92"><a href="chapter-30---the-phenoflex-model.html#cb47-92" tabindex="-1"></a>yc <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb47-93"><a href="chapter-30---the-phenoflex-model.html#cb47-93" tabindex="-1"></a>zc <span class="ot">&lt;-</span> <span class="dv">190</span></span>
+<span id="cb47-94"><a href="chapter-30---the-phenoflex-model.html#cb47-94" tabindex="-1"></a>seasons <span class="ot">&lt;-</span> <span class="dv">1959</span><span class="sc">:</span><span class="dv">2019</span></span>
+<span id="cb47-95"><a href="chapter-30---the-phenoflex-model.html#cb47-95" tabindex="-1"></a></span>
+<span id="cb47-96"><a href="chapter-30---the-phenoflex-model.html#cb47-96" tabindex="-1"></a>iSeason <span class="ot">&lt;-</span> <span class="fu">genSeason</span>(hourtemps,</span>
+<span id="cb47-97"><a href="chapter-30---the-phenoflex-model.html#cb47-97" tabindex="-1"></a>                     <span class="at">mrange =</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">6</span>),</span>
+<span id="cb47-98"><a href="chapter-30---the-phenoflex-model.html#cb47-98" tabindex="-1"></a>                     <span class="at">years =</span> seasons)</span>
+<span id="cb47-99"><a href="chapter-30---the-phenoflex-model.html#cb47-99" tabindex="-1"></a><span class="cf">for</span> (sea <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(seasons))</span>
+<span id="cb47-100"><a href="chapter-30---the-phenoflex-model.html#cb47-100" tabindex="-1"></a>{season_data <span class="ot">&lt;-</span> hourtemps<span class="sc">$</span>hourtemps[iSeason[[sea]], ]</span>
+<span id="cb47-101"><a href="chapter-30---the-phenoflex-model.html#cb47-101" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">PhenoFlex</span>(<span class="at">temp =</span> season_data<span class="sc">$</span>Temp,</span>
+<span id="cb47-102"><a href="chapter-30---the-phenoflex-model.html#cb47-102" tabindex="-1"></a>                 <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span> <span class="fu">length</span>(season_data<span class="sc">$</span>Temp)),</span>
+<span id="cb47-103"><a href="chapter-30---the-phenoflex-model.html#cb47-103" tabindex="-1"></a>                 <span class="at">zc =</span> zc,</span>
+<span id="cb47-104"><a href="chapter-30---the-phenoflex-model.html#cb47-104" tabindex="-1"></a>                 <span class="at">stopatzc =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb47-105"><a href="chapter-30---the-phenoflex-model.html#cb47-105" tabindex="-1"></a>                 <span class="at">yc =</span> yc,</span>
+<span id="cb47-106"><a href="chapter-30---the-phenoflex-model.html#cb47-106" tabindex="-1"></a>                 <span class="at">basic_output =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb47-107"><a href="chapter-30---the-phenoflex-model.html#cb47-107" tabindex="-1"></a><span class="cf">if</span>(sea <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb47-108"><a href="chapter-30---the-phenoflex-model.html#cb47-108" tabindex="-1"></a>  results <span class="ot">&lt;-</span> season_data<span class="sc">$</span>DATE[res<span class="sc">$</span>bloomindex] <span class="cf">else</span></span>
+<span id="cb47-109"><a href="chapter-30---the-phenoflex-model.html#cb47-109" tabindex="-1"></a>    results <span class="ot">&lt;-</span> <span class="fu">c</span>(results,</span>
+<span id="cb47-110"><a href="chapter-30---the-phenoflex-model.html#cb47-110" tabindex="-1"></a>                 season_data<span class="sc">$</span>DATE[res<span class="sc">$</span>bloomindex])}</span>
+<span id="cb47-111"><a href="chapter-30---the-phenoflex-model.html#cb47-111" tabindex="-1"></a></span>
+<span id="cb47-112"><a href="chapter-30---the-phenoflex-model.html#cb47-112" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Season =</span> seasons,</span>
+<span id="cb47-113"><a href="chapter-30---the-phenoflex-model.html#cb47-113" tabindex="-1"></a>                          <span class="at">Prediction =</span> results)</span>
+<span id="cb47-114"><a href="chapter-30---the-phenoflex-model.html#cb47-114" tabindex="-1"></a>predictions<span class="sc">$</span>Prediction <span class="ot">&lt;-</span></span>
+<span id="cb47-115"><a href="chapter-30---the-phenoflex-model.html#cb47-115" tabindex="-1"></a>  <span class="fu">ISOdate</span>(<span class="dv">2001</span>,</span>
+<span id="cb47-116"><a href="chapter-30---the-phenoflex-model.html#cb47-116" tabindex="-1"></a>          <span class="fu">substr</span>(predictions<span class="sc">$</span>Prediction, <span class="dv">4</span>, <span class="dv">5</span>),</span>
+<span id="cb47-117"><a href="chapter-30---the-phenoflex-model.html#cb47-117" tabindex="-1"></a>          <span class="fu">substr</span>(predictions<span class="sc">$</span>Prediction, <span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb47-118"><a href="chapter-30---the-phenoflex-model.html#cb47-118" tabindex="-1"></a></span>
+<span id="cb47-119"><a href="chapter-30---the-phenoflex-model.html#cb47-119" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> predictions,</span>
+<span id="cb47-120"><a href="chapter-30---the-phenoflex-model.html#cb47-120" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Season,</span>
+<span id="cb47-121"><a href="chapter-30---the-phenoflex-model.html#cb47-121" tabindex="-1"></a>           <span class="at">y =</span> Prediction)) <span class="sc">+</span></span>
+<span id="cb47-122"><a href="chapter-30---the-phenoflex-model.html#cb47-122" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb47-123"><a href="chapter-30---the-phenoflex-model.html#cb47-123" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb47-124"><a href="chapter-30---the-phenoflex-model.html#cb47-124" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Predicted bloom date&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-125"><a href="chapter-30---the-phenoflex-model.html#cb47-125" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span>
+<span id="cb47-126"><a href="chapter-30---the-phenoflex-model.html#cb47-126" tabindex="-1"></a></span>
+<span id="cb47-127"><a href="chapter-30---the-phenoflex-model.html#cb47-127" tabindex="-1"></a><span class="co"># Try to fit</span></span>
+<span id="cb47-128"><a href="chapter-30---the-phenoflex-model.html#cb47-128" tabindex="-1"></a></span>
+<span id="cb47-129"><a href="chapter-30---the-phenoflex-model.html#cb47-129" tabindex="-1"></a>Alex_first <span class="ot">&lt;-</span></span>
+<span id="cb47-130"><a href="chapter-30---the-phenoflex-model.html#cb47-130" tabindex="-1"></a>  <span class="fu">read_tab</span>(<span class="st">&quot;data/Roter_Boskoop_bloom_1958_2019.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb47-131"><a href="chapter-30---the-phenoflex-model.html#cb47-131" tabindex="-1"></a>  <span class="fu">select</span>(Pheno_year, First_bloom) <span class="sc">%&gt;%</span></span>
+<span id="cb47-132"><a href="chapter-30---the-phenoflex-model.html#cb47-132" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Year =</span> <span class="fu">as.numeric</span>(<span class="fu">substr</span>(First_bloom, <span class="dv">1</span>, <span class="dv">4</span>)),</span>
+<span id="cb47-133"><a href="chapter-30---the-phenoflex-model.html#cb47-133" tabindex="-1"></a>         <span class="at">Month =</span> <span class="fu">as.numeric</span>(<span class="fu">substr</span>(First_bloom, <span class="dv">5</span>, <span class="dv">6</span>)),</span>
+<span id="cb47-134"><a href="chapter-30---the-phenoflex-model.html#cb47-134" tabindex="-1"></a>         <span class="at">Day =</span> <span class="fu">as.numeric</span>(<span class="fu">substr</span>(First_bloom, <span class="dv">7</span>, <span class="dv">8</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb47-135"><a href="chapter-30---the-phenoflex-model.html#cb47-135" tabindex="-1"></a>  <span class="fu">make_JDay</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb47-136"><a href="chapter-30---the-phenoflex-model.html#cb47-136" tabindex="-1"></a>  <span class="fu">select</span>(Pheno_year, JDay) <span class="sc">%&gt;%</span></span>
+<span id="cb47-137"><a href="chapter-30---the-phenoflex-model.html#cb47-137" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Year =</span> Pheno_year,</span>
+<span id="cb47-138"><a href="chapter-30---the-phenoflex-model.html#cb47-138" tabindex="-1"></a>         <span class="at">pheno =</span> JDay)</span>
+<span id="cb47-139"><a href="chapter-30---the-phenoflex-model.html#cb47-139" tabindex="-1"></a></span>
+<span id="cb47-140"><a href="chapter-30---the-phenoflex-model.html#cb47-140" tabindex="-1"></a>hourtemps <span class="ot">&lt;-</span> </span>
+<span id="cb47-141"><a href="chapter-30---the-phenoflex-model.html#cb47-141" tabindex="-1"></a>  <span class="fu">read_tab</span>(<span class="st">&quot;data/TMaxTMin1958-2019_patched.csv&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb47-142"><a href="chapter-30---the-phenoflex-model.html#cb47-142" tabindex="-1"></a>  <span class="fu">stack_hourly_temps</span>(<span class="at">latitude =</span> <span class="fl">50.6</span>)</span>
+<span id="cb47-143"><a href="chapter-30---the-phenoflex-model.html#cb47-143" tabindex="-1"></a></span>
+<span id="cb47-144"><a href="chapter-30---the-phenoflex-model.html#cb47-144" tabindex="-1"></a><span class="co"># Parameters from helpfile</span></span>
+<span id="cb47-145"><a href="chapter-30---the-phenoflex-model.html#cb47-145" tabindex="-1"></a></span>
+<span id="cb47-146"><a href="chapter-30---the-phenoflex-model.html#cb47-146" tabindex="-1"></a><span class="co"># here&#39;s the order of the parameters (from the helpfile of the</span></span>
+<span id="cb47-147"><a href="chapter-30---the-phenoflex-model.html#cb47-147" tabindex="-1"></a><span class="co"># PhenoFlex_GDHwrapper function)</span></span>
+<span id="cb47-148"><a href="chapter-30---the-phenoflex-model.html#cb47-148" tabindex="-1"></a><span class="co">#          yc,  zc,  s1, Tu,    E0,      E1,     A0,         A1,   Tf, Tc, Tb,  slope</span></span>
+<span id="cb47-149"><a href="chapter-30---the-phenoflex-model.html#cb47-149" tabindex="-1"></a>par <span class="ot">&lt;-</span>   <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">190</span>, <span class="fl">0.5</span>, <span class="dv">25</span>, <span class="fl">3372.8</span>,  <span class="fl">9900.3</span>, <span class="fl">6319.5</span>,</span>
+<span id="cb47-150"><a href="chapter-30---the-phenoflex-model.html#cb47-150" tabindex="-1"></a>           <span class="fl">5.939917e13</span>,  <span class="dv">4</span>, <span class="dv">36</span>,  <span class="dv">4</span>,  <span class="fl">1.60</span>)</span>
+<span id="cb47-151"><a href="chapter-30---the-phenoflex-model.html#cb47-151" tabindex="-1"></a>upper <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">41</span>, <span class="dv">200</span>, <span class="fl">1.0</span>, <span class="dv">30</span>, <span class="fl">4000.0</span>, <span class="fl">10000.0</span>, <span class="fl">7000.0</span>,  </span>
+<span id="cb47-152"><a href="chapter-30---the-phenoflex-model.html#cb47-152" tabindex="-1"></a>           <span class="dv">6</span>.e13, <span class="dv">10</span>, <span class="dv">40</span>, <span class="dv">10</span>, <span class="fl">50.00</span>)</span>
+<span id="cb47-153"><a href="chapter-30---the-phenoflex-model.html#cb47-153" tabindex="-1"></a>lower <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">38</span>, <span class="dv">180</span>, <span class="fl">0.1</span>, <span class="dv">0</span> , <span class="fl">3000.0</span>,  <span class="fl">9000.0</span>, <span class="fl">6000.0</span>,   </span>
+<span id="cb47-154"><a href="chapter-30---the-phenoflex-model.html#cb47-154" tabindex="-1"></a>           <span class="dv">5</span>.e13,  <span class="dv">0</span>,  <span class="dv">0</span>,  <span class="dv">0</span>,  <span class="fl">0.05</span>)</span>
+<span id="cb47-155"><a href="chapter-30---the-phenoflex-model.html#cb47-155" tabindex="-1"></a></span>
+<span id="cb47-156"><a href="chapter-30---the-phenoflex-model.html#cb47-156" tabindex="-1"></a><span class="co"># Season list</span></span>
+<span id="cb47-157"><a href="chapter-30---the-phenoflex-model.html#cb47-157" tabindex="-1"></a></span>
+<span id="cb47-158"><a href="chapter-30---the-phenoflex-model.html#cb47-158" tabindex="-1"></a>SeasonList <span class="ot">&lt;-</span> <span class="fu">genSeasonList</span>(hourtemps<span class="sc">$</span>hourtemps,</span>
+<span id="cb47-159"><a href="chapter-30---the-phenoflex-model.html#cb47-159" tabindex="-1"></a>                            <span class="at">mrange =</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">6</span>),</span>
+<span id="cb47-160"><a href="chapter-30---the-phenoflex-model.html#cb47-160" tabindex="-1"></a>                            <span class="at">years =</span> <span class="fu">c</span>(<span class="dv">1959</span><span class="sc">:</span><span class="dv">2018</span>))</span>
+<span id="cb47-161"><a href="chapter-30---the-phenoflex-model.html#cb47-161" tabindex="-1"></a></span>
+<span id="cb47-162"><a href="chapter-30---the-phenoflex-model.html#cb47-162" tabindex="-1"></a>Fit_res <span class="ot">&lt;-</span> </span>
+<span id="cb47-163"><a href="chapter-30---the-phenoflex-model.html#cb47-163" tabindex="-1"></a>  <span class="fu">phenologyFitter</span>(<span class="at">par.guess =</span> par, </span>
+<span id="cb47-164"><a href="chapter-30---the-phenoflex-model.html#cb47-164" tabindex="-1"></a>                  <span class="at">modelfn =</span> PhenoFlex_GDHwrapper,</span>
+<span id="cb47-165"><a href="chapter-30---the-phenoflex-model.html#cb47-165" tabindex="-1"></a>                  <span class="at">bloomJDays =</span> Alex_first<span class="sc">$</span>pheno[<span class="fu">which</span>(Alex_first<span class="sc">$</span>Year <span class="sc">&gt;</span> <span class="dv">1958</span>)],</span>
+<span id="cb47-166"><a href="chapter-30---the-phenoflex-model.html#cb47-166" tabindex="-1"></a>                  <span class="at">SeasonList =</span> SeasonList,</span>
+<span id="cb47-167"><a href="chapter-30---the-phenoflex-model.html#cb47-167" tabindex="-1"></a>                  <span class="at">lower =</span> lower,</span>
+<span id="cb47-168"><a href="chapter-30---the-phenoflex-model.html#cb47-168" tabindex="-1"></a>                  <span class="at">upper =</span> upper,</span>
+<span id="cb47-169"><a href="chapter-30---the-phenoflex-model.html#cb47-169" tabindex="-1"></a>                  <span class="at">control =</span> <span class="fu">list</span>(<span class="at">smooth =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb47-170"><a href="chapter-30---the-phenoflex-model.html#cb47-170" tabindex="-1"></a>                                 <span class="at">verbose =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb47-171"><a href="chapter-30---the-phenoflex-model.html#cb47-171" tabindex="-1"></a>                                 <span class="at">maxit =</span> <span class="dv">1000</span>,</span>
+<span id="cb47-172"><a href="chapter-30---the-phenoflex-model.html#cb47-172" tabindex="-1"></a>                                 <span class="at">nb.stop.improvement =</span> <span class="dv">5</span>))</span>
+<span id="cb47-173"><a href="chapter-30---the-phenoflex-model.html#cb47-173" tabindex="-1"></a></span>
+<span id="cb47-174"><a href="chapter-30---the-phenoflex-model.html#cb47-174" tabindex="-1"></a>Alex_par <span class="ot">&lt;-</span> Fit_res<span class="sc">$</span>par</span>
+<span id="cb47-175"><a href="chapter-30---the-phenoflex-model.html#cb47-175" tabindex="-1"></a></span>
+<span id="cb47-176"><a href="chapter-30---the-phenoflex-model.html#cb47-176" tabindex="-1"></a><span class="fu">write.csv</span>(Alex_par,</span>
+<span id="cb47-177"><a href="chapter-30---the-phenoflex-model.html#cb47-177" tabindex="-1"></a>          <span class="st">&quot;data/PhenoFlex_parameters_Roter_Boskoop.csv&quot;</span>)</span>
+<span id="cb47-178"><a href="chapter-30---the-phenoflex-model.html#cb47-178" tabindex="-1"></a></span>
+<span id="cb47-179"><a href="chapter-30---the-phenoflex-model.html#cb47-179" tabindex="-1"></a><span class="co"># getting the param</span></span>
+<span id="cb47-180"><a href="chapter-30---the-phenoflex-model.html#cb47-180" tabindex="-1"></a></span>
+<span id="cb47-181"><a href="chapter-30---the-phenoflex-model.html#cb47-181" tabindex="-1"></a>Alex_par <span class="ot">&lt;-</span> </span>
+<span id="cb47-182"><a href="chapter-30---the-phenoflex-model.html#cb47-182" tabindex="-1"></a>  <span class="fu">read_tab</span>(<span class="st">&quot;data/PhenoFlex_parameters_Roter_Boskoop.csv&quot;</span>)[,<span class="dv">2</span>]</span>
+<span id="cb47-183"><a href="chapter-30---the-phenoflex-model.html#cb47-183" tabindex="-1"></a></span>
+<span id="cb47-184"><a href="chapter-30---the-phenoflex-model.html#cb47-184" tabindex="-1"></a>SeasonList <span class="ot">&lt;-</span> <span class="fu">genSeasonList</span>(hourtemps<span class="sc">$</span>hourtemps, </span>
+<span id="cb47-185"><a href="chapter-30---the-phenoflex-model.html#cb47-185" tabindex="-1"></a>                            <span class="at">mrange =</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">6</span>),</span>
+<span id="cb47-186"><a href="chapter-30---the-phenoflex-model.html#cb47-186" tabindex="-1"></a>                            <span class="at">years =</span> <span class="fu">c</span>(<span class="dv">1959</span><span class="sc">:</span><span class="dv">2019</span>))</span>
+<span id="cb47-187"><a href="chapter-30---the-phenoflex-model.html#cb47-187" tabindex="-1"></a></span>
+<span id="cb47-188"><a href="chapter-30---the-phenoflex-model.html#cb47-188" tabindex="-1"></a>Alex_PhenoFlex_predictions <span class="ot">&lt;-</span> Alex_first[<span class="fu">which</span>(Alex_first<span class="sc">$</span>Year <span class="sc">&gt;</span> <span class="dv">1958</span>),]</span>
+<span id="cb47-189"><a href="chapter-30---the-phenoflex-model.html#cb47-189" tabindex="-1"></a></span>
+<span id="cb47-190"><a href="chapter-30---the-phenoflex-model.html#cb47-190" tabindex="-1"></a><span class="cf">for</span>(y <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(Alex_PhenoFlex_predictions<span class="sc">$</span>Year))</span>
+<span id="cb47-191"><a href="chapter-30---the-phenoflex-model.html#cb47-191" tabindex="-1"></a>  Alex_PhenoFlex_predictions<span class="sc">$</span>predicted[y] <span class="ot">&lt;-</span></span>
+<span id="cb47-192"><a href="chapter-30---the-phenoflex-model.html#cb47-192" tabindex="-1"></a>  <span class="fu">PhenoFlex_GDHwrapper</span>(SeasonList[[y]],</span>
+<span id="cb47-193"><a href="chapter-30---the-phenoflex-model.html#cb47-193" tabindex="-1"></a>                       Alex_par)</span>
+<span id="cb47-194"><a href="chapter-30---the-phenoflex-model.html#cb47-194" tabindex="-1"></a></span>
+<span id="cb47-195"><a href="chapter-30---the-phenoflex-model.html#cb47-195" tabindex="-1"></a>Alex_PhenoFlex_predictions<span class="sc">$</span>Error <span class="ot">&lt;-</span> </span>
+<span id="cb47-196"><a href="chapter-30---the-phenoflex-model.html#cb47-196" tabindex="-1"></a>  Alex_PhenoFlex_predictions<span class="sc">$</span>predicted <span class="sc">-</span> </span>
+<span id="cb47-197"><a href="chapter-30---the-phenoflex-model.html#cb47-197" tabindex="-1"></a>  Alex_PhenoFlex_predictions<span class="sc">$</span>pheno</span>
+<span id="cb47-198"><a href="chapter-30---the-phenoflex-model.html#cb47-198" tabindex="-1"></a></span>
+<span id="cb47-199"><a href="chapter-30---the-phenoflex-model.html#cb47-199" tabindex="-1"></a><span class="fu">RMSEP</span>(Alex_PhenoFlex_predictions<span class="sc">$</span>predicted,</span>
+<span id="cb47-200"><a href="chapter-30---the-phenoflex-model.html#cb47-200" tabindex="-1"></a>      Alex_PhenoFlex_predictions<span class="sc">$</span>pheno)</span>
+<span id="cb47-201"><a href="chapter-30---the-phenoflex-model.html#cb47-201" tabindex="-1"></a></span>
+<span id="cb47-202"><a href="chapter-30---the-phenoflex-model.html#cb47-202" tabindex="-1"></a></span>
+<span id="cb47-203"><a href="chapter-30---the-phenoflex-model.html#cb47-203" tabindex="-1"></a><span class="fu">mean</span>(Alex_PhenoFlex_predictions<span class="sc">$</span>Error)</span>
+<span id="cb47-204"><a href="chapter-30---the-phenoflex-model.html#cb47-204" tabindex="-1"></a></span>
+<span id="cb47-205"><a href="chapter-30---the-phenoflex-model.html#cb47-205" tabindex="-1"></a></span>
+<span id="cb47-206"><a href="chapter-30---the-phenoflex-model.html#cb47-206" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(Alex_PhenoFlex_predictions<span class="sc">$</span>Error))</span>
+<span id="cb47-207"><a href="chapter-30---the-phenoflex-model.html#cb47-207" tabindex="-1"></a></span>
+<span id="cb47-208"><a href="chapter-30---the-phenoflex-model.html#cb47-208" tabindex="-1"></a><span class="co"># Plotting</span></span>
+<span id="cb47-209"><a href="chapter-30---the-phenoflex-model.html#cb47-209" tabindex="-1"></a></span>
+<span id="cb47-210"><a href="chapter-30---the-phenoflex-model.html#cb47-210" tabindex="-1"></a><span class="fu">ggplot</span>(Alex_PhenoFlex_predictions,</span>
+<span id="cb47-211"><a href="chapter-30---the-phenoflex-model.html#cb47-211" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> pheno,</span>
+<span id="cb47-212"><a href="chapter-30---the-phenoflex-model.html#cb47-212" tabindex="-1"></a>           <span class="at">y =</span> predicted)) <span class="sc">+</span></span>
+<span id="cb47-213"><a href="chapter-30---the-phenoflex-model.html#cb47-213" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb47-214"><a href="chapter-30---the-phenoflex-model.html#cb47-214" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>,</span>
+<span id="cb47-215"><a href="chapter-30---the-phenoflex-model.html#cb47-215" tabindex="-1"></a>              <span class="at">slope =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb47-216"><a href="chapter-30---the-phenoflex-model.html#cb47-216" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb47-217"><a href="chapter-30---the-phenoflex-model.html#cb47-217" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Observed bloom date (Day of the year)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-218"><a href="chapter-30---the-phenoflex-model.html#cb47-218" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Predicted bloom date (Day of the year)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-219"><a href="chapter-30---the-phenoflex-model.html#cb47-219" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Predicted vs. observed bloom dates&quot;</span>)</span>
+<span id="cb47-220"><a href="chapter-30---the-phenoflex-model.html#cb47-220" tabindex="-1"></a></span>
+<span id="cb47-221"><a href="chapter-30---the-phenoflex-model.html#cb47-221" tabindex="-1"></a><span class="co"># Histogramm</span></span>
+<span id="cb47-222"><a href="chapter-30---the-phenoflex-model.html#cb47-222" tabindex="-1"></a></span>
+<span id="cb47-223"><a href="chapter-30---the-phenoflex-model.html#cb47-223" tabindex="-1"></a><span class="fu">ggplot</span>(Alex_PhenoFlex_predictions,</span>
+<span id="cb47-224"><a href="chapter-30---the-phenoflex-model.html#cb47-224" tabindex="-1"></a>       <span class="fu">aes</span>(Error)) <span class="sc">+</span></span>
+<span id="cb47-225"><a href="chapter-30---the-phenoflex-model.html#cb47-225" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb47-226"><a href="chapter-30---the-phenoflex-model.html#cb47-226" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Distribution of prediction errors&quot;</span>)</span>
+<span id="cb47-227"><a href="chapter-30---the-phenoflex-model.html#cb47-227" tabindex="-1"></a></span>
+<span id="cb47-228"><a href="chapter-30---the-phenoflex-model.html#cb47-228" tabindex="-1"></a><span class="co"># Getting RMSE</span></span>
+<span id="cb47-229"><a href="chapter-30---the-phenoflex-model.html#cb47-229" tabindex="-1"></a></span>
+<span id="cb47-230"><a href="chapter-30---the-phenoflex-model.html#cb47-230" tabindex="-1"></a>Alex_PhenoFlex_predictions<span class="sc">$</span>Error <span class="ot">&lt;-</span> </span>
+<span id="cb47-231"><a href="chapter-30---the-phenoflex-model.html#cb47-231" tabindex="-1"></a>  Alex_PhenoFlex_predictions<span class="sc">$</span>predicted <span class="sc">-</span> </span>
+<span id="cb47-232"><a href="chapter-30---the-phenoflex-model.html#cb47-232" tabindex="-1"></a>  Alex_PhenoFlex_predictions<span class="sc">$</span>pheno</span>
+<span id="cb47-233"><a href="chapter-30---the-phenoflex-model.html#cb47-233" tabindex="-1"></a></span>
+<span id="cb47-234"><a href="chapter-30---the-phenoflex-model.html#cb47-234" tabindex="-1"></a><span class="fu">RMSEP</span>(Alex_PhenoFlex_predictions<span class="sc">$</span>predicted,</span>
+<span id="cb47-235"><a href="chapter-30---the-phenoflex-model.html#cb47-235" tabindex="-1"></a>      Alex_PhenoFlex_predictions<span class="sc">$</span>pheno)</span>
+<span id="cb47-236"><a href="chapter-30---the-phenoflex-model.html#cb47-236" tabindex="-1"></a></span>
+<span id="cb47-237"><a href="chapter-30---the-phenoflex-model.html#cb47-237" tabindex="-1"></a><span class="fu">mean</span>(Alex_PhenoFlex_predictions<span class="sc">$</span>Error)</span>
+<span id="cb47-238"><a href="chapter-30---the-phenoflex-model.html#cb47-238" tabindex="-1"></a></span>
+<span id="cb47-239"><a href="chapter-30---the-phenoflex-model.html#cb47-239" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(Alex_PhenoFlex_predictions<span class="sc">$</span>Error))</span>
+<span id="cb47-240"><a href="chapter-30---the-phenoflex-model.html#cb47-240" tabindex="-1"></a></span>
+<span id="cb47-241"><a href="chapter-30---the-phenoflex-model.html#cb47-241" tabindex="-1"></a><span class="co"># Plotting</span></span>
+<span id="cb47-242"><a href="chapter-30---the-phenoflex-model.html#cb47-242" tabindex="-1"></a></span>
+<span id="cb47-243"><a href="chapter-30---the-phenoflex-model.html#cb47-243" tabindex="-1"></a><span class="fu">ggplot</span>(Alex_PhenoFlex_predictions,</span>
+<span id="cb47-244"><a href="chapter-30---the-phenoflex-model.html#cb47-244" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> pheno,</span>
+<span id="cb47-245"><a href="chapter-30---the-phenoflex-model.html#cb47-245" tabindex="-1"></a>           <span class="at">y =</span> predicted)) <span class="sc">+</span></span>
+<span id="cb47-246"><a href="chapter-30---the-phenoflex-model.html#cb47-246" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb47-247"><a href="chapter-30---the-phenoflex-model.html#cb47-247" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>,</span>
+<span id="cb47-248"><a href="chapter-30---the-phenoflex-model.html#cb47-248" tabindex="-1"></a>              <span class="at">slope =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb47-249"><a href="chapter-30---the-phenoflex-model.html#cb47-249" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb47-250"><a href="chapter-30---the-phenoflex-model.html#cb47-250" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Observed bloom date (Day of the year)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-251"><a href="chapter-30---the-phenoflex-model.html#cb47-251" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Predicted bloom date (Day of the year)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-252"><a href="chapter-30---the-phenoflex-model.html#cb47-252" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Predicted vs. observed bloom dates&quot;</span>)</span>
+<span id="cb47-253"><a href="chapter-30---the-phenoflex-model.html#cb47-253" tabindex="-1"></a></span>
+<span id="cb47-254"><a href="chapter-30---the-phenoflex-model.html#cb47-254" tabindex="-1"></a></span>
+<span id="cb47-255"><a href="chapter-30---the-phenoflex-model.html#cb47-255" tabindex="-1"></a><span class="co"># Plotting Errors</span></span>
+<span id="cb47-256"><a href="chapter-30---the-phenoflex-model.html#cb47-256" tabindex="-1"></a></span>
+<span id="cb47-257"><a href="chapter-30---the-phenoflex-model.html#cb47-257" tabindex="-1"></a><span class="fu">ggplot</span>(Alex_PhenoFlex_predictions,</span>
+<span id="cb47-258"><a href="chapter-30---the-phenoflex-model.html#cb47-258" tabindex="-1"></a>       <span class="fu">aes</span>(Error)) <span class="sc">+</span></span>
+<span id="cb47-259"><a href="chapter-30---the-phenoflex-model.html#cb47-259" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb47-260"><a href="chapter-30---the-phenoflex-model.html#cb47-260" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Distribution of prediction errors&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb47-261"><a href="chapter-30---the-phenoflex-model.html#cb47-261" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span> </span>
+<span id="cb47-262"><a href="chapter-30---the-phenoflex-model.html#cb47-262" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb47-263"><a href="chapter-30---the-phenoflex-model.html#cb47-263" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>)) <span class="sc">+</span></span>
+<span id="cb47-264"><a href="chapter-30---the-phenoflex-model.html#cb47-264" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb47-265"><a href="chapter-30---the-phenoflex-model.html#cb47-265" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>),</span>
+<span id="cb47-266"><a href="chapter-30---the-phenoflex-model.html#cb47-266" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>)</span>
+<span id="cb47-267"><a href="chapter-30---the-phenoflex-model.html#cb47-267" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb47-268"><a href="chapter-30---the-phenoflex-model.html#cb47-268" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="chapter-29---making-valid-tree-phenology-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-31---the-phenoflex-model---a-second-look.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/27-Chapter30.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

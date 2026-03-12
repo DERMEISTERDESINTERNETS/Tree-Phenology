@@ -1,0 +1,20 @@
+p.caption {
+  color: #A9A9A9;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+
+pointcolor <- c("Fair" = "yellow",
+                "Good" = "red",
+                "Very Good" = "pink",
+                "Premium" = "blue",
+                "Ideal" = "black")

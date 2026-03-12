@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>23 Chapter 24 - Examples of PLS regression with agroclimatic metrics | Tree Phenology Wi/Se 2025/26</title>
+  <title>32 References | Tree Phenology Wi/Se 2025/26</title>
   <meta name="description" content="Course project for the module ‘Tree Phenology Analysis with R’ by Karl Kleiß." />
   <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="23 Chapter 24 - Examples of PLS regression with agroclimatic metrics | Tree Phenology Wi/Se 2025/26" />
+  <meta property="og:title" content="32 References | Tree Phenology Wi/Se 2025/26" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="Horti/images/chillR_hexSticker.png" />
   <meta property="og:description" content="Course project for the module ‘Tree Phenology Analysis with R’ by Karl Kleiß." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="23 Chapter 24 - Examples of PLS regression with agroclimatic metrics | Tree Phenology Wi/Se 2025/26" />
+  <meta name="twitter:title" content="32 References | Tree Phenology Wi/Se 2025/26" />
   
   <meta name="twitter:description" content="Course project for the module ‘Tree Phenology Analysis with R’ by Karl Kleiß." />
   <meta name="twitter:image" content="Horti/images/chillR_hexSticker.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="chapter-23---pls-regression-with-agroclimatic-metrics.html"/>
-<link rel="next" href="chapter-25---why-pls-doesnt-always-work.html"/>
+<link rel="prev" href="chapter-33---frost-risk-analysis.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -495,48 +495,45 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics" class="section level1 hasAnchor" number="23">
-<h1><span class="header-section-number">23</span> Chapter 24 - Examples of PLS regression with agroclimatic metrics<a href="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html#chapter-24---examples-of-pls-regression-with-agroclimatic-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="questions-16" class="section level2 hasAnchor" number="23.1">
-<h2><span class="header-section-number">23.1</span> Questions<a href="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html#questions-16" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Look across all the PLS results presented above. Can you detect a pattern in where chilling and forcing periods could be delineated clearly, and where this attempt failed?</p></li>
-<li><p>Think about possible reasons for the success or failure of PLS analysis based on agroclimatic metrics. Write down your thoughts</p></li>
-</ol>
-<hr />
-</div>
-<div id="answers-15" class="section level2 hasAnchor" number="23.2">
-<h2><span class="header-section-number">23.2</span> Answers<a href="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html#answers-15" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="when-are-chilling-and-forcing-phases-clear" class="section level3 unnumbered hasAnchor">
-<h3>When are chilling and forcing phases clear?<a href="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html#when-are-chilling-and-forcing-phases-clear" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Forcing (spring heat): usually easy to detect. Rising spring temperatures vary between years and directly shift flowering/budburst → clear time window in the model.</p>
-<p>Chilling (winter cold): depends on climate.</p>
-<p>Cold regions: winters almost always meet the chill requirement → little year‑to‑year variation → statistically hard to see, even if biologically important.</p>
-<p>Mild/warm winters: chill is sometimes limiting → strong variation → chilling window becomes clear.</p>
-<p>Very warm sites: both chilling and forcing can be visible.</p>
-<p>Dominance case: if flowering mainly depends on chill (e.g., very low‑chill environments), the forcing signal may look weak.</p>
-<p>Summary: Cold winters → chilling hidden; warm winters → chilling visible; strong spring warming → forcing visible.</p>
-<hr />
-</div>
-<div id="why-does-pls-sometimes-work-well-and-sometimes-not" class="section level3 unnumbered hasAnchor">
-<h3>Why does PLS sometimes work well and sometimes not?<a href="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html#why-does-pls-sometimes-work-well-and-sometimes-not" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Low variability/saturation: if chill is always fulfilled, it cannot explain year differences → model assigns variation to forcing.</p>
-<p>Correlated temperatures: warm winters often lead to early springs → chilling and forcing signals overlap → fuzzy time windows.</p>
-<p>Species/cultivar biology: some plants are chill‑driven, others heat‑driven → one process can mask the other.</p>
-<p>Gradual dormancy: real transitions are continuous, but PLS searches for discrete periods → boundaries are approximate.</p>
-<p>Metric choice &amp; data quality: wrong chill model, short time series, or poor site representation weaken results.</p>
-<p>Conclusion: PLS is a good exploratory tool to locate sensitive phenological periods, but results should be interpreted as likely windows, not exact physiological mechanisms.</p>
-<hr />
-</div>
-<div id="klagenfurt-and-the-boskoop" class="section level3 unnumbered hasAnchor">
-<h3>Klagenfurt and the Boskoop<a href="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html#klagenfurt-and-the-boskoop" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="figure"><span style="display:block;" id="fig:plspng"></span>
-<img src="plots/plscf_rb_CP_Chill_Portions_GDH.png" alt="PLS analysis for the apple cultivar 'Roter Boskoop' and the location Klagenfurt, Austria." width="800px" />
-<p class="caption">
-Figure 23.1: PLS analysis for the apple cultivar ‘Roter Boskoop’ and the location Klagenfurt, Austria.
-</p>
-</div>
+<div id="references" class="section level1 hasAnchor" number="32">
+<h1><span class="header-section-number">32</span> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div class="csl-entry">
+Education, CFR. 2026. <span>“The Greenhouse Effect.”</span> <a href="https://earthobservatory.nasa.gov/features/GreenhouseEffect">https://earthobservatory.nasa.gov/features/GreenhouseEffect</a>.
+</div>
+<div class="csl-entry">
+EfbraziI. 2026. <span>“IPCC Representative Concentration Pathways.”</span> <a href="https://en.wikipedia.org/wiki/Representative_Concentration_Pathway">https://en.wikipedia.org/wiki/Representative_Concentration_Pathway</a>.
+</div>
+<div class="csl-entry">
+Efbrazil. 2026. <span>“Global Surface Temperature.”</span> <a href="https://de.wikipedia.org/wiki/Globale_Erw%C3%A4rmung#/media/Datei:Global_Temperature_And_Forces.svg">https://de.wikipedia.org/wiki/Globale_Erw%C3%A4rmung#/media/Datei:Global_Temperature_And_Forces.svg</a>.
+</div>
+<div class="csl-entry">
+Guo, Liang, Junhu Dai, Mingcheng Wang, Jianchu Xu, and Eike Luedeling. 2015. <span>“Responses of Spring Phenology in Temperate Zone Trees to Climate Warming: A Case Study of Apricot Flowering in China.”</span> <em>Agricultural and Forest Meteorology</em> 201: 1–7. <a href="https://doi.org/10.1016/j.agrformet.2014.10.016">https://doi.org/10.1016/j.agrformet.2014.10.016</a>.
+</div>
+<div class="csl-entry">
+Luedeling, Eike. 2020. <span>“The Challenge of Warming Winters: Do We Understand Tree Dormancy Enough to Prepare Deciduous Orchards in Warm Places?”</span> <em>Acta Horticulturae</em> 1281: 441–48. <a href="https://doi.org/10.17660/ActaHortic.2020.1281.58">https://doi.org/10.17660/ActaHortic.2020.1281.58</a>.
+</div>
+<div class="csl-entry">
+Luedeling, Eike, Katja Schiffers, Till Fohrmann, and Carsten Urbach. 2021. <span>“PhenoFlex - an Integrated Model to Predict Spring Phenology in Temperate Fruit Trees.”</span> <em>Agricultural and Forest Meteorology</em> 307: 108491. https://doi.org/<a href="https://doi.org/10.1016/j.agrformet.2021.108491">https://doi.org/10.1016/j.agrformet.2021.108491</a>.
+</div>
+<div class="csl-entry">
+Ortiz-Bobea, Ariel. 2021. <span>“Climate, Agriculture and Food.”</span> <a href="https://arxiv.org/abs/2105.12044">https://arxiv.org/abs/2105.12044</a>.
+</div>
+<div class="csl-entry">
+Pidwirny, Michael. 2021. <span>“Laboratory 2: Heat and Temperature in the Atmosphere.”</span> <a href="https://pressbooks.bccampus.ca/physgeoglabmanual1/chapter/lab2/">https://pressbooks.bccampus.ca/physgeoglabmanual1/chapter/lab2/</a>.
+</div>
+<div class="csl-entry">
+Sfdiversity. 2020. <span>“Predicted Atmospheric CO₂ Concentrations for Different Shared Socioeconomic Pathways (SSPs) Across the 21st Century.”</span> <a href="https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways#/media/File:Atmospheric_CO%E2%82%82_concentrations_by_SSP_across_the_21st_century.svg">https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways#/media/File:Atmospheric_CO%E2%82%82_concentrations_by_SSP_across_the_21st_century.svg</a>.
+</div>
+<div class="csl-entry">
+Silvestro, R., A. Deslauriers, P. Prislan, et al. 2025. <span>“From Roots to Leaves: Tree Growth Phenology in Forest Ecosystems.”</span> <em>Current Forestry Reports</em>. <a href="https://doi.org/10.1007/s40725-025-00245-9">https://doi.org/10.1007/s40725-025-00245-9</a>.
+</div>
+<div class="csl-entry">
+User, Unknown. 2026. <span>“Clueless Emoji.”</span> <a href="https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2Fshrug-emoji-v0-kpg6mnsywxjc1.png%3Fwidth%3D2934%26format%3Dpng%26auto%3Dwebp%26s%3Dfe3380e2d7b706ae66b305f12341332e3ac81a15">https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2Fshrug-emoji-v0-kpg6mnsywxjc1.png%3Fwidth%3D2934%26format%3Dpng%26auto%3Dwebp%26s%3Dfe3380e2d7b706ae66b305f12341332e3ac81a15</a>.
+</div>
+<div class="csl-entry">
+Zhang, Pangzhen, Kate Howell, Mark Krstic, Markus Herderich, Edward William R. Barlow, and Sigfredo Fuentes. 2015. <span>“Environmental Factors and Seasonality Affect the Concentration of Rotundone in Vitis Vinifera l. Cv. Shiraz Wine.”</span> <a href="https://doi.org/10.1371/journal.pone.0133137">https://doi.org/10.1371/journal.pone.0133137</a>.
 </div>
 </div>
 </div>
@@ -545,8 +542,8 @@ Figure 23.1: PLS analysis for the apple cultivar ‘Roter Boskoop’ and the loc
           </div>
         </div>
       </div>
-<a href="chapter-23---pls-regression-with-agroclimatic-metrics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="chapter-25---why-pls-doesnt-always-work.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter-33---frost-risk-analysis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -577,7 +574,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/22-Chapter24.Rmd",
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/31-References.Rmd",
     "text": "Edit"
   },
   "history": {

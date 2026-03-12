@@ -5,31 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>12 Chapter 12 - Generating temperature scenarios | Tree Phenology Wi/Se 2025/26</title>
-  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta name="description" content="Course project for the module ‘Tree Phenology Analysis with R’ by Karl Kleiß." />
   <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="12 Chapter 12 - Generating temperature scenarios | Tree Phenology Wi/Se 2025/26" />
   <meta property="og:type" content="book" />
-  
-  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta property="og:image" content="Horti/images/chillR_hexSticker.png" />
+  <meta property="og:description" content="Course project for the module ‘Tree Phenology Analysis with R’ by Karl Kleiß." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="12 Chapter 12 - Generating temperature scenarios | Tree Phenology Wi/Se 2025/26" />
   
-  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
-  
+  <meta name="twitter:description" content="Course project for the module ‘Tree Phenology Analysis with R’ by Karl Kleiß." />
+  <meta name="twitter:image" content="Horti/images/chillR_hexSticker.png" />
 
 <meta name="author" content="Karl Kleiß" />
 
 
-<meta name="date" content="2026-03-10" />
+<meta name="date" content="2026-03-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,6 +49,7 @@ set in the _output.yml file.</p>" />
 
 
 
+<link href="libs/codefolding-lua-1.1/codefolding-lua.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -204,8 +199,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="4" data-path="chapter-5---winter-chill-projections.html"><a href="chapter-5---winter-chill-projections.html"><i class="fa fa-check"></i><b>4</b> Chapter 5 - Winter chill projections</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="chapter-5---winter-chill-projections.html"><a href="chapter-5---winter-chill-projections.html#questions-2"><i class="fa fa-check"></i><b>4.1</b> Questions:</a></li>
-<li class="chapter" data-level="4.2" data-path="chapter-5---winter-chill-projections.html"><a href="chapter-5---winter-chill-projections.html#answers-2"><i class="fa fa-check"></i><b>4.2</b> Answers:</a></li>
+<li class="chapter" data-level="4.1" data-path="chapter-5---winter-chill-projections.html"><a href="chapter-5---winter-chill-projections.html#questions-2"><i class="fa fa-check"></i><b>4.1</b> Questions</a></li>
+<li class="chapter" data-level="4.2" data-path="chapter-5---winter-chill-projections.html"><a href="chapter-5---winter-chill-projections.html#answers-2"><i class="fa fa-check"></i><b>4.2</b> Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="chapter-6---manual-chill-analysis.html"><a href="chapter-6---manual-chill-analysis.html"><i class="fa fa-check"></i><b>5</b> Chapter 6 - Manual chill analysis</a>
 <ul>
@@ -286,10 +281,10 @@ div.csl-indent {
 <li class="chapter" data-level="12.1" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#questions-7"><i class="fa fa-check"></i><b>12.1</b> Questions</a></li>
 <li class="chapter" data-level="12.2" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#answers-8"><i class="fa fa-check"></i><b>12.2</b> Answers</a>
 <ul>
-<li class="chapter" data-level="12.2.1" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#chilling"><i class="fa fa-check"></i><b>12.2.1</b> Chilling</a></li>
+<li class="chapter" data-level="" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#using-the-synthetic-temperature-data"><i class="fa fa-check"></i>1. Using the synthetic temperature data</a></li>
 <li class="chapter" data-level="" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#chill"><i class="fa fa-check"></i>2. Chill</a></li>
 <li class="chapter" data-level="" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#freezing"><i class="fa fa-check"></i>3. Freezing</a></li>
-<li class="chapter" data-level="12.2.2" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#freezing-hours-visualized"><i class="fa fa-check"></i><b>12.2.2</b> Freezing hours visualized</a></li>
+<li class="chapter" data-level="12.2.1" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#freezing-hours-visualized"><i class="fa fa-check"></i><b>12.2.1</b> Freezing hours visualized</a></li>
 <li class="chapter" data-level="" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#freezing-hours-from-1973-2100"><i class="fa fa-check"></i>Freezing Hours from 1973-2100</a></li>
 </ul></li>
 <li class="chapter" data-level="12.3" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#codes"><i class="fa fa-check"></i><b>12.3</b> Codes</a></li>
@@ -308,26 +303,26 @@ div.csl-indent {
 <li class="chapter" data-level="14.1" data-path="chapter-15---future-temperature-scenarios.html"><a href="chapter-15---future-temperature-scenarios.html#questions-9"><i class="fa fa-check"></i><b>14.1</b> Questions</a></li>
 <li class="chapter" data-level="14.2" data-path="chapter-15---future-temperature-scenarios.html"><a href="chapter-15---future-temperature-scenarios.html#answer"><i class="fa fa-check"></i><b>14.2</b> Answer</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="chapter-16.html"><a href="chapter-16.html"><i class="fa fa-check"></i><b>15</b> Chapter 16</a>
+<li class="chapter" data-level="15" data-path="chapter-16---making-cmip6-scenarios.html"><a href="chapter-16---making-cmip6-scenarios.html"><i class="fa fa-check"></i><b>15</b> Chapter 16 - Making <code>CMIP6</code> scenarios</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="chapter-16.html"><a href="chapter-16.html#code-for-downloading-and-extracting"><i class="fa fa-check"></i><b>15.1</b> Code for downloading and extracting</a></li>
-<li class="chapter" data-level="15.2" data-path="chapter-16.html"><a href="chapter-16.html#plots"><i class="fa fa-check"></i><b>15.2</b> Plots</a>
+<li class="chapter" data-level="15.1" data-path="chapter-16---making-cmip6-scenarios.html"><a href="chapter-16---making-cmip6-scenarios.html#code-1"><i class="fa fa-check"></i><b>15.1</b> Code</a></li>
+<li class="chapter" data-level="15.2" data-path="chapter-16---making-cmip6-scenarios.html"><a href="chapter-16---making-cmip6-scenarios.html#plots"><i class="fa fa-check"></i><b>15.2</b> Plots</a>
 <ul>
-<li class="chapter" data-level="15.2.1" data-path="chapter-16.html"><a href="chapter-16.html#frost"><i class="fa fa-check"></i><b>15.2.1</b> Frost</a></li>
-<li class="chapter" data-level="15.2.2" data-path="chapter-16.html"><a href="chapter-16.html#heat"><i class="fa fa-check"></i><b>15.2.2</b> Heat</a></li>
-<li class="chapter" data-level="15.2.3" data-path="chapter-16.html"><a href="chapter-16.html#code-for-plotting"><i class="fa fa-check"></i><b>15.2.3</b> Code for plotting</a></li>
+<li class="chapter" data-level="" data-path="chapter-16---making-cmip6-scenarios.html"><a href="chapter-16---making-cmip6-scenarios.html#frost"><i class="fa fa-check"></i>Frost</a></li>
+<li class="chapter" data-level="" data-path="chapter-16---making-cmip6-scenarios.html"><a href="chapter-16---making-cmip6-scenarios.html#heat"><i class="fa fa-check"></i>Heat</a></li>
+<li class="chapter" data-level="15.2.1" data-path="chapter-16---making-cmip6-scenarios.html"><a href="chapter-16---making-cmip6-scenarios.html#code-for-plotting"><i class="fa fa-check"></i><b>15.2.1</b> Code for plotting</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><i class="fa fa-check"></i><b>16</b> Chapter 17 - Making CMIP5 scenarios with the ClimateWizard</a>
+<li class="chapter" data-level="16" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><i class="fa fa-check"></i><b>16</b> Chapter 17 - Making <code>CMIP5</code> scenarios with the <code>ClimateWizard</code></a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#question"><i class="fa fa-check"></i><b>16.1</b> Question</a></li>
 <li class="chapter" data-level="16.2" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#plots-1"><i class="fa fa-check"></i><b>16.2</b> Plots</a>
 <ul>
-<li class="chapter" data-level="16.2.1" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#chill-1"><i class="fa fa-check"></i><b>16.2.1</b> Chill</a></li>
-<li class="chapter" data-level="16.2.2" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#frost-1"><i class="fa fa-check"></i><b>16.2.2</b> Frost</a></li>
-<li class="chapter" data-level="16.2.3" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#heat-1"><i class="fa fa-check"></i><b>16.2.3</b> Heat</a></li>
-<li class="chapter" data-level="16.2.4" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#code-1"><i class="fa fa-check"></i><b>16.2.4</b> Code</a></li>
+<li class="chapter" data-level="" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#chill-1"><i class="fa fa-check"></i>Chill</a></li>
+<li class="chapter" data-level="" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#frost-1"><i class="fa fa-check"></i>Frost</a></li>
+<li class="chapter" data-level="" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#heat-1"><i class="fa fa-check"></i>Heat</a></li>
 </ul></li>
+<li class="chapter" data-level="16.3" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#code-2"><i class="fa fa-check"></i><b>16.3</b> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="chapter-18---plotting-future-scenarios.html"><a href="chapter-18---plotting-future-scenarios.html"><i class="fa fa-check"></i><b>17</b> Chapter 18 - Plotting future scenarios</a>
 <ul>
@@ -348,7 +343,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="chapter-19---chill-model-comparison.html"><a href="chapter-19---chill-model-comparison.html#plot-2"><i class="fa fa-check"></i>Plot</a></li>
 <li class="chapter" data-level="" data-path="chapter-19---chill-model-comparison.html"><a href="chapter-19---chill-model-comparison.html#animated-plot"><i class="fa fa-check"></i>Animated plot</a></li>
 </ul></li>
-<li class="chapter" data-level="18.3" data-path="chapter-19---chill-model-comparison.html"><a href="chapter-19---chill-model-comparison.html#code-2"><i class="fa fa-check"></i><b>18.3</b> Code</a></li>
+<li class="chapter" data-level="18.3" data-path="chapter-19---chill-model-comparison.html"><a href="chapter-19---chill-model-comparison.html#code-3"><i class="fa fa-check"></i><b>18.3</b> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="19" data-path="chapter-20---simple-phenology-analysis.html"><a href="chapter-20---simple-phenology-analysis.html"><i class="fa fa-check"></i><b>19</b> Chapter 20 - Simple phenology analysis</a>
 <ul>
@@ -408,7 +403,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="chapter-25---why-pls-doesnt-always-work.html"><a href="chapter-25---why-pls-doesnt-always-work.html#chill-model-sensitivity-plots"><i class="fa fa-check"></i>Chill model sensitivity plots</a></li>
 <li class="chapter" data-level="" data-path="chapter-25---why-pls-doesnt-always-work.html"><a href="chapter-25---why-pls-doesnt-always-work.html#heat-model-sensitivity-plots"><i class="fa fa-check"></i>Heat model sensitivity plots</a></li>
 </ul></li>
-<li class="chapter" data-level="24.3" data-path="chapter-25---why-pls-doesnt-always-work.html"><a href="chapter-25---why-pls-doesnt-always-work.html#code-3"><i class="fa fa-check"></i><b>24.3</b> Code</a></li>
+<li class="chapter" data-level="24.3" data-path="chapter-25---why-pls-doesnt-always-work.html"><a href="chapter-25---why-pls-doesnt-always-work.html#code-4"><i class="fa fa-check"></i><b>24.3</b> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="25" data-path="chapter-26---evaluating-pls-outputs.html"><a href="chapter-26---evaluating-pls-outputs.html"><i class="fa fa-check"></i><b>25</b> Chapter 26 - Evaluating PLS outputs</a>
 <ul>
@@ -419,7 +414,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="chapter-26---evaluating-pls-outputs.html"><a href="chapter-26---evaluating-pls-outputs.html#beijing-china"><i class="fa fa-check"></i>Beijing, China</a></li>
 <li class="chapter" data-level="" data-path="chapter-26---evaluating-pls-outputs.html"><a href="chapter-26---evaluating-pls-outputs.html#sfax-tunisia"><i class="fa fa-check"></i>Sfax, Tunisia</a></li>
 </ul></li>
-<li class="chapter" data-level="25.3" data-path="chapter-26---evaluating-pls-outputs.html"><a href="chapter-26---evaluating-pls-outputs.html#code-4"><i class="fa fa-check"></i><b>25.3</b> Code</a></li>
+<li class="chapter" data-level="25.3" data-path="chapter-26---evaluating-pls-outputs.html"><a href="chapter-26---evaluating-pls-outputs.html#code-5"><i class="fa fa-check"></i><b>25.3</b> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="26" data-path="chapter-27---the-relative-importance-of-chill-and-heat.html"><a href="chapter-27---the-relative-importance-of-chill-and-heat.html"><i class="fa fa-check"></i><b>26</b> Chapter 27 - The relative importance of chill and heat</a>
 <ul>
@@ -446,7 +441,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="chapter-30---the-phenoflex-model.html"><a href="chapter-30---the-phenoflex-model.html#plots-3"><i class="fa fa-check"></i>Plots</a></li>
 <li class="chapter" data-level="" data-path="chapter-30---the-phenoflex-model.html"><a href="chapter-30---the-phenoflex-model.html#statistical-errors"><i class="fa fa-check"></i>Statistical Errors</a></li>
 </ul></li>
-<li class="chapter" data-level="28.3" data-path="chapter-30---the-phenoflex-model.html"><a href="chapter-30---the-phenoflex-model.html#code-5"><i class="fa fa-check"></i><b>28.3</b> Code</a></li>
+<li class="chapter" data-level="28.3" data-path="chapter-30---the-phenoflex-model.html"><a href="chapter-30---the-phenoflex-model.html#code-6"><i class="fa fa-check"></i><b>28.3</b> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="29" data-path="chapter-31---the-phenoflex-model---a-second-look.html"><a href="chapter-31---the-phenoflex-model---a-second-look.html"><i class="fa fa-check"></i><b>29</b> Chapter 31 - The <code>PhenoFlex</code> model - a second look</a>
 <ul>
@@ -456,7 +451,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="chapter-31---the-phenoflex-model---a-second-look.html"><a href="chapter-31---the-phenoflex-model---a-second-look.html#chill-3"><i class="fa fa-check"></i>Chill</a></li>
 <li class="chapter" data-level="" data-path="chapter-31---the-phenoflex-model---a-second-look.html"><a href="chapter-31---the-phenoflex-model---a-second-look.html#heat-3"><i class="fa fa-check"></i>Heat</a></li>
 </ul></li>
-<li class="chapter" data-level="29.3" data-path="chapter-31---the-phenoflex-model---a-second-look.html"><a href="chapter-31---the-phenoflex-model---a-second-look.html#code-6"><i class="fa fa-check"></i><b>29.3</b> Code</a></li>
+<li class="chapter" data-level="29.3" data-path="chapter-31---the-phenoflex-model---a-second-look.html"><a href="chapter-31---the-phenoflex-model---a-second-look.html#code-7"><i class="fa fa-check"></i><b>29.3</b> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="30" data-path="chapter-32---can-we-improve-the-performance-of-phenoflex.html"><a href="chapter-32---can-we-improve-the-performance-of-phenoflex.html"><i class="fa fa-check"></i><b>30</b> Chapter 32 - Can we improve the performance of <code>PhenoFlex</code>?</a>
 <ul>
@@ -477,8 +472,9 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="chapter-33---frost-risk-analysis.html"><a href="chapter-33---frost-risk-analysis.html#frost-hours-per-year-since-1958-at-klein-altendorf"><i class="fa fa-check"></i>Frost Hours per year since 1958 at Klein-Altendorf</a></li>
 <li class="chapter" data-level="" data-path="chapter-33---frost-risk-analysis.html"><a href="chapter-33---frost-risk-analysis.html#relationship-between-frost-hours-and-bloomperiod"><i class="fa fa-check"></i>Relationship between Frost hours and bloomperiod</a></li>
 </ul></li>
-<li class="chapter" data-level="31.3" data-path="chapter-33---frost-risk-analysis.html"><a href="chapter-33---frost-risk-analysis.html#code-7"><i class="fa fa-check"></i><b>31.3</b> Code</a></li>
+<li class="chapter" data-level="31.3" data-path="chapter-33---frost-risk-analysis.html"><a href="chapter-33---frost-risk-analysis.html#code-8"><i class="fa fa-check"></i><b>31.3</b> Code</a></li>
 </ul></li>
+<li class="chapter" data-level="32" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>32</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -512,8 +508,8 @@ div.csl-indent {
 </div>
 <div id="answers-8" class="section level2 hasAnchor" number="12.2">
 <h2><span class="header-section-number">12.2</span> Answers<a href="chapter-12---generating-temperature-scenarios.html#answers-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="chilling" class="section level3 hasAnchor" number="12.2.1">
-<h3><span class="header-section-number">12.2.1</span> Chilling<a href="chapter-12---generating-temperature-scenarios.html#chilling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="using-the-synthetic-temperature-data" class="section level3 unnumbered hasAnchor">
+<h3>1. Using the synthetic temperature data<a href="chapter-12---generating-temperature-scenarios.html#using-the-synthetic-temperature-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>First we need to get our future weather data simulated. For my code look at the codes section!</p>
 <hr />
 </div>
@@ -541,8 +537,8 @@ Figure 12.2: Simulation for the chilling hours in Klagenfurt, Austria between 19
 <h3>3. Freezing<a href="chapter-12---generating-temperature-scenarios.html#freezing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now we have to compile the same for the freezing hours during April!</p>
 </div>
-<div id="freezing-hours-visualized" class="section level3 hasAnchor" number="12.2.2">
-<h3><span class="header-section-number">12.2.2</span> Freezing hours visualized<a href="chapter-12---generating-temperature-scenarios.html#freezing-hours-visualized" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="freezing-hours-visualized" class="section level3 hasAnchor" number="12.2.1">
+<h3><span class="header-section-number">12.2.1</span> Freezing hours visualized<a href="chapter-12---generating-temperature-scenarios.html#freezing-hours-visualized" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="figure"><span style="display:block;" id="fig:histogramfreeze"></span>
 <img src="plots/Chapter12task2.svg" alt="Distribution of freezing hours (&lt;0°C) in Klagenfurt, Austria between 1998 and 2005." width="700px" />
 <p class="caption">
@@ -574,6 +570,7 @@ Figure 12.5: Historical and simulated freezing hours (&lt;0°C) for Klagenfurt b
 <div id="codes" class="section level2 hasAnchor" number="12.3">
 <h2><span class="header-section-number">12.3</span> Codes<a href="chapter-12---generating-temperature-scenarios.html#codes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Code for exercise 1:</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="chapter-12---generating-temperature-scenarios.html#cb33-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb33-2"><a href="chapter-12---generating-temperature-scenarios.html#cb33-2" tabindex="-1"></a><span class="fu">library</span>(chillR)</span>
 <span id="cb33-3"><a href="chapter-12---generating-temperature-scenarios.html#cb33-3" tabindex="-1"></a></span>
@@ -614,7 +611,9 @@ Figure 12.5: Historical and simulated freezing hours (&lt;0°C) for Klagenfurt b
 <span id="cb33-38"><a href="chapter-12---generating-temperature-scenarios.html#cb33-38" tabindex="-1"></a>chill_comparison_full_seasons <span class="ot">&lt;-</span> </span>
 <span id="cb33-39"><a href="chapter-12---generating-temperature-scenarios.html#cb33-39" tabindex="-1"></a>  chill_comparison <span class="sc">%&gt;%</span></span>
 <span id="cb33-40"><a href="chapter-12---generating-temperature-scenarios.html#cb33-40" tabindex="-1"></a>  <span class="fu">filter</span>(Perc_complete <span class="sc">==</span> <span class="dv">100</span>)</span></code></pre></div>
+</details>
 <p>Code for the whole chapter:</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="chapter-12---generating-temperature-scenarios.html#cb34-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb34-2"><a href="chapter-12---generating-temperature-scenarios.html#cb34-2" tabindex="-1"></a><span class="fu">library</span>(chillR)</span>
 <span id="cb34-3"><a href="chapter-12---generating-temperature-scenarios.html#cb34-3" tabindex="-1"></a></span>
@@ -793,6 +792,7 @@ Figure 12.5: Historical and simulated freezing hours (&lt;0°C) for Klagenfurt b
 <span id="cb34-176"><a href="chapter-12---generating-temperature-scenarios.html#cb34-176" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">18</span>) <span class="sc">+</span></span>
 <span id="cb34-177"><a href="chapter-12---generating-temperature-scenarios.html#cb34-177" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Year&quot;</span>) <span class="sc">+</span></span>
 <span id="cb34-178"><a href="chapter-12---generating-temperature-scenarios.html#cb34-178" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;April freezing hours (&lt;0°C)&quot;</span>)</span></code></pre></div>
+</details>
 
 </div>
 </div>

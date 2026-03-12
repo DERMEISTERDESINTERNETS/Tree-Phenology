@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>15 Chapter 16 - Making CMIP6 scenarios | Tree Phenology Wi/Se 2025/26</title>
+  <meta name="description" content="Course project for the module ‘Tree Phenology Analysis with R’ by Karl Kleiß." />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="15 Chapter 16 - Making CMIP6 scenarios | Tree Phenology Wi/Se 2025/26" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="Horti/images/chillR_hexSticker.png" />
+  <meta property="og:description" content="Course project for the module ‘Tree Phenology Analysis with R’ by Karl Kleiß." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="15 Chapter 16 - Making CMIP6 scenarios | Tree Phenology Wi/Se 2025/26" />
+  
+  <meta name="twitter:description" content="Course project for the module ‘Tree Phenology Analysis with R’ by Karl Kleiß." />
+  <meta name="twitter:image" content="Horti/images/chillR_hexSticker.png" />
+
+<meta name="author" content="Karl Kleiß" />
+
+
+<meta name="date" content="2026-03-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="chapter-15---future-temperature-scenarios.html"/>
+<link rel="next" href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/codefolding-lua-1.1/codefolding-lua.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Tree Phenology Wi/Se 25/26</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> The start of the module</a></li>
+<li class="chapter" data-level="2" data-path="chapter-3---tree-dormancy.html"><a href="chapter-3---tree-dormancy.html"><i class="fa fa-check"></i><b>2</b> Chapter 3 - Tree Dormancy</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="chapter-3---tree-dormancy.html"><a href="chapter-3---tree-dormancy.html#questions"><i class="fa fa-check"></i><b>2.1</b> Questions</a></li>
+<li class="chapter" data-level="2.2" data-path="chapter-3---tree-dormancy.html"><a href="chapter-3---tree-dormancy.html#answers"><i class="fa fa-check"></i><b>2.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-3---tree-dormancy.html"><a href="chapter-3---tree-dormancy.html#calculating-chilling-and-forcing"><i class="fa fa-check"></i>1. Calculating chilling and forcing</a></li>
+<li class="chapter" data-level="" data-path="chapter-3---tree-dormancy.html"><a href="chapter-3---tree-dormancy.html#advantages-of-the-bbch"><i class="fa fa-check"></i>2. Advantages of the BBCH</a></li>
+<li class="chapter" data-level="" data-path="chapter-3---tree-dormancy.html"><a href="chapter-3---tree-dormancy.html#example-pictures-in-the-module"><i class="fa fa-check"></i>3. Example pictures in the module:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="chapter-4---climate-change.html"><a href="chapter-4---climate-change.html"><i class="fa fa-check"></i><b>3</b> Chapter 4 - Climate Change</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="chapter-4---climate-change.html"><a href="chapter-4---climate-change.html#questions-1"><i class="fa fa-check"></i><b>3.1</b> Questions</a></li>
+<li class="chapter" data-level="3.2" data-path="chapter-4---climate-change.html"><a href="chapter-4---climate-change.html#answers-1"><i class="fa fa-check"></i><b>3.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-4---climate-change.html"><a href="chapter-4---climate-change.html#main-drivers-of-climate-change-and-key-mechanism"><i class="fa fa-check"></i>1. Main drivers of climate change and key mechanism</a></li>
+<li class="chapter" data-level="" data-path="chapter-4---climate-change.html"><a href="chapter-4---climate-change.html#temperature-dynamics-of-recent-decades"><i class="fa fa-check"></i>2. Temperature dynamics of recent decades</a></li>
+<li class="chapter" data-level="" data-path="chapter-4---climate-change.html"><a href="chapter-4---climate-change.html#meaning-and-role-of-rcps"><i class="fa fa-check"></i>3. Meaning and role of RCPs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="chapter-5---winter-chill-projections.html"><a href="chapter-5---winter-chill-projections.html"><i class="fa fa-check"></i><b>4</b> Chapter 5 - Winter chill projections</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="chapter-5---winter-chill-projections.html"><a href="chapter-5---winter-chill-projections.html#questions-2"><i class="fa fa-check"></i><b>4.1</b> Questions</a></li>
+<li class="chapter" data-level="4.2" data-path="chapter-5---winter-chill-projections.html"><a href="chapter-5---winter-chill-projections.html#answers-2"><i class="fa fa-check"></i><b>4.2</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="chapter-6---manual-chill-analysis.html"><a href="chapter-6---manual-chill-analysis.html"><i class="fa fa-check"></i><b>5</b> Chapter 6 - Manual chill analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="chapter-6---manual-chill-analysis.html"><a href="chapter-6---manual-chill-analysis.html#visualization"><i class="fa fa-check"></i><b>5.1</b> Visualization</a></li>
+<li class="chapter" data-level="5.2" data-path="chapter-6---manual-chill-analysis.html"><a href="chapter-6---manual-chill-analysis.html#function"><i class="fa fa-check"></i><b>5.2</b> Function</a></li>
+<li class="chapter" data-level="5.3" data-path="chapter-6---manual-chill-analysis.html"><a href="chapter-6---manual-chill-analysis.html#code-for-the-plot"><i class="fa fa-check"></i><b>5.3</b> Code for the plot</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="chapter-7---chill-models.html"><a href="chapter-7---chill-models.html"><i class="fa fa-check"></i><b>6</b> Chapter 7 - Chill Models</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="chapter-7---chill-models.html"><a href="chapter-7---chill-models.html#questions-3"><i class="fa fa-check"></i><b>6.1</b> Questions</a></li>
+<li class="chapter" data-level="6.2" data-path="chapter-7---chill-models.html"><a href="chapter-7---chill-models.html#answers-3"><i class="fa fa-check"></i><b>6.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-7---chill-models.html"><a href="chapter-7---chill-models.html#running-the-chilling-function."><i class="fa fa-check"></i>1. Running the <code>chilling()</code> function.</a></li>
+<li class="chapter" data-level="" data-path="chapter-7---chill-models.html"><a href="chapter-7---chill-models.html#little-changes-but-its-mine"><i class="fa fa-check"></i>2. Little changes, but its mine!</a></li>
+<li class="chapter" data-level="" data-path="chapter-7---chill-models.html"><a href="chapter-7---chill-models.html#applying-the-tempresponse-function-to-the-data-set."><i class="fa fa-check"></i>3. Applying the <code>tempResponse()</code> function to the data set.</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="chapter-7---chill-models.html"><a href="chapter-7---chill-models.html#plot"><i class="fa fa-check"></i><b>6.3</b> Plot</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-7---chill-models.html"><a href="chapter-7---chill-models.html#code-for-the-plot-1"><i class="fa fa-check"></i>Code for the plot:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="klagenfurt-austria.html"><a href="klagenfurt-austria.html"><i class="fa fa-check"></i><b>7</b> Klagenfurt, Austria</a></li>
+<li class="chapter" data-level="8" data-path="chapter-8---making-hourly-temperatures.html"><a href="chapter-8---making-hourly-temperatures.html"><i class="fa fa-check"></i><b>8</b> Chapter 8 - Making hourly temperatures</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="chapter-8---making-hourly-temperatures.html"><a href="chapter-8---making-hourly-temperatures.html#questions-4"><i class="fa fa-check"></i><b>8.1</b> Questions</a></li>
+<li class="chapter" data-level="8.2" data-path="chapter-8---making-hourly-temperatures.html"><a href="chapter-8---making-hourly-temperatures.html#answers-4"><i class="fa fa-check"></i><b>8.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-8---making-hourly-temperatures.html"><a href="chapter-8---making-hourly-temperatures.html#daylenght"><i class="fa fa-check"></i>1. Daylenght</a></li>
+<li class="chapter" data-level="" data-path="chapter-8---making-hourly-temperatures.html"><a href="chapter-8---making-hourly-temperatures.html#producing-an-hourly-dataset"><i class="fa fa-check"></i>2. Producing an hourly dataset</a></li>
+<li class="chapter" data-level="" data-path="chapter-8---making-hourly-temperatures.html"><a href="chapter-8---making-hourly-temperatures.html#creating-empirical-temperature-curve-parameters"><i class="fa fa-check"></i>3. Creating empirical temperature curve parameters</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="chapter-8---making-hourly-temperatures.html"><a href="chapter-8---making-hourly-temperatures.html#plot-1"><i class="fa fa-check"></i><b>8.3</b> Plot</a></li>
+<li class="chapter" data-level="8.4" data-path="chapter-8---making-hourly-temperatures.html"><a href="chapter-8---making-hourly-temperatures.html#code"><i class="fa fa-check"></i><b>8.4</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html"><i class="fa fa-check"></i><b>9</b> Chapter 9 - Some useful tools in R</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#answers-5"><i class="fa fa-check"></i>Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#tidyverse-pipes"><i class="fa fa-check"></i><strong>1</strong> - <code>tidyverse</code> &amp; Pipes</a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#a-convert-the-dataset-to-a-tibble"><i class="fa fa-check"></i>1a Convert the dataset to a <code>tibble</code></a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#b---select-only-the-first-10-rows"><i class="fa fa-check"></i>1b - Select only the first 10 <code>rows</code></a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#c---convert-to-long-format-temp-temp_gaps"><i class="fa fa-check"></i>1c - Convert to long format (<code>Temp</code> &amp; <code>Temp_gaps</code>)</a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#d---ggplot2-faceted-plot"><i class="fa fa-check"></i>1d - <code>ggplot2</code>: Faceted plot</a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#e---convert-back-to-wide-format"><i class="fa fa-check"></i>1e - Convert back to <code>wide</code> format</a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#f---select-columns-year-month-day-temp"><i class="fa fa-check"></i>1f - Select columns (<code>Year</code>, <code>Month</code>, <code>Day</code>, <code>Temp</code>)</a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#g---sort-by-temp-descending"><i class="fa fa-check"></i>1g - Sort by <code>Temp</code> (descending)</a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#for-loop-convert-temp-to-fahrenheit"><i class="fa fa-check"></i><strong>2</strong> - for loop (convert <code>Temp</code> to <code>Fahrenheit</code>)</a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#apply-family"><i class="fa fa-check"></i><strong>3</strong> - apply <code>family</code></a></li>
+<li class="chapter" data-level="" data-path="chapter-9---some-useful-tools-in-r.html"><a href="chapter-9---some-useful-tools-in-r.html#tidyverse-mutate"><i class="fa fa-check"></i><strong>4</strong> - <code>tidyverse</code> + <code>mutate</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="chapter-10---getting-temperature-data.html"><a href="chapter-10---getting-temperature-data.html"><i class="fa fa-check"></i><b>10</b> Chapter 10 - Getting Temperature Data</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="chapter-10---getting-temperature-data.html"><a href="chapter-10---getting-temperature-data.html#questions-5"><i class="fa fa-check"></i><b>10.1</b> Questions</a></li>
+<li class="chapter" data-level="10.2" data-path="chapter-10---getting-temperature-data.html"><a href="chapter-10---getting-temperature-data.html#answers-6"><i class="fa fa-check"></i><b>10.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-10---getting-temperature-data.html"><a href="chapter-10---getting-temperature-data.html#nearest-weather-stations"><i class="fa fa-check"></i>1. Nearest weather stations</a></li>
+<li class="chapter" data-level="" data-path="chapter-10---getting-temperature-data.html"><a href="chapter-10---getting-temperature-data.html#the-code"><i class="fa fa-check"></i>The Code</a></li>
+<li class="chapter" data-level="" data-path="chapter-10---getting-temperature-data.html"><a href="chapter-10---getting-temperature-data.html#table-with-data-in-chillr-format"><i class="fa fa-check"></i>3. Table with Data in <code>chillR</code>-format</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="chapter-10---getting-temperature-data.html"><a href="chapter-10---getting-temperature-data.html#odd-findings"><i class="fa fa-check"></i><b>10.3</b> Odd findings</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="chapter-11---filling-gaps-in-temperature-records.html"><a href="chapter-11---filling-gaps-in-temperature-records.html"><i class="fa fa-check"></i><b>11</b> Chapter 11 - Filling gaps in temperature records</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="chapter-11---filling-gaps-in-temperature-records.html"><a href="chapter-11---filling-gaps-in-temperature-records.html#questions-6"><i class="fa fa-check"></i><b>11.1</b> Questions</a></li>
+<li class="chapter" data-level="11.2" data-path="chapter-11---filling-gaps-in-temperature-records.html"><a href="chapter-11---filling-gaps-in-temperature-records.html#answers-7"><i class="fa fa-check"></i><b>11.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-11---filling-gaps-in-temperature-records.html"><a href="chapter-11---filling-gaps-in-temperature-records.html#finding-the-gaps"><i class="fa fa-check"></i>1. Finding the gaps</a></li>
+<li class="chapter" data-level="" data-path="chapter-11---filling-gaps-in-temperature-records.html"><a href="chapter-11---filling-gaps-in-temperature-records.html#these-lead-to-following-distances-to-my-weather-station-in-klagenfurt-austria"><i class="fa fa-check"></i>2. These lead to following distances to my weather station in Klagenfurt, Austria:</a></li>
+<li class="chapter" data-level="" data-path="chapter-11---filling-gaps-in-temperature-records.html"><a href="chapter-11---filling-gaps-in-temperature-records.html#identifying-nearest-weather-stations"><i class="fa fa-check"></i>3. Identifying nearest weather stations</a></li>
+<li class="chapter" data-level="" data-path="chapter-11---filling-gaps-in-temperature-records.html"><a href="chapter-11---filling-gaps-in-temperature-records.html#the-gaps-in-the-data-were-analysed-again.-we-now-have-the-following-amount-of-data-per-year"><i class="fa fa-check"></i>4. The gaps in the data were analysed again. We now have the following amount of data per year:</a></li>
+<li class="chapter" data-level="" data-path="chapter-11---filling-gaps-in-temperature-records.html"><a href="chapter-11---filling-gaps-in-temperature-records.html#patching-with-the-patch_daily_temperatures-function."><i class="fa fa-check"></i>5. Patching with the <code>patch_daily_temperatures</code> function.</a></li>
+<li class="chapter" data-level="" data-path="chapter-11---filling-gaps-in-temperature-records.html"><a href="chapter-11---filling-gaps-in-temperature-records.html#looking-for-the-gaps"><i class="fa fa-check"></i>6. Looking for the gaps!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html"><i class="fa fa-check"></i><b>12</b> Chapter 12 - Generating temperature scenarios</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#questions-7"><i class="fa fa-check"></i><b>12.1</b> Questions</a></li>
+<li class="chapter" data-level="12.2" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#answers-8"><i class="fa fa-check"></i><b>12.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#using-the-synthetic-temperature-data"><i class="fa fa-check"></i>1. Using the synthetic temperature data</a></li>
+<li class="chapter" data-level="" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#chill"><i class="fa fa-check"></i>2. Chill</a></li>
+<li class="chapter" data-level="" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#freezing"><i class="fa fa-check"></i>3. Freezing</a></li>
+<li class="chapter" data-level="12.2.1" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#freezing-hours-visualized"><i class="fa fa-check"></i><b>12.2.1</b> Freezing hours visualized</a></li>
+<li class="chapter" data-level="" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#freezing-hours-from-1973-2100"><i class="fa fa-check"></i>Freezing Hours from 1973-2100</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="chapter-12---generating-temperature-scenarios.html"><a href="chapter-12---generating-temperature-scenarios.html#codes"><i class="fa fa-check"></i><b>12.3</b> Codes</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="chapter-14---historic-temperature-scenarios.html"><a href="chapter-14---historic-temperature-scenarios.html"><i class="fa fa-check"></i><b>13</b> Chapter 14 - Historic temperature scenarios</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="chapter-14---historic-temperature-scenarios.html"><a href="chapter-14---historic-temperature-scenarios.html#questions-8"><i class="fa fa-check"></i><b>13.1</b> Questions</a></li>
+<li class="chapter" data-level="13.2" data-path="chapter-14---historic-temperature-scenarios.html"><a href="chapter-14---historic-temperature-scenarios.html#answers-9"><i class="fa fa-check"></i><b>13.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-14---historic-temperature-scenarios.html"><a href="chapter-14---historic-temperature-scenarios.html#finding-the-location-for-extracting-then-computing-and-summarizing-the-data"><i class="fa fa-check"></i>1. Finding the location for extracting then computing and summarizing the data:</a></li>
+<li class="chapter" data-level="" data-path="chapter-14---historic-temperature-scenarios.html"><a href="chapter-14---historic-temperature-scenarios.html#plotting-the-processed-data"><i class="fa fa-check"></i>2. Plotting the processed data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="chapter-15---future-temperature-scenarios.html"><a href="chapter-15---future-temperature-scenarios.html"><i class="fa fa-check"></i><b>14</b> Chapter 15 - Future temperature scenarios</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="chapter-15---future-temperature-scenarios.html"><a href="chapter-15---future-temperature-scenarios.html#questions-9"><i class="fa fa-check"></i><b>14.1</b> Questions</a></li>
+<li class="chapter" data-level="14.2" data-path="chapter-15---future-temperature-scenarios.html"><a href="chapter-15---future-temperature-scenarios.html#answer"><i class="fa fa-check"></i><b>14.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="chapter-16---making-cmip6-scenarios.html"><a href="chapter-16---making-cmip6-scenarios.html"><i class="fa fa-check"></i><b>15</b> Chapter 16 - Making <code>CMIP6</code> scenarios</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="chapter-16---making-cmip6-scenarios.html"><a href="chapter-16---making-cmip6-scenarios.html#code-1"><i class="fa fa-check"></i><b>15.1</b> Code</a></li>
+<li class="chapter" data-level="15.2" data-path="chapter-16---making-cmip6-scenarios.html"><a href="chapter-16---making-cmip6-scenarios.html#plots"><i class="fa fa-check"></i><b>15.2</b> Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-16---making-cmip6-scenarios.html"><a href="chapter-16---making-cmip6-scenarios.html#frost"><i class="fa fa-check"></i>Frost</a></li>
+<li class="chapter" data-level="" data-path="chapter-16---making-cmip6-scenarios.html"><a href="chapter-16---making-cmip6-scenarios.html#heat"><i class="fa fa-check"></i>Heat</a></li>
+<li class="chapter" data-level="15.2.1" data-path="chapter-16---making-cmip6-scenarios.html"><a href="chapter-16---making-cmip6-scenarios.html#code-for-plotting"><i class="fa fa-check"></i><b>15.2.1</b> Code for plotting</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><i class="fa fa-check"></i><b>16</b> Chapter 17 - Making <code>CMIP5</code> scenarios with the <code>ClimateWizard</code></a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#question"><i class="fa fa-check"></i><b>16.1</b> Question</a></li>
+<li class="chapter" data-level="16.2" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#plots-1"><i class="fa fa-check"></i><b>16.2</b> Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#chill-1"><i class="fa fa-check"></i>Chill</a></li>
+<li class="chapter" data-level="" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#frost-1"><i class="fa fa-check"></i>Frost</a></li>
+<li class="chapter" data-level="" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#heat-1"><i class="fa fa-check"></i>Heat</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html"><a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html#code-2"><i class="fa fa-check"></i><b>16.3</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="chapter-18---plotting-future-scenarios.html"><a href="chapter-18---plotting-future-scenarios.html"><i class="fa fa-check"></i><b>17</b> Chapter 18 - Plotting future scenarios</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="chapter-18---plotting-future-scenarios.html"><a href="chapter-18---plotting-future-scenarios.html#questions-10"><i class="fa fa-check"></i><b>17.1</b> Questions</a></li>
+<li class="chapter" data-level="17.2" data-path="chapter-18---plotting-future-scenarios.html"><a href="chapter-18---plotting-future-scenarios.html#plots-2"><i class="fa fa-check"></i><b>17.2</b> Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-18---plotting-future-scenarios.html"><a href="chapter-18---plotting-future-scenarios.html#chill-2"><i class="fa fa-check"></i>Chill</a></li>
+<li class="chapter" data-level="" data-path="chapter-18---plotting-future-scenarios.html"><a href="chapter-18---plotting-future-scenarios.html#frost-2"><i class="fa fa-check"></i>Frost</a></li>
+<li class="chapter" data-level="" data-path="chapter-18---plotting-future-scenarios.html"><a href="chapter-18---plotting-future-scenarios.html#heat-2"><i class="fa fa-check"></i>Heat</a></li>
+<li class="chapter" data-level="17.2.1" data-path="chapter-18---plotting-future-scenarios.html"><a href="chapter-18---plotting-future-scenarios.html#code-for-the-plots"><i class="fa fa-check"></i><b>17.2.1</b> Code for the plots:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="chapter-19---chill-model-comparison.html"><a href="chapter-19---chill-model-comparison.html"><i class="fa fa-check"></i><b>18</b> Chapter 19 - Chill model comparison</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="chapter-19---chill-model-comparison.html"><a href="chapter-19---chill-model-comparison.html#questions-11"><i class="fa fa-check"></i><b>18.1</b> Questions</a></li>
+<li class="chapter" data-level="18.2" data-path="chapter-19---chill-model-comparison.html"><a href="chapter-19---chill-model-comparison.html#answers-10"><i class="fa fa-check"></i><b>18.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-19---chill-model-comparison.html"><a href="chapter-19---chill-model-comparison.html#plot-2"><i class="fa fa-check"></i>Plot</a></li>
+<li class="chapter" data-level="" data-path="chapter-19---chill-model-comparison.html"><a href="chapter-19---chill-model-comparison.html#animated-plot"><i class="fa fa-check"></i>Animated plot</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="chapter-19---chill-model-comparison.html"><a href="chapter-19---chill-model-comparison.html#code-3"><i class="fa fa-check"></i><b>18.3</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="chapter-20---simple-phenology-analysis.html"><a href="chapter-20---simple-phenology-analysis.html"><i class="fa fa-check"></i><b>19</b> Chapter 20 - Simple phenology analysis</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="chapter-20---simple-phenology-analysis.html"><a href="chapter-20---simple-phenology-analysis.html#questions-12"><i class="fa fa-check"></i><b>19.1</b> Questions</a></li>
+<li class="chapter" data-level="19.2" data-path="chapter-20---simple-phenology-analysis.html"><a href="chapter-20---simple-phenology-analysis.html#answers-11"><i class="fa fa-check"></i><b>19.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-20---simple-phenology-analysis.html"><a href="chapter-20---simple-phenology-analysis.html#what-is-p-hacking-and-why-is-it-problematic"><i class="fa fa-check"></i>1. What is p-hacking and why is it problematic?</a></li>
+<li class="chapter" data-level="" data-path="chapter-20---simple-phenology-analysis.html"><a href="chapter-20---simple-phenology-analysis.html#causal-understanding-of-the-relationship-between-temperature-and-bloom-dates"><i class="fa fa-check"></i>2. Causal understanding of the relationship between temperature and bloom dates</a></li>
+<li class="chapter" data-level="" data-path="chapter-20---simple-phenology-analysis.html"><a href="chapter-20---simple-phenology-analysis.html#what-is-required-to-build-a-process-based-model"><i class="fa fa-check"></i>3. What is required to build a process-based model?</a></li>
+<li class="chapter" data-level="" data-path="chapter-20---simple-phenology-analysis.html"><a href="chapter-20---simple-phenology-analysis.html#bloom-and-temperatures"><i class="fa fa-check"></i>Bloom and Temperatures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="chapter-21---pls-regression-plots.html"><a href="chapter-21---pls-regression-plots.html"><i class="fa fa-check"></i><b>20</b> Chapter 21 - PLS Regression Plots</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="chapter-21---pls-regression-plots.html"><a href="chapter-21---pls-regression-plots.html#questions-13"><i class="fa fa-check"></i><b>20.1</b> Questions</a></li>
+<li class="chapter" data-level="20.2" data-path="chapter-21---pls-regression-plots.html"><a href="chapter-21---pls-regression-plots.html#answers-12"><i class="fa fa-check"></i><b>20.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-21---pls-regression-plots.html"><a href="chapter-21---pls-regression-plots.html#pls-regression"><i class="fa fa-check"></i>1. PLS Regression</a></li>
+<li class="chapter" data-level="" data-path="chapter-21---pls-regression-plots.html"><a href="chapter-21---pls-regression-plots.html#pls-analysis-visualized"><i class="fa fa-check"></i>2. PLS Analysis visualized</a></li>
+<li class="chapter" data-level="" data-path="chapter-21---pls-regression-plots.html"><a href="chapter-21---pls-regression-plots.html#why-do-the-results-differ-from-expectation"><i class="fa fa-check"></i>3. Why do the results differ from expectation?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="chapter-22---successes-and-limitations-of-pls-regression-analysis.html"><a href="chapter-22---successes-and-limitations-of-pls-regression-analysis.html"><i class="fa fa-check"></i><b>21</b> Chapter 22 - Successes and limitations of PLS regression analysis</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="chapter-22---successes-and-limitations-of-pls-regression-analysis.html"><a href="chapter-22---successes-and-limitations-of-pls-regression-analysis.html#questions-14"><i class="fa fa-check"></i><b>21.1</b> Questions</a></li>
+<li class="chapter" data-level="21.2" data-path="chapter-22---successes-and-limitations-of-pls-regression-analysis.html"><a href="chapter-22---successes-and-limitations-of-pls-regression-analysis.html#answers-13"><i class="fa fa-check"></i><b>21.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-22---successes-and-limitations-of-pls-regression-analysis.html"><a href="chapter-22---successes-and-limitations-of-pls-regression-analysis.html#problems-with-pls"><i class="fa fa-check"></i>1. Problems with PLS</a></li>
+<li class="chapter" data-level="" data-path="chapter-22---successes-and-limitations-of-pls-regression-analysis.html"><a href="chapter-22---successes-and-limitations-of-pls-regression-analysis.html#solutions-for-the-problem"><i class="fa fa-check"></i>2. Solutions for the problem</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="chapter-23---pls-regression-with-agroclimatic-metrics.html"><a href="chapter-23---pls-regression-with-agroclimatic-metrics.html"><i class="fa fa-check"></i><b>22</b> Chapter 23 - PLS regression with agroclimatic metrics</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="chapter-23---pls-regression-with-agroclimatic-metrics.html"><a href="chapter-23---pls-regression-with-agroclimatic-metrics.html#questions-15"><i class="fa fa-check"></i><b>22.1</b> Questions:</a></li>
+<li class="chapter" data-level="22.2" data-path="chapter-23---pls-regression-with-agroclimatic-metrics.html"><a href="chapter-23---pls-regression-with-agroclimatic-metrics.html#answers-14"><i class="fa fa-check"></i><b>22.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-23---pls-regression-with-agroclimatic-metrics.html"><a href="chapter-23---pls-regression-with-agroclimatic-metrics.html#chilling-hours"><i class="fa fa-check"></i>Chilling Hours</a></li>
+<li class="chapter" data-level="" data-path="chapter-23---pls-regression-with-agroclimatic-metrics.html"><a href="chapter-23---pls-regression-with-agroclimatic-metrics.html#utah-model"><i class="fa fa-check"></i>Utah Model</a></li>
+<li class="chapter" data-level="" data-path="chapter-23---pls-regression-with-agroclimatic-metrics.html"><a href="chapter-23---pls-regression-with-agroclimatic-metrics.html#dynamic-model"><i class="fa fa-check"></i>Dynamic Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html"><a href="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html"><i class="fa fa-check"></i><b>23</b> Chapter 24 - Examples of PLS regression with agroclimatic metrics</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html"><a href="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html#questions-16"><i class="fa fa-check"></i><b>23.1</b> Questions</a></li>
+<li class="chapter" data-level="23.2" data-path="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html"><a href="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html#answers-15"><i class="fa fa-check"></i><b>23.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html"><a href="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html#when-are-chilling-and-forcing-phases-clear"><i class="fa fa-check"></i>When are chilling and forcing phases clear?</a></li>
+<li class="chapter" data-level="" data-path="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html"><a href="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html#why-does-pls-sometimes-work-well-and-sometimes-not"><i class="fa fa-check"></i>Why does PLS sometimes work well and sometimes not?</a></li>
+<li class="chapter" data-level="" data-path="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html"><a href="chapter-24---examples-of-pls-regression-with-agroclimatic-metrics.html#klagenfurt-and-the-boskoop"><i class="fa fa-check"></i>Klagenfurt and the Boskoop</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="chapter-25---why-pls-doesnt-always-work.html"><a href="chapter-25---why-pls-doesnt-always-work.html"><i class="fa fa-check"></i><b>24</b> Chapter 25 - Why PLS doesn’t always work</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="chapter-25---why-pls-doesnt-always-work.html"><a href="chapter-25---why-pls-doesnt-always-work.html#questions-17"><i class="fa fa-check"></i><b>24.1</b> Questions</a></li>
+<li class="chapter" data-level="24.2" data-path="chapter-25---why-pls-doesnt-always-work.html"><a href="chapter-25---why-pls-doesnt-always-work.html#answers-16"><i class="fa fa-check"></i><b>24.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-25---why-pls-doesnt-always-work.html"><a href="chapter-25---why-pls-doesnt-always-work.html#chill-model-sensitivity-plots"><i class="fa fa-check"></i>Chill model sensitivity plots</a></li>
+<li class="chapter" data-level="" data-path="chapter-25---why-pls-doesnt-always-work.html"><a href="chapter-25---why-pls-doesnt-always-work.html#heat-model-sensitivity-plots"><i class="fa fa-check"></i>Heat model sensitivity plots</a></li>
+</ul></li>
+<li class="chapter" data-level="24.3" data-path="chapter-25---why-pls-doesnt-always-work.html"><a href="chapter-25---why-pls-doesnt-always-work.html#code-4"><i class="fa fa-check"></i><b>24.3</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="chapter-26---evaluating-pls-outputs.html"><a href="chapter-26---evaluating-pls-outputs.html"><i class="fa fa-check"></i><b>25</b> Chapter 26 - Evaluating PLS outputs</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="chapter-26---evaluating-pls-outputs.html"><a href="chapter-26---evaluating-pls-outputs.html#questions-18"><i class="fa fa-check"></i><b>25.1</b> Questions</a></li>
+<li class="chapter" data-level="25.2" data-path="chapter-26---evaluating-pls-outputs.html"><a href="chapter-26---evaluating-pls-outputs.html#answers-17"><i class="fa fa-check"></i><b>25.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-26---evaluating-pls-outputs.html"><a href="chapter-26---evaluating-pls-outputs.html#klein-altendorf-germany"><i class="fa fa-check"></i>Klein Altendorf, Germany</a></li>
+<li class="chapter" data-level="" data-path="chapter-26---evaluating-pls-outputs.html"><a href="chapter-26---evaluating-pls-outputs.html#beijing-china"><i class="fa fa-check"></i>Beijing, China</a></li>
+<li class="chapter" data-level="" data-path="chapter-26---evaluating-pls-outputs.html"><a href="chapter-26---evaluating-pls-outputs.html#sfax-tunisia"><i class="fa fa-check"></i>Sfax, Tunisia</a></li>
+</ul></li>
+<li class="chapter" data-level="25.3" data-path="chapter-26---evaluating-pls-outputs.html"><a href="chapter-26---evaluating-pls-outputs.html#code-5"><i class="fa fa-check"></i><b>25.3</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="chapter-27---the-relative-importance-of-chill-and-heat.html"><a href="chapter-27---the-relative-importance-of-chill-and-heat.html"><i class="fa fa-check"></i><b>26</b> Chapter 27 - The relative importance of chill and heat</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="chapter-27---the-relative-importance-of-chill-and-heat.html"><a href="chapter-27---the-relative-importance-of-chill-and-heat.html#question-1"><i class="fa fa-check"></i><b>26.1</b> Question</a></li>
+<li class="chapter" data-level="26.2" data-path="chapter-27---the-relative-importance-of-chill-and-heat.html"><a href="chapter-27---the-relative-importance-of-chill-and-heat.html#answer-1"><i class="fa fa-check"></i><b>26.2</b> Answer</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="chapter-29---making-valid-tree-phenology-models.html"><a href="chapter-29---making-valid-tree-phenology-models.html"><i class="fa fa-check"></i><b>27</b> Chapter 29 - Making valid tree phenology models</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="chapter-29---making-valid-tree-phenology-models.html"><a href="chapter-29---making-valid-tree-phenology-models.html#questions-19"><i class="fa fa-check"></i><b>27.1</b> Questions</a></li>
+<li class="chapter" data-level="27.2" data-path="chapter-29---making-valid-tree-phenology-models.html"><a href="chapter-29---making-valid-tree-phenology-models.html#answers-18"><i class="fa fa-check"></i><b>27.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-29---making-valid-tree-phenology-models.html"><a href="chapter-29---making-valid-tree-phenology-models.html#difference-between-output-validation-and-process-validation"><i class="fa fa-check"></i>1. Difference between output validation and process validation</a></li>
+<li class="chapter" data-level="" data-path="chapter-29---making-valid-tree-phenology-models.html"><a href="chapter-29---making-valid-tree-phenology-models.html#what-is-a-validity-domain-and-why-is-it-important"><i class="fa fa-check"></i>2. What is a validity domain and why is it important?</a></li>
+<li class="chapter" data-level="" data-path="chapter-29---making-valid-tree-phenology-models.html"><a href="chapter-29---making-valid-tree-phenology-models.html#what-is-validation-for-purpose"><i class="fa fa-check"></i>3. What is validation for purpose?</a></li>
+<li class="chapter" data-level="" data-path="chapter-29---making-valid-tree-phenology-models.html"><a href="chapter-29---making-valid-tree-phenology-models.html#how-can-we-ensure-the-model-is-suitable-for-the-predictions-we-want-to-make"><i class="fa fa-check"></i>4. How can we ensure the model is suitable for the predictions we want to make?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="chapter-30---the-phenoflex-model.html"><a href="chapter-30---the-phenoflex-model.html"><i class="fa fa-check"></i><b>28</b> Chapter 30 - The PhenoFlex model</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="chapter-30---the-phenoflex-model.html"><a href="chapter-30---the-phenoflex-model.html#questions-20"><i class="fa fa-check"></i><b>28.1</b> Questions</a></li>
+<li class="chapter" data-level="28.2" data-path="chapter-30---the-phenoflex-model.html"><a href="chapter-30---the-phenoflex-model.html#answers-19"><i class="fa fa-check"></i><b>28.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-30---the-phenoflex-model.html"><a href="chapter-30---the-phenoflex-model.html#parameters-for-roter-boskoop-dataset"><i class="fa fa-check"></i>Parameters for “Roter Boskoop” dataset</a></li>
+<li class="chapter" data-level="" data-path="chapter-30---the-phenoflex-model.html"><a href="chapter-30---the-phenoflex-model.html#plots-3"><i class="fa fa-check"></i>Plots</a></li>
+<li class="chapter" data-level="" data-path="chapter-30---the-phenoflex-model.html"><a href="chapter-30---the-phenoflex-model.html#statistical-errors"><i class="fa fa-check"></i>Statistical Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="28.3" data-path="chapter-30---the-phenoflex-model.html"><a href="chapter-30---the-phenoflex-model.html#code-6"><i class="fa fa-check"></i><b>28.3</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="chapter-31---the-phenoflex-model---a-second-look.html"><a href="chapter-31---the-phenoflex-model---a-second-look.html"><i class="fa fa-check"></i><b>29</b> Chapter 31 - The <code>PhenoFlex</code> model - a second look</a>
+<ul>
+<li class="chapter" data-level="29.1" data-path="chapter-31---the-phenoflex-model---a-second-look.html"><a href="chapter-31---the-phenoflex-model---a-second-look.html#question-2"><i class="fa fa-check"></i><b>29.1</b> Question</a></li>
+<li class="chapter" data-level="29.2" data-path="chapter-31---the-phenoflex-model---a-second-look.html"><a href="chapter-31---the-phenoflex-model---a-second-look.html#answers-20"><i class="fa fa-check"></i><b>29.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-31---the-phenoflex-model---a-second-look.html"><a href="chapter-31---the-phenoflex-model---a-second-look.html#chill-3"><i class="fa fa-check"></i>Chill</a></li>
+<li class="chapter" data-level="" data-path="chapter-31---the-phenoflex-model---a-second-look.html"><a href="chapter-31---the-phenoflex-model---a-second-look.html#heat-3"><i class="fa fa-check"></i>Heat</a></li>
+</ul></li>
+<li class="chapter" data-level="29.3" data-path="chapter-31---the-phenoflex-model---a-second-look.html"><a href="chapter-31---the-phenoflex-model---a-second-look.html#code-7"><i class="fa fa-check"></i><b>29.3</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="chapter-32---can-we-improve-the-performance-of-phenoflex.html"><a href="chapter-32---can-we-improve-the-performance-of-phenoflex.html"><i class="fa fa-check"></i><b>30</b> Chapter 32 - Can we improve the performance of <code>PhenoFlex</code>?</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="chapter-32---can-we-improve-the-performance-of-phenoflex.html"><a href="chapter-32---can-we-improve-the-performance-of-phenoflex.html#questions-21"><i class="fa fa-check"></i><b>30.1</b> Questions</a></li>
+<li class="chapter" data-level="30.2" data-path="chapter-32---can-we-improve-the-performance-of-phenoflex.html"><a href="chapter-32---can-we-improve-the-performance-of-phenoflex.html#answers-21"><i class="fa fa-check"></i><b>30.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-32---can-we-improve-the-performance-of-phenoflex.html"><a href="chapter-32---can-we-improve-the-performance-of-phenoflex.html#what-was-the-objective-of-this-work"><i class="fa fa-check"></i>1. What was the objective of this work?</a></li>
+<li class="chapter" data-level="" data-path="chapter-32---can-we-improve-the-performance-of-phenoflex.html"><a href="chapter-32---can-we-improve-the-performance-of-phenoflex.html#what-was-the-main-conclusion"><i class="fa fa-check"></i>2. What was the main conclusion?</a></li>
+<li class="chapter" data-level="" data-path="chapter-32---can-we-improve-the-performance-of-phenoflex.html"><a href="chapter-32---can-we-improve-the-performance-of-phenoflex.html#what-experiments-could-be-conducted-to-test-the-emerging-hypothesis"><i class="fa fa-check"></i>3. What experiments could be conducted to test the emerging hypothesis?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="chapter-33---frost-risk-analysis.html"><a href="chapter-33---frost-risk-analysis.html"><i class="fa fa-check"></i><b>31</b> Chapter 33 - Frost risk analysis</a>
+<ul>
+<li class="chapter" data-level="31.1" data-path="chapter-33---frost-risk-analysis.html"><a href="chapter-33---frost-risk-analysis.html#questions-22"><i class="fa fa-check"></i><b>31.1</b> Questions</a></li>
+<li class="chapter" data-level="31.2" data-path="chapter-33---frost-risk-analysis.html"><a href="chapter-33---frost-risk-analysis.html#answers-22"><i class="fa fa-check"></i><b>31.2</b> Answers</a>
+<ul>
+<li class="chapter" data-level="" data-path="chapter-33---frost-risk-analysis.html"><a href="chapter-33---frost-risk-analysis.html#development-of-bloom-over-the-duration-of-the-weather-record"><i class="fa fa-check"></i>Development of bloom over the duration of the weather record</a></li>
+<li class="chapter" data-level="" data-path="chapter-33---frost-risk-analysis.html"><a href="chapter-33---frost-risk-analysis.html#frost-hours-per-year-since-1958-at-klein-altendorf"><i class="fa fa-check"></i>Frost Hours per year since 1958 at Klein-Altendorf</a></li>
+<li class="chapter" data-level="" data-path="chapter-33---frost-risk-analysis.html"><a href="chapter-33---frost-risk-analysis.html#relationship-between-frost-hours-and-bloomperiod"><i class="fa fa-check"></i>Relationship between Frost hours and bloomperiod</a></li>
+</ul></li>
+<li class="chapter" data-level="31.3" data-path="chapter-33---frost-risk-analysis.html"><a href="chapter-33---frost-risk-analysis.html#code-8"><i class="fa fa-check"></i><b>31.3</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>32</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tree Phenology Wi/Se 2025/26</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="chapter-16---making-cmip6-scenarios" class="section level1 hasAnchor" number="15">
+<h1><span class="header-section-number">15</span> Chapter 16 - Making <code>CMIP6</code> scenarios<a href="chapter-16---making-cmip6-scenarios.html#chapter-16---making-cmip6-scenarios" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This is by far the most difficult chapter. I struggled a lot during the making. There are many steps which are directly connected to each other and depend on each other. Furthermore the commands take a very long time. Sometimes its processed, but something went wrong. Then you have to start all over again. But I learned a lot doing this!</p>
+<p>Looking at the exercises, they are straight forward. I have to make plots out of the data, we downloaded, the historic data and also observed data.
+As I have mentioned in previous chapters getting the data for Klagenfurt was not that easy. Lots of weather data was missing. I had to combine and patch. Somehow a whole year was missing even though it said that 100 <code>Perc</code> is covered.</p>
+<hr />
+<div id="code-1" class="section level2 hasAnchor" number="15.1">
+<h2><span class="header-section-number">15.1</span> Code<a href="chapter-16---making-cmip6-scenarios.html#code-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Here is the code for downloading and extracting:</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="chapter-16---making-cmip6-scenarios.html#cb36-1" tabindex="-1"></a><span class="fu">library</span>(chillR)</span>
+<span id="cb36-2"><a href="chapter-16---making-cmip6-scenarios.html#cb36-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb36-3"><a href="chapter-16---making-cmip6-scenarios.html#cb36-3" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb36-4"><a href="chapter-16---making-cmip6-scenarios.html#cb36-4" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="chapter-16---making-cmip6-scenarios.html#cb36-5" tabindex="-1"></a><span class="co">#Defining the parameters</span></span>
+<span id="cb36-6"><a href="chapter-16---making-cmip6-scenarios.html#cb36-6" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="chapter-16---making-cmip6-scenarios.html#cb36-7" tabindex="-1"></a>area <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">47.2</span>, <span class="fl">13.7</span>, <span class="fl">46.0</span>, <span class="fl">14.9</span>)</span>
+<span id="cb36-8"><a href="chapter-16---making-cmip6-scenarios.html#cb36-8" tabindex="-1"></a>location <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">14.31</span>, <span class="fl">46.62</span>)</span>
+<span id="cb36-9"><a href="chapter-16---making-cmip6-scenarios.html#cb36-9" tabindex="-1"></a></span>
+<span id="cb36-10"><a href="chapter-16---making-cmip6-scenarios.html#cb36-10" tabindex="-1"></a><span class="co">#Downloading</span></span>
+<span id="cb36-11"><a href="chapter-16---making-cmip6-scenarios.html#cb36-11" tabindex="-1"></a></span>
+<span id="cb36-12"><a href="chapter-16---making-cmip6-scenarios.html#cb36-12" tabindex="-1"></a><span class="fu">download_cmip6_ecmwfr</span>(</span>
+<span id="cb36-13"><a href="chapter-16---making-cmip6-scenarios.html#cb36-13" tabindex="-1"></a>  <span class="at">scenarios  =</span> <span class="fu">c</span>(<span class="st">&quot;ssp126&quot;</span>,<span class="st">&quot;ssp245&quot;</span>,<span class="st">&quot;ssp370&quot;</span>,<span class="st">&quot;ssp585&quot;</span>),</span>
+<span id="cb36-14"><a href="chapter-16---making-cmip6-scenarios.html#cb36-14" tabindex="-1"></a>  <span class="at">area       =</span> area,</span>
+<span id="cb36-15"><a href="chapter-16---making-cmip6-scenarios.html#cb36-15" tabindex="-1"></a>  <span class="at">user       =</span> <span class="st">&quot;s7kaklei@uni-bonn.de&quot;</span>,</span>
+<span id="cb36-16"><a href="chapter-16---making-cmip6-scenarios.html#cb36-16" tabindex="-1"></a>  <span class="at">key        =</span> <span class="st">&quot;1afb14e0-c553-4dad-a6b4-da0773314f7b&quot;</span>,</span>
+<span id="cb36-17"><a href="chapter-16---making-cmip6-scenarios.html#cb36-17" tabindex="-1"></a>  <span class="at">model      =</span> <span class="st">&quot;default&quot;</span>,</span>
+<span id="cb36-18"><a href="chapter-16---making-cmip6-scenarios.html#cb36-18" tabindex="-1"></a>  <span class="at">frequency  =</span> <span class="st">&quot;monthly&quot;</span>,</span>
+<span id="cb36-19"><a href="chapter-16---making-cmip6-scenarios.html#cb36-19" tabindex="-1"></a>  <span class="at">variable   =</span> <span class="fu">c</span>(<span class="st">&quot;Tmin&quot;</span>,<span class="st">&quot;Tmax&quot;</span>),</span>
+<span id="cb36-20"><a href="chapter-16---making-cmip6-scenarios.html#cb36-20" tabindex="-1"></a>  <span class="at">year_start =</span> <span class="dv">2015</span>,</span>
+<span id="cb36-21"><a href="chapter-16---making-cmip6-scenarios.html#cb36-21" tabindex="-1"></a>  <span class="at">year_end   =</span> <span class="dv">2100</span></span>
+<span id="cb36-22"><a href="chapter-16---making-cmip6-scenarios.html#cb36-22" tabindex="-1"></a>)</span>
+<span id="cb36-23"><a href="chapter-16---making-cmip6-scenarios.html#cb36-23" tabindex="-1"></a></span>
+<span id="cb36-24"><a href="chapter-16---making-cmip6-scenarios.html#cb36-24" tabindex="-1"></a><span class="fu">download_baseline_cmip6_ecmwfr</span>(</span>
+<span id="cb36-25"><a href="chapter-16---making-cmip6-scenarios.html#cb36-25" tabindex="-1"></a>  <span class="at">area       =</span> area,</span>
+<span id="cb36-26"><a href="chapter-16---making-cmip6-scenarios.html#cb36-26" tabindex="-1"></a>  <span class="at">user       =</span> <span class="st">&quot;s7kaklei@uni-bonn.de&quot;</span>,</span>
+<span id="cb36-27"><a href="chapter-16---making-cmip6-scenarios.html#cb36-27" tabindex="-1"></a>  <span class="at">key        =</span> <span class="st">&quot;1afb14e0-c553-4dad-a6b4-da0773314f7b&quot;</span>,</span>
+<span id="cb36-28"><a href="chapter-16---making-cmip6-scenarios.html#cb36-28" tabindex="-1"></a>  <span class="at">model      =</span> <span class="st">&quot;match_downloaded&quot;</span>,</span>
+<span id="cb36-29"><a href="chapter-16---making-cmip6-scenarios.html#cb36-29" tabindex="-1"></a>  <span class="at">frequency  =</span> <span class="st">&quot;monthly&quot;</span>,</span>
+<span id="cb36-30"><a href="chapter-16---making-cmip6-scenarios.html#cb36-30" tabindex="-1"></a>  <span class="at">variable   =</span> <span class="fu">c</span>(<span class="st">&quot;Tmin&quot;</span>,<span class="st">&quot;Tmax&quot;</span>),</span>
+<span id="cb36-31"><a href="chapter-16---making-cmip6-scenarios.html#cb36-31" tabindex="-1"></a>  <span class="at">year_start =</span> <span class="dv">1986</span>,</span>
+<span id="cb36-32"><a href="chapter-16---making-cmip6-scenarios.html#cb36-32" tabindex="-1"></a>  <span class="at">year_end   =</span> <span class="dv">2014</span>,</span>
+<span id="cb36-33"><a href="chapter-16---making-cmip6-scenarios.html#cb36-33" tabindex="-1"></a>  <span class="at">month      =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span></span>
+<span id="cb36-34"><a href="chapter-16---making-cmip6-scenarios.html#cb36-34" tabindex="-1"></a>)</span>
+<span id="cb36-35"><a href="chapter-16---making-cmip6-scenarios.html#cb36-35" tabindex="-1"></a></span>
+<span id="cb36-36"><a href="chapter-16---making-cmip6-scenarios.html#cb36-36" tabindex="-1"></a><span class="co"># Fixing the code (by Lars Caspersen)</span></span>
+<span id="cb36-37"><a href="chapter-16---making-cmip6-scenarios.html#cb36-37" tabindex="-1"></a></span>
+<span id="cb36-38"><a href="chapter-16---making-cmip6-scenarios.html#cb36-38" tabindex="-1"></a>extract_cmip6_data_mod <span class="ot">&lt;-</span> <span class="cf">function</span> (stations, <span class="at">variable =</span> <span class="fu">c</span>(<span class="st">&quot;Tmin&quot;</span>, <span class="st">&quot;Tmax&quot;</span>), <span class="at">download_path =</span> <span class="st">&quot;cmip6_downloaded&quot;</span>, </span>
+<span id="cb36-39"><a href="chapter-16---making-cmip6-scenarios.html#cb36-39" tabindex="-1"></a>                                    <span class="at">keep_downloaded =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb36-40"><a href="chapter-16---making-cmip6-scenarios.html#cb36-40" tabindex="-1"></a>{</span>
+<span id="cb36-41"><a href="chapter-16---making-cmip6-scenarios.html#cb36-41" tabindex="-1"></a>  </span>
+<span id="cb36-42"><a href="chapter-16---making-cmip6-scenarios.html#cb36-42" tabindex="-1"></a>  </span>
+<span id="cb36-43"><a href="chapter-16---making-cmip6-scenarios.html#cb36-43" tabindex="-1"></a>  </span>
+<span id="cb36-44"><a href="chapter-16---making-cmip6-scenarios.html#cb36-44" tabindex="-1"></a>  assertthat<span class="sc">::</span><span class="fu">assert_that</span>(<span class="fu">all</span>(variable <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Tmin&quot;</span>, <span class="st">&quot;Tmax&quot;</span>, </span>
+<span id="cb36-45"><a href="chapter-16---making-cmip6-scenarios.html#cb36-45" tabindex="-1"></a>                                              <span class="st">&quot;Prec&quot;</span>)))</span>
+<span id="cb36-46"><a href="chapter-16---making-cmip6-scenarios.html#cb36-46" tabindex="-1"></a>  assertthat<span class="sc">::</span><span class="fu">is.dir</span>(download_path)</span>
+<span id="cb36-47"><a href="chapter-16---making-cmip6-scenarios.html#cb36-47" tabindex="-1"></a>  assertthat<span class="sc">::</span><span class="fu">assert_that</span>(<span class="fu">all</span>(<span class="fu">c</span>(<span class="st">&quot;station_name&quot;</span>, <span class="st">&quot;longitude&quot;</span>, </span>
+<span id="cb36-48"><a href="chapter-16---making-cmip6-scenarios.html#cb36-48" tabindex="-1"></a>                                <span class="st">&quot;latitude&quot;</span>) <span class="sc">%in%</span> <span class="fu">colnames</span>(stations)))</span>
+<span id="cb36-49"><a href="chapter-16---making-cmip6-scenarios.html#cb36-49" tabindex="-1"></a>  assertthat<span class="sc">::</span><span class="fu">assert_that</span>(<span class="fu">is.numeric</span>(stations<span class="sc">$</span>longitude))</span>
+<span id="cb36-50"><a href="chapter-16---making-cmip6-scenarios.html#cb36-50" tabindex="-1"></a>  assertthat<span class="sc">::</span><span class="fu">assert_that</span>(<span class="fu">is.numeric</span>(stations<span class="sc">$</span>latitude))</span>
+<span id="cb36-51"><a href="chapter-16---making-cmip6-scenarios.html#cb36-51" tabindex="-1"></a>  </span>
+<span id="cb36-52"><a href="chapter-16---making-cmip6-scenarios.html#cb36-52" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">system.file</span>(<span class="at">package =</span> <span class="st">&quot;ncdf4&quot;</span>) <span class="sc">==</span> <span class="st">&quot;&quot;</span>) {</span>
+<span id="cb36-53"><a href="chapter-16---making-cmip6-scenarios.html#cb36-53" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;You need to have the package ncdf4 installed for the function to work properly.&quot;</span>)</span>
+<span id="cb36-54"><a href="chapter-16---making-cmip6-scenarios.html#cb36-54" tabindex="-1"></a>  }</span>
+<span id="cb36-55"><a href="chapter-16---making-cmip6-scenarios.html#cb36-55" tabindex="-1"></a>  <span class="co"># if (system.file(package = &quot;PCICt&quot;) == &quot;&quot;) {</span></span>
+<span id="cb36-56"><a href="chapter-16---making-cmip6-scenarios.html#cb36-56" tabindex="-1"></a>  <span class="co">#   stop(&quot;You need to have the package PCICt installed for the function to work properly.&quot;)</span></span>
+<span id="cb36-57"><a href="chapter-16---making-cmip6-scenarios.html#cb36-57" tabindex="-1"></a>  <span class="co"># }</span></span>
+<span id="cb36-58"><a href="chapter-16---making-cmip6-scenarios.html#cb36-58" tabindex="-1"></a>  stations<span class="sc">$</span>longitude <span class="ot">&lt;-</span> stations<span class="sc">$</span>longitude</span>
+<span id="cb36-59"><a href="chapter-16---making-cmip6-scenarios.html#cb36-59" tabindex="-1"></a>  stations<span class="sc">$</span>longitude_mod <span class="ot">&lt;-</span> stations<span class="sc">$</span>longitude <span class="sc">+</span> <span class="dv">360</span></span>
+<span id="cb36-60"><a href="chapter-16---making-cmip6-scenarios.html#cb36-60" tabindex="-1"></a>  </span>
+<span id="cb36-61"><a href="chapter-16---making-cmip6-scenarios.html#cb36-61" tabindex="-1"></a>  sub_dirs <span class="ot">&lt;-</span> <span class="fu">list.dirs</span>(download_path)</span>
+<span id="cb36-62"><a href="chapter-16---making-cmip6-scenarios.html#cb36-62" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(sub_dirs) <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb36-63"><a href="chapter-16---making-cmip6-scenarios.html#cb36-63" tabindex="-1"></a>    path_download_vector <span class="ot">&lt;-</span> sub_dirs[<span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(sub_dirs)]</span>
+<span id="cb36-64"><a href="chapter-16---making-cmip6-scenarios.html#cb36-64" tabindex="-1"></a>  }<span class="cf">else</span> {</span>
+<span id="cb36-65"><a href="chapter-16---making-cmip6-scenarios.html#cb36-65" tabindex="-1"></a>    path_download_vector <span class="ot">&lt;-</span> download_path</span>
+<span id="cb36-66"><a href="chapter-16---making-cmip6-scenarios.html#cb36-66" tabindex="-1"></a>  }</span>
+<span id="cb36-67"><a href="chapter-16---making-cmip6-scenarios.html#cb36-67" tabindex="-1"></a>  </span>
+<span id="cb36-68"><a href="chapter-16---making-cmip6-scenarios.html#cb36-68" tabindex="-1"></a>  download_path <span class="ot">&lt;-</span> path_download_vector[<span class="dv">1</span>]</span>
+<span id="cb36-69"><a href="chapter-16---making-cmip6-scenarios.html#cb36-69" tabindex="-1"></a>  </span>
+<span id="cb36-70"><a href="chapter-16---making-cmip6-scenarios.html#cb36-70" tabindex="-1"></a>  <span class="co">#start of loop</span></span>
+<span id="cb36-71"><a href="chapter-16---making-cmip6-scenarios.html#cb36-71" tabindex="-1"></a>  all_weather <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(path_download_vector, <span class="cf">function</span>(download_path) {</span>
+<span id="cb36-72"><a href="chapter-16---making-cmip6-scenarios.html#cb36-72" tabindex="-1"></a>    <span class="co">#download_path &lt;- path_download_vector[1]</span></span>
+<span id="cb36-73"><a href="chapter-16---making-cmip6-scenarios.html#cb36-73" tabindex="-1"></a>    </span>
+<span id="cb36-74"><a href="chapter-16---making-cmip6-scenarios.html#cb36-74" tabindex="-1"></a>    </span>
+<span id="cb36-75"><a href="chapter-16---making-cmip6-scenarios.html#cb36-75" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">length</span>(path_download_vector) <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb36-76"><a href="chapter-16---making-cmip6-scenarios.html#cb36-76" tabindex="-1"></a>      download_path <span class="sc">%&gt;%</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="at">pattern =</span> <span class="st">&quot;/&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-77"><a href="chapter-16---making-cmip6-scenarios.html#cb36-77" tabindex="-1"></a>        purrr<span class="sc">::</span><span class="fu">map_chr</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">cat</span>(<span class="st">&quot;-------------------------------</span><span class="sc">\n</span><span class="st">&quot;</span>, </span>
+<span id="cb36-78"><a href="chapter-16---making-cmip6-scenarios.html#cb36-78" tabindex="-1"></a>                                  <span class="st">&quot;area: &quot;</span>, ., <span class="st">&quot;</span><span class="sc">\n</span><span class="st">-------------------------------</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb36-79"><a href="chapter-16---making-cmip6-scenarios.html#cb36-79" tabindex="-1"></a>    }</span>
+<span id="cb36-80"><a href="chapter-16---making-cmip6-scenarios.html#cb36-80" tabindex="-1"></a>    fnames <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> download_path, <span class="at">pattern =</span> <span class="st">&quot;.zip&quot;</span>)</span>
+<span id="cb36-81"><a href="chapter-16---making-cmip6-scenarios.html#cb36-81" tabindex="-1"></a>    extends <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(fnames, <span class="st">&quot;_&quot;</span>) <span class="sc">%&gt;%</span> purrr<span class="sc">::</span><span class="fu">map</span>(<span class="cf">function</span>(x) x[(<span class="fu">length</span>(x) <span class="sc">-</span> </span>
+<span id="cb36-82"><a href="chapter-16---making-cmip6-scenarios.html#cb36-82" tabindex="-1"></a>                                                                               <span class="dv">3</span>)<span class="sc">:</span>(<span class="fu">length</span>(x))] <span class="sc">%&gt;%</span> <span class="fu">gsub</span>(<span class="at">x =</span> ., <span class="at">pattern =</span> <span class="st">&quot;.zip&quot;</span>, </span>
+<span id="cb36-83"><a href="chapter-16---making-cmip6-scenarios.html#cb36-83" tabindex="-1"></a>                                                                                                        <span class="at">replacement =</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>()) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb36-84"><a href="chapter-16---making-cmip6-scenarios.html#cb36-84" tabindex="-1"></a>      purrr<span class="sc">::</span><span class="fu">map</span>(<span class="cf">function</span>(x) <span class="fu">data.frame</span>(<span class="at">lat_high =</span> x[<span class="dv">1</span>], </span>
+<span id="cb36-85"><a href="chapter-16---making-cmip6-scenarios.html#cb36-85" tabindex="-1"></a>                                        <span class="at">lon_low =</span> x[<span class="dv">2</span>], <span class="at">lat_low =</span> x[<span class="dv">3</span>], <span class="at">lon_high =</span> x[<span class="dv">4</span>])) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-86"><a href="chapter-16---making-cmip6-scenarios.html#cb36-86" tabindex="-1"></a>      <span class="fu">bind_rows</span>()</span>
+<span id="cb36-87"><a href="chapter-16---making-cmip6-scenarios.html#cb36-87" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">any</span>(extends<span class="sc">$</span>lon_low <span class="sc">&gt;</span> stations<span class="sc">$</span>longitude <span class="sc">|</span> extends<span class="sc">$</span>lon_high <span class="sc">&lt;</span> </span>
+<span id="cb36-88"><a href="chapter-16---making-cmip6-scenarios.html#cb36-88" tabindex="-1"></a>            stations<span class="sc">$</span>longitude) <span class="sc">|</span> <span class="fu">any</span>(extends<span class="sc">$</span>lat_low <span class="sc">&gt;</span> </span>
+<span id="cb36-89"><a href="chapter-16---making-cmip6-scenarios.html#cb36-89" tabindex="-1"></a>                                      stations<span class="sc">$</span>latitude <span class="sc">|</span> extends<span class="sc">$</span>lat_high <span class="sc">&lt;</span> stations<span class="sc">$</span>latitude)) {</span>
+<span id="cb36-90"><a href="chapter-16---making-cmip6-scenarios.html#cb36-90" tabindex="-1"></a>      drop_station_id <span class="ot">&lt;-</span> <span class="fu">which</span>((extends<span class="sc">$</span>lon_low <span class="sc">&gt;</span> stations<span class="sc">$</span>longitude <span class="sc">|</span> </span>
+<span id="cb36-91"><a href="chapter-16---making-cmip6-scenarios.html#cb36-91" tabindex="-1"></a>                                  extends<span class="sc">$</span>lon_high <span class="sc">&lt;</span> stations<span class="sc">$</span>longitude) <span class="sc">|</span> </span>
+<span id="cb36-92"><a href="chapter-16---making-cmip6-scenarios.html#cb36-92" tabindex="-1"></a>                                 (extends<span class="sc">$</span>lat_low <span class="sc">&gt;</span> stations<span class="sc">$</span>latitude <span class="sc">|</span> extends<span class="sc">$</span>lat_high <span class="sc">&lt;</span> </span>
+<span id="cb36-93"><a href="chapter-16---making-cmip6-scenarios.html#cb36-93" tabindex="-1"></a>                                    stations<span class="sc">$</span>latitude))</span>
+<span id="cb36-94"><a href="chapter-16---making-cmip6-scenarios.html#cb36-94" tabindex="-1"></a>      stations_extract <span class="ot">&lt;-</span> stations[<span class="sc">-</span>drop_station_id, ]</span>
+<span id="cb36-95"><a href="chapter-16---making-cmip6-scenarios.html#cb36-95" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">nrow</span>(stations_extract) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb36-96"><a href="chapter-16---making-cmip6-scenarios.html#cb36-96" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">&quot;After dropping stations not covered by the downloaded files no more stations are left to work with.</span><span class="sc">\n</span><span class="st">Stopping the extraction&quot;</span>)</span>
+<span id="cb36-97"><a href="chapter-16---making-cmip6-scenarios.html#cb36-97" tabindex="-1"></a>      }</span>
+<span id="cb36-98"><a href="chapter-16---making-cmip6-scenarios.html#cb36-98" tabindex="-1"></a>    }    <span class="cf">else</span> stations_extract <span class="ot">&lt;-</span> stations</span>
+<span id="cb36-99"><a href="chapter-16---making-cmip6-scenarios.html#cb36-99" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Unzipping files</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb36-100"><a href="chapter-16---making-cmip6-scenarios.html#cb36-100" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">length</span>(fnames) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb36-101"><a href="chapter-16---making-cmip6-scenarios.html#cb36-101" tabindex="-1"></a>      fnames_fullname <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> download_path, </span>
+<span id="cb36-102"><a href="chapter-16---making-cmip6-scenarios.html#cb36-102" tabindex="-1"></a>                                    <span class="at">pattern =</span> <span class="st">&quot;.zip&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-103"><a href="chapter-16---making-cmip6-scenarios.html#cb36-103" tabindex="-1"></a>      f_index <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(<span class="fu">tolower</span>(variable), grep, fnames) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-104"><a href="chapter-16---making-cmip6-scenarios.html#cb36-104" tabindex="-1"></a>        <span class="fu">unlist</span>()</span>
+<span id="cb36-105"><a href="chapter-16---making-cmip6-scenarios.html#cb36-105" tabindex="-1"></a>      f_occur <span class="ot">&lt;-</span> fnames <span class="sc">%&gt;%</span> magrittr<span class="sc">::</span><span class="fu">extract</span>(f_index) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-106"><a href="chapter-16---making-cmip6-scenarios.html#cb36-106" tabindex="-1"></a>        <span class="fu">substring</span>(<span class="at">first =</span> <span class="dv">6</span>) <span class="sc">%&gt;%</span> <span class="fu">table</span>() <span class="sc">%&gt;%</span> <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb36-107"><a href="chapter-16---making-cmip6-scenarios.html#cb36-107" tabindex="-1"></a>        stats<span class="sc">::</span><span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;freq&quot;</span>)) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(.data<span class="sc">$</span>freq <span class="sc">==</span> </span>
+<span id="cb36-108"><a href="chapter-16---making-cmip6-scenarios.html#cb36-108" tabindex="-1"></a>                                                             <span class="fu">length</span>(variable))</span>
+<span id="cb36-109"><a href="chapter-16---making-cmip6-scenarios.html#cb36-109" tabindex="-1"></a>      purrr<span class="sc">::</span><span class="fu">walk</span>(f_occur<span class="sc">$</span>id, <span class="cf">function</span>(f) {</span>
+<span id="cb36-110"><a href="chapter-16---making-cmip6-scenarios.html#cb36-110" tabindex="-1"></a>        index_match <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="at">pattern =</span> f, fnames_fullname)</span>
+<span id="cb36-111"><a href="chapter-16---making-cmip6-scenarios.html#cb36-111" tabindex="-1"></a>        purrr<span class="sc">::</span><span class="fu">walk</span>(index_match, <span class="cf">function</span>(ind) {</span>
+<span id="cb36-112"><a href="chapter-16---making-cmip6-scenarios.html#cb36-112" tabindex="-1"></a>          take_f1 <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.nc$&quot;</span>, utils<span class="sc">::</span><span class="fu">unzip</span>(fnames_fullname[ind], </span>
+<span id="cb36-113"><a href="chapter-16---making-cmip6-scenarios.html#cb36-113" tabindex="-1"></a>                                                           <span class="at">list =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>Name)[<span class="dv">1</span>]</span>
+<span id="cb36-114"><a href="chapter-16---making-cmip6-scenarios.html#cb36-114" tabindex="-1"></a>          unzip_f1 <span class="ot">&lt;-</span> utils<span class="sc">::</span><span class="fu">unzip</span>(fnames_fullname[ind], </span>
+<span id="cb36-115"><a href="chapter-16---making-cmip6-scenarios.html#cb36-115" tabindex="-1"></a>                                   <span class="at">list =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>Name[take_f1]</span>
+<span id="cb36-116"><a href="chapter-16---making-cmip6-scenarios.html#cb36-116" tabindex="-1"></a>          utils<span class="sc">::</span><span class="fu">unzip</span>(<span class="at">zipfile =</span> fnames_fullname[ind], </span>
+<span id="cb36-117"><a href="chapter-16---making-cmip6-scenarios.html#cb36-117" tabindex="-1"></a>                       <span class="at">files =</span> unzip_f1, <span class="at">exdir =</span> download_path)</span>
+<span id="cb36-118"><a href="chapter-16---making-cmip6-scenarios.html#cb36-118" tabindex="-1"></a>        })</span>
+<span id="cb36-119"><a href="chapter-16---making-cmip6-scenarios.html#cb36-119" tabindex="-1"></a>      }, <span class="at">.progress =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-120"><a href="chapter-16---making-cmip6-scenarios.html#cb36-120" tabindex="-1"></a>    }</span>
+<span id="cb36-121"><a href="chapter-16---making-cmip6-scenarios.html#cb36-121" tabindex="-1"></a>    </span>
+<span id="cb36-122"><a href="chapter-16---making-cmip6-scenarios.html#cb36-122" tabindex="-1"></a>    </span>
+<span id="cb36-123"><a href="chapter-16---making-cmip6-scenarios.html#cb36-123" tabindex="-1"></a>    fnames <span class="ot">&lt;-</span> <span class="fu">list.files</span>(download_path, <span class="at">pattern =</span> <span class="st">&quot;.nc&quot;</span>)</span>
+<span id="cb36-124"><a href="chapter-16---making-cmip6-scenarios.html#cb36-124" tabindex="-1"></a>    fnames_fullname <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> download_path, </span>
+<span id="cb36-125"><a href="chapter-16---making-cmip6-scenarios.html#cb36-125" tabindex="-1"></a>                                  <span class="at">pattern =</span> <span class="st">&quot;.nc&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-126"><a href="chapter-16---making-cmip6-scenarios.html#cb36-126" tabindex="-1"></a>    varname_nc <span class="ot">&lt;-</span> <span class="fu">factor</span>(variable, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Tmin&quot;</span>, <span class="st">&quot;Tmax&quot;</span>, </span>
+<span id="cb36-127"><a href="chapter-16---making-cmip6-scenarios.html#cb36-127" tabindex="-1"></a>                                              <span class="st">&quot;Prec&quot;</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;tasmin&quot;</span>, <span class="st">&quot;tasmax&quot;</span>, <span class="st">&quot;pr&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-128"><a href="chapter-16---making-cmip6-scenarios.html#cb36-128" tabindex="-1"></a>      <span class="fu">as.vector</span>()</span>
+<span id="cb36-129"><a href="chapter-16---making-cmip6-scenarios.html#cb36-129" tabindex="-1"></a>    f_index <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(varname_nc, grep, fnames) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-130"><a href="chapter-16---making-cmip6-scenarios.html#cb36-130" tabindex="-1"></a>      <span class="fu">unlist</span>()</span>
+<span id="cb36-131"><a href="chapter-16---making-cmip6-scenarios.html#cb36-131" tabindex="-1"></a>    . <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb36-132"><a href="chapter-16---making-cmip6-scenarios.html#cb36-132" tabindex="-1"></a>    f_occur <span class="ot">&lt;-</span> fnames <span class="sc">%&gt;%</span> magrittr<span class="sc">::</span><span class="fu">extract</span>(f_index) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-133"><a href="chapter-16---making-cmip6-scenarios.html#cb36-133" tabindex="-1"></a>      <span class="fu">gsub</span>(<span class="at">pattern =</span> <span class="fu">paste</span>(varname_nc, <span class="at">collapse =</span> <span class="st">&quot;|&quot;</span>), </span>
+<span id="cb36-134"><a href="chapter-16---making-cmip6-scenarios.html#cb36-134" tabindex="-1"></a>           <span class="at">replacement =</span> <span class="st">&quot;&quot;</span>, <span class="at">x =</span> .) <span class="sc">%&gt;%</span> <span class="fu">table</span>() <span class="sc">%&gt;%</span> <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb36-135"><a href="chapter-16---making-cmip6-scenarios.html#cb36-135" tabindex="-1"></a>      stats<span class="sc">::</span><span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;freq&quot;</span>)) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(.data<span class="sc">$</span>freq <span class="sc">==</span> </span>
+<span id="cb36-136"><a href="chapter-16---making-cmip6-scenarios.html#cb36-136" tabindex="-1"></a>                                                           <span class="fu">length</span>(variable))</span>
+<span id="cb36-137"><a href="chapter-16---making-cmip6-scenarios.html#cb36-137" tabindex="-1"></a>    index_match_list <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(f_occur<span class="sc">$</span>id, <span class="cf">function</span>(f) <span class="fu">grep</span>(<span class="at">pattern =</span> <span class="fu">paste0</span>(varname_nc, </span>
+<span id="cb36-138"><a href="chapter-16---making-cmip6-scenarios.html#cb36-138" tabindex="-1"></a>                                                                                 f, <span class="at">collapse =</span> <span class="st">&quot;|&quot;</span>), fnames_fullname))</span>
+<span id="cb36-139"><a href="chapter-16---making-cmip6-scenarios.html#cb36-139" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Extracting downloaded CMIP6 files</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb36-140"><a href="chapter-16---making-cmip6-scenarios.html#cb36-140" tabindex="-1"></a>    </span>
+<span id="cb36-141"><a href="chapter-16---making-cmip6-scenarios.html#cb36-141" tabindex="-1"></a>    <span class="co">#loop over matched pairs</span></span>
+<span id="cb36-142"><a href="chapter-16---making-cmip6-scenarios.html#cb36-142" tabindex="-1"></a>    all_weather <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(f_occur<span class="sc">$</span>id, <span class="cf">function</span>(f) {</span>
+<span id="cb36-143"><a href="chapter-16---making-cmip6-scenarios.html#cb36-143" tabindex="-1"></a>      </span>
+<span id="cb36-144"><a href="chapter-16---making-cmip6-scenarios.html#cb36-144" tabindex="-1"></a>      <span class="co">#f &lt;- f_occur$id[1]</span></span>
+<span id="cb36-145"><a href="chapter-16---making-cmip6-scenarios.html#cb36-145" tabindex="-1"></a>      </span>
+<span id="cb36-146"><a href="chapter-16---making-cmip6-scenarios.html#cb36-146" tabindex="-1"></a>      index_match <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="at">pattern =</span> <span class="fu">paste0</span>(varname_nc, </span>
+<span id="cb36-147"><a href="chapter-16---making-cmip6-scenarios.html#cb36-147" tabindex="-1"></a>                                           f, <span class="at">collapse =</span> <span class="st">&quot;|&quot;</span>), fnames_fullname)</span>
+<span id="cb36-148"><a href="chapter-16---making-cmip6-scenarios.html#cb36-148" tabindex="-1"></a>      </span>
+<span id="cb36-149"><a href="chapter-16---making-cmip6-scenarios.html#cb36-149" tabindex="-1"></a>      <span class="co">#loop over the individual files</span></span>
+<span id="cb36-150"><a href="chapter-16---making-cmip6-scenarios.html#cb36-150" tabindex="-1"></a>      Datatemp <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(index_match, <span class="cf">function</span>(ind) {</span>
+<span id="cb36-151"><a href="chapter-16---making-cmip6-scenarios.html#cb36-151" tabindex="-1"></a>        </span>
+<span id="cb36-152"><a href="chapter-16---making-cmip6-scenarios.html#cb36-152" tabindex="-1"></a>        <span class="co">#ind &lt;- index_match[1]</span></span>
+<span id="cb36-153"><a href="chapter-16---making-cmip6-scenarios.html#cb36-153" tabindex="-1"></a>        </span>
+<span id="cb36-154"><a href="chapter-16---making-cmip6-scenarios.html#cb36-154" tabindex="-1"></a>        split_name <span class="ot">&lt;-</span> fnames[ind] <span class="sc">%&gt;%</span> <span class="fu">strsplit</span>(<span class="st">&quot;_&quot;</span>)</span>
+<span id="cb36-155"><a href="chapter-16---making-cmip6-scenarios.html#cb36-155" tabindex="-1"></a>        variable_1 <span class="ot">&lt;-</span> split_name[[<span class="dv">1</span>]][<span class="dv">1</span>]</span>
+<span id="cb36-156"><a href="chapter-16---making-cmip6-scenarios.html#cb36-156" tabindex="-1"></a>        gcm <span class="ot">&lt;-</span> split_name[[<span class="dv">1</span>]][<span class="dv">3</span>]</span>
+<span id="cb36-157"><a href="chapter-16---making-cmip6-scenarios.html#cb36-157" tabindex="-1"></a>        ssp <span class="ot">&lt;-</span> split_name[[<span class="dv">1</span>]][<span class="dv">4</span>]</span>
+<span id="cb36-158"><a href="chapter-16---making-cmip6-scenarios.html#cb36-158" tabindex="-1"></a>        </span>
+<span id="cb36-159"><a href="chapter-16---making-cmip6-scenarios.html#cb36-159" tabindex="-1"></a>        <span class="co">#loop over stations</span></span>
+<span id="cb36-160"><a href="chapter-16---making-cmip6-scenarios.html#cb36-160" tabindex="-1"></a>        Datatemp_raw_1 <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(stations_extract), </span>
+<span id="cb36-161"><a href="chapter-16---making-cmip6-scenarios.html#cb36-161" tabindex="-1"></a>                                     <span class="cf">function</span>(i) {</span>
+<span id="cb36-162"><a href="chapter-16---making-cmip6-scenarios.html#cb36-162" tabindex="-1"></a>                                       </span>
+<span id="cb36-163"><a href="chapter-16---making-cmip6-scenarios.html#cb36-163" tabindex="-1"></a>                                       <span class="co">#i &lt;- 1</span></span>
+<span id="cb36-164"><a href="chapter-16---making-cmip6-scenarios.html#cb36-164" tabindex="-1"></a>                                       </span>
+<span id="cb36-165"><a href="chapter-16---making-cmip6-scenarios.html#cb36-165" tabindex="-1"></a>                                       <span class="co"># --- Versuch 1: exakte Koordinate ---</span></span>
+<span id="cb36-166"><a href="chapter-16---making-cmip6-scenarios.html#cb36-166" tabindex="-1"></a>                                       tmp <span class="ot">&lt;-</span> <span class="fu">try</span>(<span class="fu">suppressWarnings</span>(</span>
+<span id="cb36-167"><a href="chapter-16---making-cmip6-scenarios.html#cb36-167" tabindex="-1"></a>                                         metR<span class="sc">::</span><span class="fu">ReadNetCDF</span>(</span>
+<span id="cb36-168"><a href="chapter-16---making-cmip6-scenarios.html#cb36-168" tabindex="-1"></a>                                           <span class="at">file =</span> fnames_fullname[ind],</span>
+<span id="cb36-169"><a href="chapter-16---making-cmip6-scenarios.html#cb36-169" tabindex="-1"></a>                                           <span class="at">vars =</span> variable_1,</span>
+<span id="cb36-170"><a href="chapter-16---making-cmip6-scenarios.html#cb36-170" tabindex="-1"></a>                                           <span class="at">subset =</span> <span class="fu">list</span>(</span>
+<span id="cb36-171"><a href="chapter-16---making-cmip6-scenarios.html#cb36-171" tabindex="-1"></a>                                             <span class="at">lon =</span> stations_extract[i, <span class="st">&quot;longitude&quot;</span>],</span>
+<span id="cb36-172"><a href="chapter-16---making-cmip6-scenarios.html#cb36-172" tabindex="-1"></a>                                             <span class="at">lat =</span> stations_extract[i, <span class="st">&quot;latitude&quot;</span>]</span>
+<span id="cb36-173"><a href="chapter-16---making-cmip6-scenarios.html#cb36-173" tabindex="-1"></a>                                           )</span>
+<span id="cb36-174"><a href="chapter-16---making-cmip6-scenarios.html#cb36-174" tabindex="-1"></a>                                         )</span>
+<span id="cb36-175"><a href="chapter-16---making-cmip6-scenarios.html#cb36-175" tabindex="-1"></a>                                       ))</span>
+<span id="cb36-176"><a href="chapter-16---making-cmip6-scenarios.html#cb36-176" tabindex="-1"></a>                                       </span>
+<span id="cb36-177"><a href="chapter-16---making-cmip6-scenarios.html#cb36-177" tabindex="-1"></a>                                       error_read_file <span class="ot">&lt;-</span> <span class="fu">inherits</span>(tmp, <span class="st">&quot;try-error&quot;</span>) <span class="sc">||</span> <span class="fu">is.null</span>(tmp)</span>
+<span id="cb36-178"><a href="chapter-16---making-cmip6-scenarios.html#cb36-178" tabindex="-1"></a>                                       </span>
+<span id="cb36-179"><a href="chapter-16---making-cmip6-scenarios.html#cb36-179" tabindex="-1"></a>                                       <span class="co"># --- Versuch 2: nächstgelegener Modellpixel ---</span></span>
+<span id="cb36-180"><a href="chapter-16---making-cmip6-scenarios.html#cb36-180" tabindex="-1"></a>                                       <span class="cf">if</span>(error_read_file){</span>
+<span id="cb36-181"><a href="chapter-16---making-cmip6-scenarios.html#cb36-181" tabindex="-1"></a>                                         </span>
+<span id="cb36-182"><a href="chapter-16---making-cmip6-scenarios.html#cb36-182" tabindex="-1"></a>                                         nn <span class="ot">&lt;-</span> <span class="fu">nearest_lonlat</span>(</span>
+<span id="cb36-183"><a href="chapter-16---making-cmip6-scenarios.html#cb36-183" tabindex="-1"></a>                                           fnames_fullname[ind],</span>
+<span id="cb36-184"><a href="chapter-16---making-cmip6-scenarios.html#cb36-184" tabindex="-1"></a>                                           stations_extract[i, <span class="st">&quot;longitude&quot;</span>],</span>
+<span id="cb36-185"><a href="chapter-16---making-cmip6-scenarios.html#cb36-185" tabindex="-1"></a>                                           stations_extract[i, <span class="st">&quot;latitude&quot;</span>]</span>
+<span id="cb36-186"><a href="chapter-16---making-cmip6-scenarios.html#cb36-186" tabindex="-1"></a>                                         )</span>
+<span id="cb36-187"><a href="chapter-16---making-cmip6-scenarios.html#cb36-187" tabindex="-1"></a>                                         </span>
+<span id="cb36-188"><a href="chapter-16---making-cmip6-scenarios.html#cb36-188" tabindex="-1"></a>                                         tmp <span class="ot">&lt;-</span> metR<span class="sc">::</span><span class="fu">ReadNetCDF</span>(</span>
+<span id="cb36-189"><a href="chapter-16---making-cmip6-scenarios.html#cb36-189" tabindex="-1"></a>                                           <span class="at">file =</span> fnames_fullname[ind],</span>
+<span id="cb36-190"><a href="chapter-16---making-cmip6-scenarios.html#cb36-190" tabindex="-1"></a>                                           <span class="at">vars =</span> variable_1,</span>
+<span id="cb36-191"><a href="chapter-16---making-cmip6-scenarios.html#cb36-191" tabindex="-1"></a>                                           <span class="at">subset =</span> <span class="fu">list</span>(</span>
+<span id="cb36-192"><a href="chapter-16---making-cmip6-scenarios.html#cb36-192" tabindex="-1"></a>                                             <span class="at">lon =</span> nn<span class="sc">$</span>lon,</span>
+<span id="cb36-193"><a href="chapter-16---making-cmip6-scenarios.html#cb36-193" tabindex="-1"></a>                                             <span class="at">lat =</span> nn<span class="sc">$</span>lat</span>
+<span id="cb36-194"><a href="chapter-16---making-cmip6-scenarios.html#cb36-194" tabindex="-1"></a>                                           )</span>
+<span id="cb36-195"><a href="chapter-16---making-cmip6-scenarios.html#cb36-195" tabindex="-1"></a>                                         )</span>
+<span id="cb36-196"><a href="chapter-16---making-cmip6-scenarios.html#cb36-196" tabindex="-1"></a>                                       }</span>
+<span id="cb36-197"><a href="chapter-16---making-cmip6-scenarios.html#cb36-197" tabindex="-1"></a>                                       </span>
+<span id="cb36-198"><a href="chapter-16---making-cmip6-scenarios.html#cb36-198" tabindex="-1"></a>                                       <span class="co">#check if there was an error, if so do the error routine in the end</span></span>
+<span id="cb36-199"><a href="chapter-16---making-cmip6-scenarios.html#cb36-199" tabindex="-1"></a>                                       <span class="co">#if not do something else</span></span>
+<span id="cb36-200"><a href="chapter-16---making-cmip6-scenarios.html#cb36-200" tabindex="-1"></a>                                       error_read_file <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb36-201"><a href="chapter-16---making-cmip6-scenarios.html#cb36-201" tabindex="-1"></a>                                       <span class="cf">if</span> (<span class="fu">inherits</span>(tmp, <span class="st">&quot;try-error&quot;</span>)) error_read_file <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb36-202"><a href="chapter-16---making-cmip6-scenarios.html#cb36-202" tabindex="-1"></a>                                       </span>
+<span id="cb36-203"><a href="chapter-16---making-cmip6-scenarios.html#cb36-203" tabindex="-1"></a>                                       <span class="cf">if</span>(error_read_file <span class="sc">==</span> <span class="cn">FALSE</span>){</span>
+<span id="cb36-204"><a href="chapter-16---making-cmip6-scenarios.html#cb36-204" tabindex="-1"></a>                                         <span class="cf">if</span>(<span class="fu">is.null</span>(tmp)){</span>
+<span id="cb36-205"><a href="chapter-16---making-cmip6-scenarios.html#cb36-205" tabindex="-1"></a>                                           tmp <span class="ot">&lt;-</span> metR<span class="sc">::</span><span class="fu">ReadNetCDF</span>(<span class="at">file =</span> fnames_fullname[ind], </span>
+<span id="cb36-206"><a href="chapter-16---making-cmip6-scenarios.html#cb36-206" tabindex="-1"></a>                                                                   <span class="at">vars =</span> variable_1, </span>
+<span id="cb36-207"><a href="chapter-16---making-cmip6-scenarios.html#cb36-207" tabindex="-1"></a>                                                                   <span class="at">subset =</span> <span class="fu">list</span>(<span class="at">lon =</span> stations_extract[i, <span class="st">&quot;longitude_mod&quot;</span>], </span>
+<span id="cb36-208"><a href="chapter-16---making-cmip6-scenarios.html#cb36-208" tabindex="-1"></a>                                                                                 <span class="at">lat =</span> stations_extract[i, <span class="st">&quot;latitude&quot;</span>]))</span>
+<span id="cb36-209"><a href="chapter-16---making-cmip6-scenarios.html#cb36-209" tabindex="-1"></a>                                         }</span>
+<span id="cb36-210"><a href="chapter-16---making-cmip6-scenarios.html#cb36-210" tabindex="-1"></a>                                       }</span>
+<span id="cb36-211"><a href="chapter-16---making-cmip6-scenarios.html#cb36-211" tabindex="-1"></a>                                       </span>
+<span id="cb36-212"><a href="chapter-16---making-cmip6-scenarios.html#cb36-212" tabindex="-1"></a>                                       <span class="cf">if</span>(<span class="fu">is.null</span>(tmp)) error_read_file <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb36-213"><a href="chapter-16---making-cmip6-scenarios.html#cb36-213" tabindex="-1"></a>                                       </span>
+<span id="cb36-214"><a href="chapter-16---making-cmip6-scenarios.html#cb36-214" tabindex="-1"></a>                                       <span class="cf">if</span>(error_read_file){</span>
+<span id="cb36-215"><a href="chapter-16---making-cmip6-scenarios.html#cb36-215" tabindex="-1"></a>                                         <span class="fu">warning</span>(<span class="fu">paste</span>(<span class="st">&quot;Failed to properly read file:&quot;</span>, </span>
+<span id="cb36-216"><a href="chapter-16---making-cmip6-scenarios.html#cb36-216" tabindex="-1"></a>                                                       fnames_fullname[ind]), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">returned NULL instead&quot;</span>)</span>
+<span id="cb36-217"><a href="chapter-16---making-cmip6-scenarios.html#cb36-217" tabindex="-1"></a>                                         <span class="fu">return</span>(<span class="fu">data.frame</span>(<span class="at">ssp =</span> ssp, <span class="at">model =</span> gcm, </span>
+<span id="cb36-218"><a href="chapter-16---making-cmip6-scenarios.html#cb36-218" tabindex="-1"></a>                                                           <span class="at">location =</span> stations_extract<span class="sc">$</span>station_name[i], </span>
+<span id="cb36-219"><a href="chapter-16---making-cmip6-scenarios.html#cb36-219" tabindex="-1"></a>                                                           <span class="fu">as.Date</span>(<span class="cn">NA</span>), <span class="at">lat =</span> stations_extract<span class="sc">$</span>latitude[i], </span>
+<span id="cb36-220"><a href="chapter-16---making-cmip6-scenarios.html#cb36-220" tabindex="-1"></a>                                                           <span class="at">lon =</span> stations_extract<span class="sc">$</span>longitude[i]))</span>
+<span id="cb36-221"><a href="chapter-16---making-cmip6-scenarios.html#cb36-221" tabindex="-1"></a>                                       } </span>
+<span id="cb36-222"><a href="chapter-16---making-cmip6-scenarios.html#cb36-222" tabindex="-1"></a>                                       </span>
+<span id="cb36-223"><a href="chapter-16---making-cmip6-scenarios.html#cb36-223" tabindex="-1"></a>                                       tmp<span class="sc">$</span>location <span class="ot">&lt;-</span> stations_extract<span class="sc">$</span>station_name[i]</span>
+<span id="cb36-224"><a href="chapter-16---making-cmip6-scenarios.html#cb36-224" tabindex="-1"></a>                                       tmp<span class="sc">$</span>model <span class="ot">&lt;-</span> gcm</span>
+<span id="cb36-225"><a href="chapter-16---making-cmip6-scenarios.html#cb36-225" tabindex="-1"></a>                                       tmp<span class="sc">$</span>ssp <span class="ot">&lt;-</span> ssp</span>
+<span id="cb36-226"><a href="chapter-16---making-cmip6-scenarios.html#cb36-226" tabindex="-1"></a>                                       </span>
+<span id="cb36-227"><a href="chapter-16---making-cmip6-scenarios.html#cb36-227" tabindex="-1"></a>                                       <span class="fu">return</span>(tmp)</span>
+<span id="cb36-228"><a href="chapter-16---making-cmip6-scenarios.html#cb36-228" tabindex="-1"></a>                                       </span>
+<span id="cb36-229"><a href="chapter-16---making-cmip6-scenarios.html#cb36-229" tabindex="-1"></a>                                     })</span>
+<span id="cb36-230"><a href="chapter-16---making-cmip6-scenarios.html#cb36-230" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">nrow</span>(Datatemp_raw_1[[<span class="dv">1</span>]]) <span class="sc">!=</span> <span class="dv">1</span>) {</span>
+<span id="cb36-231"><a href="chapter-16---making-cmip6-scenarios.html#cb36-231" tabindex="-1"></a>          Datatemp_raw_1 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb36-232"><a href="chapter-16---making-cmip6-scenarios.html#cb36-232" tabindex="-1"></a>            stats<span class="sc">::</span><span class="fu">na.omit</span>()</span>
+<span id="cb36-233"><a href="chapter-16---making-cmip6-scenarios.html#cb36-233" tabindex="-1"></a>        }<span class="cf">else</span> {</span>
+<span id="cb36-234"><a href="chapter-16---making-cmip6-scenarios.html#cb36-234" tabindex="-1"></a>          Datatemp_raw_1[[<span class="dv">1</span>]]</span>
+<span id="cb36-235"><a href="chapter-16---making-cmip6-scenarios.html#cb36-235" tabindex="-1"></a>        }</span>
+<span id="cb36-236"><a href="chapter-16---making-cmip6-scenarios.html#cb36-236" tabindex="-1"></a>      }) <span class="sc">%&gt;%</span> purrr<span class="sc">::</span><span class="fu">compact</span>() <span class="sc">%&gt;%</span> purrr<span class="sc">::</span><span class="fu">reduce</span>(left_join, </span>
+<span id="cb36-237"><a href="chapter-16---making-cmip6-scenarios.html#cb36-237" tabindex="-1"></a>                                                <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;lat&quot;</span>, <span class="st">&quot;lon&quot;</span>, <span class="st">&quot;location&quot;</span>, <span class="st">&quot;model&quot;</span>, </span>
+<span id="cb36-238"><a href="chapter-16---making-cmip6-scenarios.html#cb36-238" tabindex="-1"></a>                                                       <span class="st">&quot;ssp&quot;</span>)) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">Month =</span> lubridate<span class="sc">::</span><span class="fu">month</span>(<span class="fu">as.Date</span>(.data<span class="sc">$</span>time)), </span>
+<span id="cb36-239"><a href="chapter-16---making-cmip6-scenarios.html#cb36-239" tabindex="-1"></a>                                                                                 <span class="at">Year =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(.data<span class="sc">$</span>time), <span class="at">Date =</span> lubridate<span class="sc">::</span><span class="fu">date</span>(.data<span class="sc">$</span>time), </span>
+<span id="cb36-240"><a href="chapter-16---making-cmip6-scenarios.html#cb36-240" tabindex="-1"></a>                                                                                 <span class="at">Day =</span> lubridate<span class="sc">::</span><span class="fu">day</span>(.data<span class="sc">$</span>time))</span>
+<span id="cb36-241"><a href="chapter-16---making-cmip6-scenarios.html#cb36-241" tabindex="-1"></a>      <span class="cf">if</span> (<span class="st">&quot;tasmax&quot;</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(Datatemp)) {</span>
+<span id="cb36-242"><a href="chapter-16---making-cmip6-scenarios.html#cb36-242" tabindex="-1"></a>        Datatemp<span class="sc">$</span>Tmax <span class="ot">&lt;-</span> <span class="fu">round</span>(Datatemp<span class="sc">$</span>tasmax <span class="sc">-</span> <span class="fl">273.15</span>, </span>
+<span id="cb36-243"><a href="chapter-16---making-cmip6-scenarios.html#cb36-243" tabindex="-1"></a>                               <span class="at">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb36-244"><a href="chapter-16---making-cmip6-scenarios.html#cb36-244" tabindex="-1"></a>      }</span>
+<span id="cb36-245"><a href="chapter-16---making-cmip6-scenarios.html#cb36-245" tabindex="-1"></a>      <span class="cf">if</span> (<span class="st">&quot;tasmin&quot;</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(Datatemp)) {</span>
+<span id="cb36-246"><a href="chapter-16---making-cmip6-scenarios.html#cb36-246" tabindex="-1"></a>        Datatemp<span class="sc">$</span>Tmin <span class="ot">&lt;-</span> <span class="fu">round</span>(Datatemp<span class="sc">$</span>tasmin <span class="sc">-</span> <span class="fl">273.15</span>, </span>
+<span id="cb36-247"><a href="chapter-16---making-cmip6-scenarios.html#cb36-247" tabindex="-1"></a>                               <span class="at">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb36-248"><a href="chapter-16---making-cmip6-scenarios.html#cb36-248" tabindex="-1"></a>      }</span>
+<span id="cb36-249"><a href="chapter-16---making-cmip6-scenarios.html#cb36-249" tabindex="-1"></a>      <span class="cf">if</span> (<span class="st">&quot;pr&quot;</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(Datatemp)) {</span>
+<span id="cb36-250"><a href="chapter-16---making-cmip6-scenarios.html#cb36-250" tabindex="-1"></a>        Datatemp<span class="sc">$</span>Prec <span class="ot">&lt;-</span> <span class="fu">round</span>(Datatemp<span class="sc">$</span>pr <span class="sc">*</span> <span class="dv">60</span> <span class="sc">*</span> <span class="dv">60</span> <span class="sc">*</span> </span>
+<span id="cb36-251"><a href="chapter-16---making-cmip6-scenarios.html#cb36-251" tabindex="-1"></a>                                 <span class="dv">24</span>, <span class="at">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb36-252"><a href="chapter-16---making-cmip6-scenarios.html#cb36-252" tabindex="-1"></a>      }</span>
+<span id="cb36-253"><a href="chapter-16---making-cmip6-scenarios.html#cb36-253" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">all</span>(variable <span class="sc">%in%</span> <span class="fu">colnames</span>(Datatemp))) {</span>
+<span id="cb36-254"><a href="chapter-16---making-cmip6-scenarios.html#cb36-254" tabindex="-1"></a>        <span class="fu">return</span>(Datatemp <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">&quot;Date&quot;</span>, <span class="st">&quot;Year&quot;</span>, </span>
+<span id="cb36-255"><a href="chapter-16---making-cmip6-scenarios.html#cb36-255" tabindex="-1"></a>                                          <span class="st">&quot;Month&quot;</span>, <span class="st">&quot;Day&quot;</span>, <span class="st">&quot;lat&quot;</span>, <span class="st">&quot;lon&quot;</span>, <span class="st">&quot;location&quot;</span>, </span>
+<span id="cb36-256"><a href="chapter-16---making-cmip6-scenarios.html#cb36-256" tabindex="-1"></a>                                          <span class="st">&quot;model&quot;</span>, <span class="st">&quot;ssp&quot;</span>, dplyr<span class="sc">::</span><span class="fu">all_of</span>(variable)))</span>
+<span id="cb36-257"><a href="chapter-16---making-cmip6-scenarios.html#cb36-257" tabindex="-1"></a>      }</span>
+<span id="cb36-258"><a href="chapter-16---making-cmip6-scenarios.html#cb36-258" tabindex="-1"></a>      <span class="cf">else</span> {</span>
+<span id="cb36-259"><a href="chapter-16---making-cmip6-scenarios.html#cb36-259" tabindex="-1"></a>        <span class="fu">return</span>(Datatemp)</span>
+<span id="cb36-260"><a href="chapter-16---making-cmip6-scenarios.html#cb36-260" tabindex="-1"></a>      }</span>
+<span id="cb36-261"><a href="chapter-16---making-cmip6-scenarios.html#cb36-261" tabindex="-1"></a>    }, <span class="at">.progress =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-262"><a href="chapter-16---making-cmip6-scenarios.html#cb36-262" tabindex="-1"></a>    <span class="fu">names</span>(all_weather) <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map_chr</span>(all_weather, <span class="cf">function</span>(x) <span class="fu">paste0</span>(<span class="fu">unique</span>(x<span class="sc">$</span>ssp), </span>
+<span id="cb36-263"><a href="chapter-16---making-cmip6-scenarios.html#cb36-263" tabindex="-1"></a>                                                                         <span class="st">&quot;_&quot;</span>, <span class="fu">unique</span>(x<span class="sc">$</span>model)))</span>
+<span id="cb36-264"><a href="chapter-16---making-cmip6-scenarios.html#cb36-264" tabindex="-1"></a>    all_weather <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(all_weather, <span class="cf">function</span>(x) <span class="cf">if</span> (<span class="fu">nrow</span>(x) <span class="sc">==</span> </span>
+<span id="cb36-265"><a href="chapter-16---making-cmip6-scenarios.html#cb36-265" tabindex="-1"></a>                                                           <span class="dv">1</span>) </span>
+<span id="cb36-266"><a href="chapter-16---making-cmip6-scenarios.html#cb36-266" tabindex="-1"></a>      <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb36-267"><a href="chapter-16---making-cmip6-scenarios.html#cb36-267" tabindex="-1"></a>      <span class="cf">else</span> x)</span>
+<span id="cb36-268"><a href="chapter-16---making-cmip6-scenarios.html#cb36-268" tabindex="-1"></a>  })</span>
+<span id="cb36-269"><a href="chapter-16---making-cmip6-scenarios.html#cb36-269" tabindex="-1"></a>  all_weather_combined <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(all_weather, names) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-270"><a href="chapter-16---making-cmip6-scenarios.html#cb36-270" tabindex="-1"></a>    <span class="fu">unlist</span>() <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> purrr<span class="sc">::</span><span class="fu">map</span>(<span class="cf">function</span>(n) purrr<span class="sc">::</span><span class="fu">map</span>(all_weather, </span>
+<span id="cb36-271"><a href="chapter-16---making-cmip6-scenarios.html#cb36-271" tabindex="-1"></a>                                                                <span class="cf">function</span>(l) l[[n]]) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>())</span>
+<span id="cb36-272"><a href="chapter-16---making-cmip6-scenarios.html#cb36-272" tabindex="-1"></a>  <span class="fu">names</span>(all_weather_combined) <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(all_weather, names) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-273"><a href="chapter-16---making-cmip6-scenarios.html#cb36-273" tabindex="-1"></a>    <span class="fu">unlist</span>() <span class="sc">%&gt;%</span> <span class="fu">unique</span>()</span>
+<span id="cb36-274"><a href="chapter-16---making-cmip6-scenarios.html#cb36-274" tabindex="-1"></a>  extracted_stations <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(all_weather_combined, <span class="cf">function</span>(t) <span class="fu">unique</span>(t<span class="sc">$</span>location)) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-275"><a href="chapter-16---making-cmip6-scenarios.html#cb36-275" tabindex="-1"></a>    <span class="fu">unlist</span>() <span class="sc">%&gt;%</span> <span class="fu">unique</span>()</span>
+<span id="cb36-276"><a href="chapter-16---making-cmip6-scenarios.html#cb36-276" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">any</span>(<span class="sc">!</span>stations<span class="sc">$</span>station_name <span class="sc">%in%</span> extracted_stations)) {</span>
+<span id="cb36-277"><a href="chapter-16---making-cmip6-scenarios.html#cb36-277" tabindex="-1"></a>    warn_station <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span>stations<span class="sc">$</span>station_name <span class="sc">%in%</span> extracted_stations)</span>
+<span id="cb36-278"><a href="chapter-16---making-cmip6-scenarios.html#cb36-278" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">&quot;The supplied location: &quot;</span>, <span class="fu">paste</span>(stations<span class="sc">$</span>station_name[warn_station], </span>
+<span id="cb36-279"><a href="chapter-16---making-cmip6-scenarios.html#cb36-279" tabindex="-1"></a>                                             <span class="at">collapse =</span> <span class="st">&quot;, &quot;</span>), <span class="st">&quot; were not covered by any of the downloaded files. Consider adjusting the </span><span class="sc">\&quot;</span><span class="st">area</span><span class="sc">\&quot;</span><span class="st"> argument when downloading the files.&quot;</span>)</span>
+<span id="cb36-280"><a href="chapter-16---making-cmip6-scenarios.html#cb36-280" tabindex="-1"></a>  }</span>
+<span id="cb36-281"><a href="chapter-16---making-cmip6-scenarios.html#cb36-281" tabindex="-1"></a>  <span class="cf">if</span> (keep_downloaded <span class="sc">==</span> <span class="cn">FALSE</span>) {</span>
+<span id="cb36-282"><a href="chapter-16---making-cmip6-scenarios.html#cb36-282" tabindex="-1"></a>    <span class="fu">unlink</span>(<span class="fu">paste0</span>(download_path, <span class="st">&quot;/&quot;</span>), <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-283"><a href="chapter-16---making-cmip6-scenarios.html#cb36-283" tabindex="-1"></a>  }</span>
+<span id="cb36-284"><a href="chapter-16---making-cmip6-scenarios.html#cb36-284" tabindex="-1"></a>  <span class="fu">return</span>(all_weather_combined)</span>
+<span id="cb36-285"><a href="chapter-16---making-cmip6-scenarios.html#cb36-285" tabindex="-1"></a>}</span>
+<span id="cb36-286"><a href="chapter-16---making-cmip6-scenarios.html#cb36-286" tabindex="-1"></a></span>
+<span id="cb36-287"><a href="chapter-16---making-cmip6-scenarios.html#cb36-287" tabindex="-1"></a><span class="co"># Extracting data from grid</span></span>
+<span id="cb36-288"><a href="chapter-16---making-cmip6-scenarios.html#cb36-288" tabindex="-1"></a></span>
+<span id="cb36-289"><a href="chapter-16---making-cmip6-scenarios.html#cb36-289" tabindex="-1"></a></span>
+<span id="cb36-290"><a href="chapter-16---making-cmip6-scenarios.html#cb36-290" tabindex="-1"></a>station <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb36-291"><a href="chapter-16---making-cmip6-scenarios.html#cb36-291" tabindex="-1"></a>  <span class="at">station_name =</span> <span class="st">&quot;Klagenfurt&quot;</span>,</span>
+<span id="cb36-292"><a href="chapter-16---making-cmip6-scenarios.html#cb36-292" tabindex="-1"></a>  <span class="at">longitude =</span> <span class="fl">14.31</span>,</span>
+<span id="cb36-293"><a href="chapter-16---making-cmip6-scenarios.html#cb36-293" tabindex="-1"></a>  <span class="at">latitude  =</span> <span class="fl">46.62</span></span>
+<span id="cb36-294"><a href="chapter-16---making-cmip6-scenarios.html#cb36-294" tabindex="-1"></a>)</span>
+<span id="cb36-295"><a href="chapter-16---making-cmip6-scenarios.html#cb36-295" tabindex="-1"></a></span>
+<span id="cb36-296"><a href="chapter-16---making-cmip6-scenarios.html#cb36-296" tabindex="-1"></a>extracted <span class="ot">&lt;-</span> <span class="fu">extract_cmip6_data_mod</span>(</span>
+<span id="cb36-297"><a href="chapter-16---making-cmip6-scenarios.html#cb36-297" tabindex="-1"></a>  <span class="at">stations =</span> station,</span>
+<span id="cb36-298"><a href="chapter-16---making-cmip6-scenarios.html#cb36-298" tabindex="-1"></a>  <span class="at">variable =</span> <span class="fu">c</span>(<span class="st">&quot;Tmin&quot;</span>,<span class="st">&quot;Tmax&quot;</span>),</span>
+<span id="cb36-299"><a href="chapter-16---making-cmip6-scenarios.html#cb36-299" tabindex="-1"></a>  <span class="at">download_path =</span> <span class="st">&quot;cmip6_downloaded&quot;</span></span>
+<span id="cb36-300"><a href="chapter-16---making-cmip6-scenarios.html#cb36-300" tabindex="-1"></a>)</span>
+<span id="cb36-301"><a href="chapter-16---making-cmip6-scenarios.html#cb36-301" tabindex="-1"></a></span>
+<span id="cb36-302"><a href="chapter-16---making-cmip6-scenarios.html#cb36-302" tabindex="-1"></a><span class="co"># extracting relevant information</span></span>
+<span id="cb36-303"><a href="chapter-16---making-cmip6-scenarios.html#cb36-303" tabindex="-1"></a></span>
+<span id="cb36-304"><a href="chapter-16---making-cmip6-scenarios.html#cb36-304" tabindex="-1"></a>change_scenarios <span class="ot">&lt;-</span> <span class="fu">gen_rel_change_scenario</span>(extracted)</span>
+<span id="cb36-305"><a href="chapter-16---making-cmip6-scenarios.html#cb36-305" tabindex="-1"></a><span class="fu">head</span>(change_scenarios)</span>
+<span id="cb36-306"><a href="chapter-16---making-cmip6-scenarios.html#cb36-306" tabindex="-1"></a></span>
+<span id="cb36-307"><a href="chapter-16---making-cmip6-scenarios.html#cb36-307" tabindex="-1"></a><span class="co">#saving</span></span>
+<span id="cb36-308"><a href="chapter-16---making-cmip6-scenarios.html#cb36-308" tabindex="-1"></a></span>
+<span id="cb36-309"><a href="chapter-16---making-cmip6-scenarios.html#cb36-309" tabindex="-1"></a><span class="fu">write.csv</span>(change_scenarios, <span class="st">&quot;data/all_change_scenarios_klagenfurt.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb36-310"><a href="chapter-16---making-cmip6-scenarios.html#cb36-310" tabindex="-1"></a></span>
+<span id="cb36-311"><a href="chapter-16---making-cmip6-scenarios.html#cb36-311" tabindex="-1"></a>scen_list <span class="ot">&lt;-</span> <span class="fu">convert_scen_information</span>(change_scenarios)</span>
+<span id="cb36-312"><a href="chapter-16---making-cmip6-scenarios.html#cb36-312" tabindex="-1"></a>scen_frame <span class="ot">&lt;-</span> <span class="fu">convert_scen_information</span>(scen_list)</span>
+<span id="cb36-313"><a href="chapter-16---making-cmip6-scenarios.html#cb36-313" tabindex="-1"></a></span>
+<span id="cb36-314"><a href="chapter-16---making-cmip6-scenarios.html#cb36-314" tabindex="-1"></a><span class="co"># getting different scenarios</span></span>
+<span id="cb36-315"><a href="chapter-16---making-cmip6-scenarios.html#cb36-315" tabindex="-1"></a></span>
+<span id="cb36-316"><a href="chapter-16---making-cmip6-scenarios.html#cb36-316" tabindex="-1"></a>klagenfurt_weather <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/klagenfurt_temps.rds&quot;</span>)  <span class="co"># oder dein Pfad</span></span>
+<span id="cb36-317"><a href="chapter-16---making-cmip6-scenarios.html#cb36-317" tabindex="-1"></a></span>
+<span id="cb36-318"><a href="chapter-16---making-cmip6-scenarios.html#cb36-318" tabindex="-1"></a>klagenfurt_temps <span class="ot">&lt;-</span> klagenfurt_weather[, <span class="fu">c</span>(<span class="st">&quot;Year&quot;</span>,<span class="st">&quot;Month&quot;</span>,<span class="st">&quot;Day&quot;</span>,<span class="st">&quot;Tmin&quot;</span>,<span class="st">&quot;Tmax&quot;</span>)]</span>
+<span id="cb36-319"><a href="chapter-16---making-cmip6-scenarios.html#cb36-319" tabindex="-1"></a></span>
+<span id="cb36-320"><a href="chapter-16---making-cmip6-scenarios.html#cb36-320" tabindex="-1"></a><span class="co"># Must fail</span></span>
+<span id="cb36-321"><a href="chapter-16---making-cmip6-scenarios.html#cb36-321" tabindex="-1"></a></span>
+<span id="cb36-322"><a href="chapter-16---making-cmip6-scenarios.html#cb36-322" tabindex="-1"></a><span class="fu">temperature_generation</span>(klagenfurt_temps, </span>
+<span id="cb36-323"><a href="chapter-16---making-cmip6-scenarios.html#cb36-323" tabindex="-1"></a>                       <span class="at">years =</span> <span class="fu">c</span>(<span class="dv">1973</span>, <span class="dv">2019</span>),</span>
+<span id="cb36-324"><a href="chapter-16---making-cmip6-scenarios.html#cb36-324" tabindex="-1"></a>                       <span class="at">sim_years =</span> <span class="fu">c</span>(<span class="dv">2001</span>, <span class="dv">2100</span>),</span>
+<span id="cb36-325"><a href="chapter-16---making-cmip6-scenarios.html#cb36-325" tabindex="-1"></a>                       scen_list<span class="sc">$</span>Klagenfurt<span class="sc">$</span>ssp126<span class="sc">$</span><span class="st">`</span><span class="at">ACCESS-CM2</span><span class="st">`</span>)</span>
+<span id="cb36-326"><a href="chapter-16---making-cmip6-scenarios.html#cb36-326" tabindex="-1"></a></span>
+<span id="cb36-327"><a href="chapter-16---making-cmip6-scenarios.html#cb36-327" tabindex="-1"></a><span class="co"># Correction</span></span>
+<span id="cb36-328"><a href="chapter-16---making-cmip6-scenarios.html#cb36-328" tabindex="-1"></a></span>
+<span id="cb36-329"><a href="chapter-16---making-cmip6-scenarios.html#cb36-329" tabindex="-1"></a>temps_1996 <span class="ot">&lt;-</span> <span class="fu">temperature_scenario_from_records</span>(klagenfurt_temps, <span class="dv">1996</span>)</span>
+<span id="cb36-330"><a href="chapter-16---making-cmip6-scenarios.html#cb36-330" tabindex="-1"></a>temps_2000 <span class="ot">&lt;-</span> <span class="fu">temperature_scenario_from_records</span>(klagenfurt_temps, <span class="dv">2000</span>)</span>
+<span id="cb36-331"><a href="chapter-16---making-cmip6-scenarios.html#cb36-331" tabindex="-1"></a></span>
+<span id="cb36-332"><a href="chapter-16---making-cmip6-scenarios.html#cb36-332" tabindex="-1"></a>base <span class="ot">&lt;-</span> <span class="fu">temperature_scenario_baseline_adjustment</span>(temps_1996, temps_2000)</span>
+<span id="cb36-333"><a href="chapter-16---making-cmip6-scenarios.html#cb36-333" tabindex="-1"></a>base</span>
+<span id="cb36-334"><a href="chapter-16---making-cmip6-scenarios.html#cb36-334" tabindex="-1"></a></span>
+<span id="cb36-335"><a href="chapter-16---making-cmip6-scenarios.html#cb36-335" tabindex="-1"></a><span class="co"># Creating unstructured baseline</span></span>
+<span id="cb36-336"><a href="chapter-16---making-cmip6-scenarios.html#cb36-336" tabindex="-1"></a></span>
+<span id="cb36-337"><a href="chapter-16---making-cmip6-scenarios.html#cb36-337" tabindex="-1"></a>scen_list_unstructured <span class="ot">&lt;-</span> <span class="fu">convert_scen_information</span>(change_scenarios, <span class="at">give_structure =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb36-338"><a href="chapter-16---making-cmip6-scenarios.html#cb36-338" tabindex="-1"></a></span>
+<span id="cb36-339"><a href="chapter-16---making-cmip6-scenarios.html#cb36-339" tabindex="-1"></a>adjusted_list <span class="ot">&lt;-</span> <span class="fu">temperature_scenario_baseline_adjustment</span>(</span>
+<span id="cb36-340"><a href="chapter-16---making-cmip6-scenarios.html#cb36-340" tabindex="-1"></a>  base,</span>
+<span id="cb36-341"><a href="chapter-16---making-cmip6-scenarios.html#cb36-341" tabindex="-1"></a>  scen_list_unstructured,</span>
+<span id="cb36-342"><a href="chapter-16---making-cmip6-scenarios.html#cb36-342" tabindex="-1"></a>  <span class="at">temperature_check_args =</span> <span class="fu">list</span>(<span class="at">scenario_check_thresholds =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">15</span>))</span>
+<span id="cb36-343"><a href="chapter-16---making-cmip6-scenarios.html#cb36-343" tabindex="-1"></a>)</span>
+<span id="cb36-344"><a href="chapter-16---making-cmip6-scenarios.html#cb36-344" tabindex="-1"></a></span>
+<span id="cb36-345"><a href="chapter-16---making-cmip6-scenarios.html#cb36-345" tabindex="-1"></a><span class="co"># Generating and saving futre data</span></span>
+<span id="cb36-346"><a href="chapter-16---making-cmip6-scenarios.html#cb36-346" tabindex="-1"></a></span>
+<span id="cb36-347"><a href="chapter-16---making-cmip6-scenarios.html#cb36-347" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;data/future_climate_klagenfurt&quot;</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb36-348"><a href="chapter-16---making-cmip6-scenarios.html#cb36-348" tabindex="-1"></a></span>
+<span id="cb36-349"><a href="chapter-16---making-cmip6-scenarios.html#cb36-349" tabindex="-1"></a><span class="cf">for</span>(scen <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(adjusted_list)) {</span>
+<span id="cb36-350"><a href="chapter-16---making-cmip6-scenarios.html#cb36-350" tabindex="-1"></a>  </span>
+<span id="cb36-351"><a href="chapter-16---making-cmip6-scenarios.html#cb36-351" tabindex="-1"></a>  out_file <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;data/future_climate_klagenfurt/Klagenfurt_futuretemps_&quot;</span>,</span>
+<span id="cb36-352"><a href="chapter-16---making-cmip6-scenarios.html#cb36-352" tabindex="-1"></a>                     scen, <span class="st">&quot;_&quot;</span>, <span class="fu">names</span>(adjusted_list)[scen], <span class="st">&quot;.csv&quot;</span>)</span>
+<span id="cb36-353"><a href="chapter-16---making-cmip6-scenarios.html#cb36-353" tabindex="-1"></a>  </span>
+<span id="cb36-354"><a href="chapter-16---making-cmip6-scenarios.html#cb36-354" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">file.exists</span>(out_file)) {</span>
+<span id="cb36-355"><a href="chapter-16---making-cmip6-scenarios.html#cb36-355" tabindex="-1"></a>    </span>
+<span id="cb36-356"><a href="chapter-16---making-cmip6-scenarios.html#cb36-356" tabindex="-1"></a>    temp_temp <span class="ot">&lt;-</span> <span class="fu">temperature_generation</span>(</span>
+<span id="cb36-357"><a href="chapter-16---making-cmip6-scenarios.html#cb36-357" tabindex="-1"></a>      klagenfurt_temps,</span>
+<span id="cb36-358"><a href="chapter-16---making-cmip6-scenarios.html#cb36-358" tabindex="-1"></a>      <span class="at">years =</span> <span class="fu">c</span>(<span class="dv">1973</span>, <span class="dv">2019</span>),</span>
+<span id="cb36-359"><a href="chapter-16---making-cmip6-scenarios.html#cb36-359" tabindex="-1"></a>      <span class="at">sim_years =</span> <span class="fu">c</span>(<span class="dv">2001</span>, <span class="dv">2100</span>),</span>
+<span id="cb36-360"><a href="chapter-16---making-cmip6-scenarios.html#cb36-360" tabindex="-1"></a>      adjusted_list[scen],</span>
+<span id="cb36-361"><a href="chapter-16---making-cmip6-scenarios.html#cb36-361" tabindex="-1"></a>      <span class="at">temperature_check_args =</span> <span class="fu">list</span>(<span class="at">scenario_check_thresholds =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">15</span>))</span>
+<span id="cb36-362"><a href="chapter-16---making-cmip6-scenarios.html#cb36-362" tabindex="-1"></a>    )</span>
+<span id="cb36-363"><a href="chapter-16---making-cmip6-scenarios.html#cb36-363" tabindex="-1"></a>    </span>
+<span id="cb36-364"><a href="chapter-16---making-cmip6-scenarios.html#cb36-364" tabindex="-1"></a>    <span class="fu">write.csv</span>(temp_temp[[<span class="dv">1</span>]], out_file, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb36-365"><a href="chapter-16---making-cmip6-scenarios.html#cb36-365" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Processed object&quot;</span>, scen, <span class="st">&quot;of&quot;</span>, <span class="fu">length</span>(adjusted_list)))</span>
+<span id="cb36-366"><a href="chapter-16---making-cmip6-scenarios.html#cb36-366" tabindex="-1"></a>  }</span>
+<span id="cb36-367"><a href="chapter-16---making-cmip6-scenarios.html#cb36-367" tabindex="-1"></a>}</span>
+<span id="cb36-368"><a href="chapter-16---making-cmip6-scenarios.html#cb36-368" tabindex="-1"></a></span>
+<span id="cb36-369"><a href="chapter-16---making-cmip6-scenarios.html#cb36-369" tabindex="-1"></a>temps <span class="ot">&lt;-</span> <span class="fu">load_temperature_scenarios</span>(<span class="st">&quot;data/future_climate_klagenfurt&quot;</span>,</span>
+<span id="cb36-370"><a href="chapter-16---making-cmip6-scenarios.html#cb36-370" tabindex="-1"></a>                                    <span class="st">&quot;Klagenfurt_futuretemps&quot;</span>)</span>
+<span id="cb36-371"><a href="chapter-16---making-cmip6-scenarios.html#cb36-371" tabindex="-1"></a>                                    </span>
+<span id="cb36-372"><a href="chapter-16---making-cmip6-scenarios.html#cb36-372" tabindex="-1"></a><span class="co"># frost model function and generation of future data</span></span>
+<span id="cb36-373"><a href="chapter-16---making-cmip6-scenarios.html#cb36-373" tabindex="-1"></a></span>
+<span id="cb36-374"><a href="chapter-16---making-cmip6-scenarios.html#cb36-374" tabindex="-1"></a>frost_model <span class="ot">&lt;-</span> <span class="cf">function</span>(x)</span>
+<span id="cb36-375"><a href="chapter-16---making-cmip6-scenarios.html#cb36-375" tabindex="-1"></a>  <span class="fu">step_model</span>(x,</span>
+<span id="cb36-376"><a href="chapter-16---making-cmip6-scenarios.html#cb36-376" tabindex="-1"></a>             <span class="fu">data.frame</span>(</span>
+<span id="cb36-377"><a href="chapter-16---making-cmip6-scenarios.html#cb36-377" tabindex="-1"></a>               <span class="at">lower =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1000</span>, <span class="dv">0</span>),</span>
+<span id="cb36-378"><a href="chapter-16---making-cmip6-scenarios.html#cb36-378" tabindex="-1"></a>               <span class="at">upper =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1000</span>),</span>
+<span id="cb36-379"><a href="chapter-16---making-cmip6-scenarios.html#cb36-379" tabindex="-1"></a>               <span class="at">weight =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>)))</span>
+<span id="cb36-380"><a href="chapter-16---making-cmip6-scenarios.html#cb36-380" tabindex="-1"></a></span>
+<span id="cb36-381"><a href="chapter-16---making-cmip6-scenarios.html#cb36-381" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Chill_Portions =</span> Dynamic_Model,</span>
+<span id="cb36-382"><a href="chapter-16---making-cmip6-scenarios.html#cb36-382" tabindex="-1"></a>               <span class="at">GDH =</span> GDH,</span>
+<span id="cb36-383"><a href="chapter-16---making-cmip6-scenarios.html#cb36-383" tabindex="-1"></a>               <span class="at">Frost_H =</span> frost_model)</span>
+<span id="cb36-384"><a href="chapter-16---making-cmip6-scenarios.html#cb36-384" tabindex="-1"></a></span>
+<span id="cb36-385"><a href="chapter-16---making-cmip6-scenarios.html#cb36-385" tabindex="-1"></a>chill_future_scenario_list <span class="ot">&lt;-</span> <span class="fu">tempResponse_daily_list</span>(temps,</span>
+<span id="cb36-386"><a href="chapter-16---making-cmip6-scenarios.html#cb36-386" tabindex="-1"></a>                                                      <span class="at">latitude =</span> <span class="fl">46.62</span>,</span>
+<span id="cb36-387"><a href="chapter-16---making-cmip6-scenarios.html#cb36-387" tabindex="-1"></a>                                                      <span class="at">Start_JDay =</span> <span class="dv">305</span>,</span>
+<span id="cb36-388"><a href="chapter-16---making-cmip6-scenarios.html#cb36-388" tabindex="-1"></a>                                                      <span class="at">End_JDay =</span> <span class="dv">59</span>,</span>
+<span id="cb36-389"><a href="chapter-16---making-cmip6-scenarios.html#cb36-389" tabindex="-1"></a>                                                      <span class="at">models =</span> models)</span>
+<span id="cb36-390"><a href="chapter-16---making-cmip6-scenarios.html#cb36-390" tabindex="-1"></a></span>
+<span id="cb36-391"><a href="chapter-16---making-cmip6-scenarios.html#cb36-391" tabindex="-1"></a></span>
+<span id="cb36-392"><a href="chapter-16---making-cmip6-scenarios.html#cb36-392" tabindex="-1"></a></span>
+<span id="cb36-393"><a href="chapter-16---making-cmip6-scenarios.html#cb36-393" tabindex="-1"></a>chill_future_scenario_list <span class="ot">&lt;-</span> <span class="fu">lapply</span>(chill_future_scenario_list,</span>
+<span id="cb36-394"><a href="chapter-16---making-cmip6-scenarios.html#cb36-394" tabindex="-1"></a>                                     <span class="cf">function</span>(x) x <span class="sc">%&gt;%</span></span>
+<span id="cb36-395"><a href="chapter-16---making-cmip6-scenarios.html#cb36-395" tabindex="-1"></a>                                       <span class="fu">filter</span>(Perc_complete <span class="sc">==</span> <span class="dv">100</span>))</span>
+<span id="cb36-396"><a href="chapter-16---making-cmip6-scenarios.html#cb36-396" tabindex="-1"></a></span>
+<span id="cb36-397"><a href="chapter-16---making-cmip6-scenarios.html#cb36-397" tabindex="-1"></a><span class="fu">save_temperature_scenarios</span>(chill_future_scenario_list,</span>
+<span id="cb36-398"><a href="chapter-16---making-cmip6-scenarios.html#cb36-398" tabindex="-1"></a>                           <span class="st">&quot;data/future_climate_klagenfurt&quot;</span>,</span>
+<span id="cb36-399"><a href="chapter-16---making-cmip6-scenarios.html#cb36-399" tabindex="-1"></a>                           <span class="st">&quot;Klagenfurt_futurechill_305_59&quot;</span>)</span>
+<span id="cb36-400"><a href="chapter-16---making-cmip6-scenarios.html#cb36-400" tabindex="-1"></a></span>
+<span id="cb36-401"><a href="chapter-16---making-cmip6-scenarios.html#cb36-401" tabindex="-1"></a><span class="co"># Chill Historic plot</span></span>
+<span id="cb36-402"><a href="chapter-16---making-cmip6-scenarios.html#cb36-402" tabindex="-1"></a></span>
+<span id="cb36-403"><a href="chapter-16---making-cmip6-scenarios.html#cb36-403" tabindex="-1"></a>chill_hist_scenario_list<span class="ot">&lt;-</span><span class="fu">load_temperature_scenarios</span>(<span class="st">&quot;data&quot;</span>,</span>
+<span id="cb36-404"><a href="chapter-16---making-cmip6-scenarios.html#cb36-404" tabindex="-1"></a>                                                     <span class="st">&quot;Klagenfurt_hist_chill_305_59&quot;</span>)</span>
+<span id="cb36-405"><a href="chapter-16---making-cmip6-scenarios.html#cb36-405" tabindex="-1"></a></span>
+<span id="cb36-406"><a href="chapter-16---making-cmip6-scenarios.html#cb36-406" tabindex="-1"></a>observed_chill <span class="ot">&lt;-</span> <span class="fu">read_tab</span>(<span class="st">&quot;data/Klagenfurt_observed_chill_305_59.csv&quot;</span>)</span>
+<span id="cb36-407"><a href="chapter-16---making-cmip6-scenarios.html#cb36-407" tabindex="-1"></a></span>
+<span id="cb36-408"><a href="chapter-16---making-cmip6-scenarios.html#cb36-408" tabindex="-1"></a></span>
+<span id="cb36-409"><a href="chapter-16---making-cmip6-scenarios.html#cb36-409" tabindex="-1"></a>chills <span class="ot">&lt;-</span> <span class="fu">make_climate_scenario</span>(</span>
+<span id="cb36-410"><a href="chapter-16---making-cmip6-scenarios.html#cb36-410" tabindex="-1"></a>  chill_hist_scenario_list,</span>
+<span id="cb36-411"><a href="chapter-16---making-cmip6-scenarios.html#cb36-411" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Historical&quot;</span>,</span>
+<span id="cb36-412"><a href="chapter-16---making-cmip6-scenarios.html#cb36-412" tabindex="-1"></a>  <span class="at">historic_data =</span> observed_chill,</span>
+<span id="cb36-413"><a href="chapter-16---making-cmip6-scenarios.html#cb36-413" tabindex="-1"></a>  <span class="at">time_series =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-414"><a href="chapter-16---making-cmip6-scenarios.html#cb36-414" tabindex="-1"></a></span>
+<span id="cb36-415"><a href="chapter-16---making-cmip6-scenarios.html#cb36-415" tabindex="-1"></a><span class="fu">plot_climate_scenarios</span>(</span>
+<span id="cb36-416"><a href="chapter-16---making-cmip6-scenarios.html#cb36-416" tabindex="-1"></a>  <span class="at">climate_scenario_list =</span> chills,</span>
+<span id="cb36-417"><a href="chapter-16---making-cmip6-scenarios.html#cb36-417" tabindex="-1"></a>  <span class="at">metric =</span> <span class="st">&quot;Chill_Portions&quot;</span>,</span>
+<span id="cb36-418"><a href="chapter-16---making-cmip6-scenarios.html#cb36-418" tabindex="-1"></a>  <span class="at">metric_label =</span> <span class="st">&quot;Chill (Chill Portions)&quot;</span>)</span></code></pre></div>
+</details>
+<hr />
+</div>
+<div id="plots" class="section level2 hasAnchor" number="15.2">
+<h2><span class="header-section-number">15.2</span> Plots<a href="chapter-16---making-cmip6-scenarios.html#plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="frost" class="section level3 unnumbered hasAnchor">
+<h3>Frost<a href="chapter-16---making-cmip6-scenarios.html#frost" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure"><span style="display:block;" id="fig:SSPFreeze"></span>
+<img src="plots/FrostSSPs.svg" alt="Frost hours for SSP 1,2,3 and 5, for the years 2050 and 2085." width="800px" />
+<p class="caption">
+Figure 15.1: Frost hours for SSP 1,2,3 and 5, for the years 2050 and 2085.
+</p>
+</div>
+<hr />
+</div>
+<div id="heat" class="section level3 unnumbered hasAnchor">
+<h3>Heat<a href="chapter-16---making-cmip6-scenarios.html#heat" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure"><span style="display:block;" id="fig:SSPHeat"></span>
+<img src="plots/heatsssps.svg" alt="Growing Degree Hours (GDH) for SSP 1,2,3 and 5, for the years 2050 and 2085." width="800px" />
+<p class="caption">
+Figure 15.2: Growing Degree Hours (GDH) for SSP 1,2,3 and 5, for the years 2050 and 2085.
+</p>
+</div>
+<hr />
+</div>
+<div id="code-for-plotting" class="section level3 hasAnchor" number="15.2.1">
+<h3><span class="header-section-number">15.2.1</span> Code for plotting<a href="chapter-16---making-cmip6-scenarios.html#code-for-plotting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Code for plotting the data into two different plots observing the chill and heat in all scenarios:</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="chapter-16---making-cmip6-scenarios.html#cb37-1" tabindex="-1"></a>SSPs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ssp126&quot;</span>, <span class="st">&quot;ssp245&quot;</span>, <span class="st">&quot;ssp370&quot;</span>, <span class="st">&quot;ssp585&quot;</span>)</span>
+<span id="cb37-2"><a href="chapter-16---making-cmip6-scenarios.html#cb37-2" tabindex="-1"></a>Times <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2050</span>, <span class="dv">2085</span>)</span>
+<span id="cb37-3"><a href="chapter-16---making-cmip6-scenarios.html#cb37-3" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="chapter-16---making-cmip6-scenarios.html#cb37-4" tabindex="-1"></a>list_ssp <span class="ot">&lt;-</span> </span>
+<span id="cb37-5"><a href="chapter-16---making-cmip6-scenarios.html#cb37-5" tabindex="-1"></a>  <span class="fu">strsplit</span>(<span class="fu">names</span>(chill_future_scenario_list), <span class="st">&#39;</span><span class="sc">\\</span><span class="st">.&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-6"><a href="chapter-16---making-cmip6-scenarios.html#cb37-6" tabindex="-1"></a>  <span class="fu">map</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-7"><a href="chapter-16---making-cmip6-scenarios.html#cb37-7" tabindex="-1"></a>  <span class="fu">unlist</span>()</span>
+<span id="cb37-8"><a href="chapter-16---making-cmip6-scenarios.html#cb37-8" tabindex="-1"></a></span>
+<span id="cb37-9"><a href="chapter-16---making-cmip6-scenarios.html#cb37-9" tabindex="-1"></a>list_gcm <span class="ot">&lt;-</span></span>
+<span id="cb37-10"><a href="chapter-16---making-cmip6-scenarios.html#cb37-10" tabindex="-1"></a>  <span class="fu">strsplit</span>(<span class="fu">names</span>(chill_future_scenario_list), <span class="st">&#39;</span><span class="sc">\\</span><span class="st">.&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-11"><a href="chapter-16---making-cmip6-scenarios.html#cb37-11" tabindex="-1"></a>  <span class="fu">map</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-12"><a href="chapter-16---making-cmip6-scenarios.html#cb37-12" tabindex="-1"></a>  <span class="fu">unlist</span>()</span>
+<span id="cb37-13"><a href="chapter-16---making-cmip6-scenarios.html#cb37-13" tabindex="-1"></a></span>
+<span id="cb37-14"><a href="chapter-16---making-cmip6-scenarios.html#cb37-14" tabindex="-1"></a>list_time <span class="ot">&lt;-</span></span>
+<span id="cb37-15"><a href="chapter-16---making-cmip6-scenarios.html#cb37-15" tabindex="-1"></a>  <span class="fu">strsplit</span>(<span class="fu">names</span>(chill_future_scenario_list), <span class="st">&#39;</span><span class="sc">\\</span><span class="st">.&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-16"><a href="chapter-16---making-cmip6-scenarios.html#cb37-16" tabindex="-1"></a>  <span class="fu">map</span>(<span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-17"><a href="chapter-16---making-cmip6-scenarios.html#cb37-17" tabindex="-1"></a>  <span class="fu">unlist</span>()</span>
+<span id="cb37-18"><a href="chapter-16---making-cmip6-scenarios.html#cb37-18" tabindex="-1"></a></span>
+<span id="cb37-19"><a href="chapter-16---making-cmip6-scenarios.html#cb37-19" tabindex="-1"></a></span>
+<span id="cb37-20"><a href="chapter-16---making-cmip6-scenarios.html#cb37-20" tabindex="-1"></a><span class="cf">for</span>(SSP <span class="cf">in</span> SSPs)</span>
+<span id="cb37-21"><a href="chapter-16---making-cmip6-scenarios.html#cb37-21" tabindex="-1"></a>  <span class="cf">for</span>(Time <span class="cf">in</span> Times)</span>
+<span id="cb37-22"><a href="chapter-16---making-cmip6-scenarios.html#cb37-22" tabindex="-1"></a>    {</span>
+<span id="cb37-23"><a href="chapter-16---making-cmip6-scenarios.html#cb37-23" tabindex="-1"></a>    </span>
+<span id="cb37-24"><a href="chapter-16---making-cmip6-scenarios.html#cb37-24" tabindex="-1"></a>    <span class="co"># find all scenarios for the ssp and time</span></span>
+<span id="cb37-25"><a href="chapter-16---making-cmip6-scenarios.html#cb37-25" tabindex="-1"></a>    chill <span class="ot">&lt;-</span> chill_future_scenario_list[list_ssp <span class="sc">==</span> SSP <span class="sc">&amp;</span> list_time <span class="sc">==</span> Time]</span>
+<span id="cb37-26"><a href="chapter-16---making-cmip6-scenarios.html#cb37-26" tabindex="-1"></a>    <span class="fu">names</span>(chill) <span class="ot">&lt;-</span> list_gcm[list_ssp <span class="sc">==</span> SSP <span class="sc">&amp;</span> list_time <span class="sc">==</span> Time]</span>
+<span id="cb37-27"><a href="chapter-16---making-cmip6-scenarios.html#cb37-27" tabindex="-1"></a>    <span class="cf">if</span>(SSP <span class="sc">==</span> <span class="st">&quot;ssp126&quot;</span>) SSPcaption <span class="ot">&lt;-</span> <span class="st">&quot;SSP1&quot;</span></span>
+<span id="cb37-28"><a href="chapter-16---making-cmip6-scenarios.html#cb37-28" tabindex="-1"></a>    <span class="cf">if</span>(SSP <span class="sc">==</span> <span class="st">&quot;ssp245&quot;</span>) SSPcaption <span class="ot">&lt;-</span> <span class="st">&quot;SSP2&quot;</span></span>
+<span id="cb37-29"><a href="chapter-16---making-cmip6-scenarios.html#cb37-29" tabindex="-1"></a>    <span class="cf">if</span>(SSP <span class="sc">==</span> <span class="st">&quot;ssp370&quot;</span>) SSPcaption <span class="ot">&lt;-</span> <span class="st">&quot;SSP3&quot;</span></span>
+<span id="cb37-30"><a href="chapter-16---making-cmip6-scenarios.html#cb37-30" tabindex="-1"></a>    <span class="cf">if</span>(SSP <span class="sc">==</span> <span class="st">&quot;ssp585&quot;</span>) SSPcaption <span class="ot">&lt;-</span> <span class="st">&quot;SSP5&quot;</span>    </span>
+<span id="cb37-31"><a href="chapter-16---making-cmip6-scenarios.html#cb37-31" tabindex="-1"></a>    <span class="cf">if</span>(Time <span class="sc">==</span> <span class="st">&quot;2050&quot;</span>) Time_caption <span class="ot">&lt;-</span> <span class="st">&quot;2050&quot;</span></span>
+<span id="cb37-32"><a href="chapter-16---making-cmip6-scenarios.html#cb37-32" tabindex="-1"></a>    <span class="cf">if</span>(Time <span class="sc">==</span> <span class="st">&quot;2085&quot;</span>) Time_caption <span class="ot">&lt;-</span> <span class="st">&quot;2085&quot;</span></span>
+<span id="cb37-33"><a href="chapter-16---making-cmip6-scenarios.html#cb37-33" tabindex="-1"></a>    chills <span class="ot">&lt;-</span> chill <span class="sc">%&gt;%</span> </span>
+<span id="cb37-34"><a href="chapter-16---making-cmip6-scenarios.html#cb37-34" tabindex="-1"></a>      <span class="fu">make_climate_scenario</span>(</span>
+<span id="cb37-35"><a href="chapter-16---making-cmip6-scenarios.html#cb37-35" tabindex="-1"></a>        <span class="at">caption =</span> <span class="fu">c</span>(SSPcaption,</span>
+<span id="cb37-36"><a href="chapter-16---making-cmip6-scenarios.html#cb37-36" tabindex="-1"></a>                    Time_caption),</span>
+<span id="cb37-37"><a href="chapter-16---making-cmip6-scenarios.html#cb37-37" tabindex="-1"></a>        <span class="at">add_to =</span> chills)</span>
+<span id="cb37-38"><a href="chapter-16---making-cmip6-scenarios.html#cb37-38" tabindex="-1"></a>}</span>
+<span id="cb37-39"><a href="chapter-16---making-cmip6-scenarios.html#cb37-39" tabindex="-1"></a></span>
+<span id="cb37-40"><a href="chapter-16---making-cmip6-scenarios.html#cb37-40" tabindex="-1"></a><span class="co"># plotting frost</span></span>
+<span id="cb37-41"><a href="chapter-16---making-cmip6-scenarios.html#cb37-41" tabindex="-1"></a></span>
+<span id="cb37-42"><a href="chapter-16---making-cmip6-scenarios.html#cb37-42" tabindex="-1"></a>info_frost <span class="ot">&lt;-</span></span>
+<span id="cb37-43"><a href="chapter-16---making-cmip6-scenarios.html#cb37-43" tabindex="-1"></a> <span class="fu">plot_climate_scenarios</span>(</span>
+<span id="cb37-44"><a href="chapter-16---making-cmip6-scenarios.html#cb37-44" tabindex="-1"></a>   <span class="at">climate_scenario_list=</span>chills,</span>
+<span id="cb37-45"><a href="chapter-16---making-cmip6-scenarios.html#cb37-45" tabindex="-1"></a>   <span class="at">metric=</span><span class="st">&quot;Frost_H&quot;</span>,</span>
+<span id="cb37-46"><a href="chapter-16---making-cmip6-scenarios.html#cb37-46" tabindex="-1"></a>   <span class="at">metric_label=</span><span class="st">&quot;Frost hours&quot;</span>,</span>
+<span id="cb37-47"><a href="chapter-16---making-cmip6-scenarios.html#cb37-47" tabindex="-1"></a>   <span class="at">texcex=</span><span class="fl">1.5</span>)</span>
+<span id="cb37-48"><a href="chapter-16---making-cmip6-scenarios.html#cb37-48" tabindex="-1"></a>    </span>
+<span id="cb37-49"><a href="chapter-16---making-cmip6-scenarios.html#cb37-49" tabindex="-1"></a><span class="co">#plotting heat</span></span>
+<span id="cb37-50"><a href="chapter-16---making-cmip6-scenarios.html#cb37-50" tabindex="-1"></a></span>
+<span id="cb37-51"><a href="chapter-16---making-cmip6-scenarios.html#cb37-51" tabindex="-1"></a>info_heat <span class="ot">&lt;-</span></span>
+<span id="cb37-52"><a href="chapter-16---making-cmip6-scenarios.html#cb37-52" tabindex="-1"></a>  <span class="fu">plot_climate_scenarios</span>(</span>
+<span id="cb37-53"><a href="chapter-16---making-cmip6-scenarios.html#cb37-53" tabindex="-1"></a>    <span class="at">climate_scenario_list =</span> chills,</span>
+<span id="cb37-54"><a href="chapter-16---making-cmip6-scenarios.html#cb37-54" tabindex="-1"></a>    <span class="at">metric =</span> <span class="st">&quot;GDH&quot;</span>,</span>
+<span id="cb37-55"><a href="chapter-16---making-cmip6-scenarios.html#cb37-55" tabindex="-1"></a>    <span class="at">metric_label =</span> <span class="st">&quot;Heat (Growing Degree Hours)&quot;</span>,</span>
+<span id="cb37-56"><a href="chapter-16---making-cmip6-scenarios.html#cb37-56" tabindex="-1"></a>    <span class="at">texcex =</span> <span class="fl">1.5</span>)</span></code></pre></div>
+</details>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="chapter-15---future-temperature-scenarios.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-17---making-cmip5-scenarios-with-the-climatewizard.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/14-ChapterXVI.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -20,9 +20,11 @@ pre code {
   hyphens: auto;
 }
 
-.book .book-summary img {
-  display: block;
-  margin: 20px auto;
+.book-summary img {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 10px 0;
 }
 
 /* ---------- Minimal GitBook toolbar ---------- */
@@ -32,4 +34,5 @@ pre code {
 .book-header .btn[aria-label="Edit"] {
   display: none !important;
 }
+
 

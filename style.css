@@ -14,7 +14,8 @@ pre code {
 }
 
 /* Justified text */
-.book-body .page-wrapper .page-inner section.normal p {
+.book-body .page-wrapper .page-inner section.normal p,
+.book-body .page-wrapper .page-inner section.normal {
   text-align: justify !important;
   hyphens: auto;
 }
